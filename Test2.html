@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test - Lección 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9f6fb;
+      color: #4a3054;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #8e44ad;
+      margin-bottom: 2rem;
+    }
+    .question {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    .question img {
+      max-width: 200px;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+    }
+    .question h3 {
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    button {
+      background-color: #c39bd3;
+      color: white;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: 0.6rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background-color: #af7ac5;
+    }
+    .result {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .navigation {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .navigation a {
+      margin: 0 0.5rem;
+      text-decoration: none;
+      background-color: #c39bd3;
+      color: white;
+      padding: 0.7rem 1.4rem;
+      border-radius: 0.6rem;
+      font-weight: 600;
+    }
+    .navigation a:hover {
+      background-color: #af7ac5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test - Lección 2 y 3:</h1>
+  <form id="quizForm">
+    <div class="question">
+      <h3>1. ¿Qué significa la seña de colocar la mano abierta al lado de la frente y alejarla?</h3>
+      <label><input type="radio" name="q1" value="1"> Hola</label>
+      <label><input type="radio" name="q1" value="0"> Gracias</label>
+      <label><input type="radio" name="q1" value="0"> Adiós</label>
+    </div><div class="question">
+  <h3>2. ¿Qué significa tocarse el pecho con la mano abierta?</h3>
+  <label><input type="radio" name="q2" value="1"> Mi</label>
+  <label><input type="radio" name="q2" value="0"> Tú</label>
+  <label><input type="radio" name="q2" value="0"> Nombre</label>
+</div>
+
+<div class="question">
+  <h3>3. Esta imagen representa la seña de:</h3>
+  <img src="https://i.postimg.cc/Jz3W1Vnm/v4-728px-Say-Your-Name-in-Sign-Language-Step-4-Version-3-jpg.png" alt="Imagen de seña">
+  <label><input type="radio" name="q3" value="0"> Hola</label>
+  <label><input type="radio" name="q3" value="1"> Deletrear tu nombre</label>
+  <label><input type="radio" name="q3" value="0"> Encantado</label>
+</div>
+
+<div class="question">
+  <h3>4. ¿Cómo se hace la seña de "nombre"?</h3>
+  <label><input type="radio" name="q4" value="1"> Golpear suavemente dos dedos formando una X</label>
+  <label><input type="radio" name="q4" value="0"> Tocar el pecho</label>
+  <label><input type="radio" name="q4" value="0"> Agitar la mano</label>
+</div>
+
+<div class="question">
+  <h3>5. Esta imagen representa:</h3>
+  <img src="https://i.postimg.cc/3xc4Xcps/C-mo-te-llamas-360-P.gif" alt="Imagen de seña">
+  <label><input type="radio" name="q5" value="0"> Encantado</label>
+  <label><input type="radio" name="q5" value="1"> ¿Cómo te llamas?</label>
+  <label><input type="radio" name="q5" value="0"> Profesion</label>
+</div>
+
+<div class="question">
+  <h3>6. Para decir "yo soy..." debes:</h3>
+  <label><input type="radio" name="q6" value="1"> Señalarte y luego hacer la seña del rol</label>
+  <label><input type="radio" name="q6" value="0"> Solo hacer la seña de "nombre"</label>
+  <label><input type="radio" name="q6" value="0"> Saludar con la mano</label>
+</div>
+
+<div class="question">
+  <h3>7. Esta seña indica:</h3>
+  <img src="https://i.postimg.cc/zXVv7kjK/VID-20250529-102909.gif" alt="Imagen seña">
+  <label><input type="radio" name="q7" value="1"> ¿De dónde eres?</label>
+  <label><input type="radio" name="q7" value="0"> Mi casa</label>
+  <label><input type="radio" name="q7" value="0"> Mi nombre</label>
+</div>
+
+<div class="question">
+  <h3>8. "Encantado de conocerte" se hace con:</h3>
+  <label><input type="radio" name="q8" value="1"> Mano en el pecho y sonrisa</label>
+  <label><input type="radio" name="q8" value="0"> Golpe en la frente</label>
+  <label><input type="radio" name="q8" value="0"> Señalando a la persona</label>
+</div>
+
+<div class="question">
+  <h3>9. ¿Qué se debe priorizar al deletrear tu nombre?</h3>
+  <label><input type="radio" name="q9" value="1"> Ser fluido</label>
+  <label><input type="radio" name="q9" value="0"> Ser rápido</label>
+  <label><input type="radio" name="q9" value="0"> Hacer pausas largas</label>
+</div>
+
+<div class="question">
+  <h3>10. Esta imagen representa:</h3>
+  <img src="https://i.postimg.cc/qBFbSbpL/v4-728px-Say-Your-Name-in-Sign-Language-Step-1-Version-3-jpg.png" alt="imagen">
+  <label><input type="radio" name="q10" value="1"> Mi nombre es</label>
+  <label><input type="radio" name="q10" value="0"> Encantado de conocerte</label>
+  <label><input type="radio" name="q10" value="0"> Hola</label>
+</div>
+<!-- Pregunta 11 -->
+<div class="question">
+  <h3>11. ¿Qué letra representa esta seña?</h3>
+  <img src="https://i.postimg.cc/LXKrZw5c/1000037771.png" alt="Letra A" class="question-img" />
+  <label><input type="radio" name="q11" value="1" /> A</label><br />
+  <label><input type="radio" name="q11" value="0" /> M</label><br />
+  <label><input type="radio" name="q11" value="0" /> L</label>
+</div>
+
+<!-- Pregunta 12 -->
+<div class="question">
+  <h3>12. ¿Qué letra representa esta seña?</h3>
+  <img src="https://i.postimg.cc/8kHdngZP/1000037811.png" alt="Letra H" class="question-img" />
+  <label><input type="radio" name="q12" value="0" /> B</label><br />
+  <label><input type="radio" name="q12" value="0" /> C</label><br />
+  <label><input type="radio" name="q12" value="1" /> H</label>
+</div>
+
+<!-- Pregunta 13 -->
+<div class="question">
+  <h3>13. ¿Qué letra representa esta seña?</h3>
+  <img src="https://i.postimg.cc/7YdX67fc/1000037776.png" alt="Letra C" class="question-img" />
+  <label><input type="radio" name="q13" value="0" /> O</label><br />
+  <label><input type="radio" name="q13" value="1" /> C</label><br />
+  <label><input type="radio" name="q13" value="0" /> U</label>
+</div>
+
+<!-- Pregunta 14 -->
+<div class="question">
+  <h3>14. ¿Qué letra representa esta seña?</h3>
+  <img src="https://i.postimg.cc/43Pt2z12/1000037827.png" alt="Letra J" class="question-img" />
+  <label><input type="radio" name="q14" value="0" /> I</label><br />
+  <label><input type="radio" name="q14" value="1" /> J</label><br />
+  <label><input type="radio" name="q14" value="0" /> T</label>
+</div>
+
+<!-- Pregunta 15 -->
+<div class="question">
+  <h3>15. ¿Qué letra representa esta seña?</h3>
+  <img src="https://i.postimg.cc/Gh5NBDwD/1000037793.png" alt="Letra E" class="question-img" />
+  <label><input type="radio" name="q15" value="0" /> F</label><br />
+  <label><input type="radio" name="q15" value="1" /> E</label><br />
+  <label><input type="radio" name="q15" value="0" /> P</label>
+</div>
+<button type="button" onclick="calcularResultado()">Enviar respuestas</button>
+<div id="resultado" style="margin-top: 1em; font-weight: bold;"></div>
+  </form>  
+  <div class="navigation">
+    <a href="index.html">Volver al índice</a>
+    <a href="lesson4.html">Siguiente</a>
+    <a href="lesson3.html">Atrás</a>
+  </div>
+ <script>
+  function calcularResultado() {
+    const form = document.getElementById('quizForm');
+    const data = new FormData(form);
+
+    const correctas = {
+      q1: "1",  q2: "1",  q3: "1",  q4: "1",  q5: "1",
+      q6: "1",  q7: "1",  q8: "1",  q9: "1",  q10: "1",
+      q11: "1", q12: "1", q13: "1", q14: "1", q15: "1"
+    };
+
+    let aciertos = 0;
+
+    // Eliminar mensajes anteriores de resultado por pregunta
+    document.querySelectorAll('.feedback').forEach(el => el.remove());
+
+    for (let i = 1; i <= 15; i++) {
+      const q = "q" + i;
+      const seleccion = data.get(q);
+      const pregunta = document.querySelector(`[name="${q}"]`).closest('.question');
+
+      // Crear elemento de feedback
+      const feedback = document.createElement('div');
+      feedback.className = 'feedback';
+      feedback.style.marginTop = '0.8rem';
+      feedback.style.fontWeight = '600';
+
+      if (seleccion === correctas[q]) {
+        aciertos++;
+        feedback.textContent = `✅ ¡Correcto!`;
+        feedback.style.color = '#27ae60';
+      } else {
+        feedback.textContent = `❌ Incorrecto`;
+        feedback.style.color = '#c0392b';
+      }
+
+      // Insertar feedback al final de la pregunta
+      pregunta.appendChild(feedback);
+    }
+
+    const resultado = document.getElementById("resultado");
+    if (aciertos === 15) {
+      resultado.innerHTML = `✅ ¡Excelente! Todas las respuestas son correctas (${aciertos}/15).`;
+      resultado.style.color = "#27ae60";
+    } else {
+      resultado.innerHTML = `Obtuviste ${aciertos} de 15 puntos.`;
+      resultado.style.color = "#c0392b";
+    }
+  }
+</script>
+  </body>
+</html>
