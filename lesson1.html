@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lección 1 - Saludos Básicos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #5c3c74;
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7, #ce93d8);
+      background-size: 600% 600%;
+      animation: backgroundShift 20s ease infinite;
+      overflow-x: hidden;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(215, 188, 232, 0.85);
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(4px);
+    }
+
+    header h1 {
+      color: #4a3054;
+      font-size: 2.2rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .hero {
+      position: relative;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      border-radius: 1.5rem;
+      margin: 2rem 1rem;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+      opacity: 0.2;
+      border-radius: 1.5rem;
+      z-index: 0;
+    }
+
+    .hero h2, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      color: #6c3e9b;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      color: #7d5a8b;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      color: #a45db6;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .card p {
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+
+    .card img {
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 1rem;
+      border: 2px solid #ebd6f4;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 2rem 1rem;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      background-color: #c39bd3;
+      color: white;
+      padding: 0.9rem 1.6rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .nav-buttons a:hover {
+      background-color: #a569bd;
+      transform: scale(1.06);
+    }
+
+    footer {
+      background: rgba(215, 188, 232, 0.9);
+      text-align: center;
+      padding: 1.5rem;
+      color: #4a3054;
+      font-weight: 500;
+      margin-top: 2rem;
+    }
+
+    /* Elementos flotantes */
+    .floaty {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.6;
+      animation: float 10s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    .float1 { top: 10%; left: 5%; animation-delay: 0s; }
+    .float2 { top: 20%; right: 10%; animation-delay: 3s; }
+    .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
+    .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
+  </style>
+</head>
+<body>
+  
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float2" alt="mariposa" />
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float3" alt="mariposa" />
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
+
+  <header>
+    <h1>Lección 1: Saludos Básicos</h1>
+  </header>
+
+  <section class="hero">
+    <h2>Aprende saludos en Lengua de Señas</h2>
+    <p>Explora cada tarjeta y observa los gestos animados para mejorar tu comunicación.</p>
+  </section>  <div class="container"><!-- Lecciones -->
+<div class="card">
+  <h2>Hola</h2>
+  <p>Extiende la mano desde la frente hacia afuera como si saludaras.</p>
+  <img src="https://i.postimg.cc/SNBkHRQW/1000037879.png" alt="Seña Hola" />
+</div>
+
+<div class="card">
+  <h2>Buenos días</h2>
+  <p>Comienza con la seña de "bueno" (mano desde la boca hacia afuera) y luego simula la salida del sol.</p>
+  <img src="https://i.postimg.cc/tTSBw1by/buenos-dias-good-morning.gif" alt="Seña Buenos días" />
+</div>
+<div class="card">
+  <h2>Buenas tardes</h2>
+  <p>La mano dominante pasa sobre la otra simulando el sol bajando.</p>
+  <img src="https://i.gifer.com/3OwVi.gif" alt="Buenas tardes" />
+</div>
+
+<div class="card">
+  <h2>Buenas noches</h2>
+  <p>Mano dominante curvada baja sobre la otra mano extendida (simulando la noche cubriendo).</p>
+  <img src="https://i.postimg.cc/YC7DmYS7/lsc-fenascol.gif" alt="Buenas noches" />
+</div>
+<div class="card">
+  <h2>¿Cómo estás?</h2>
+  <p>Haz un gesto de pregunta con las cejas levantadas y ambas manos girando hacia el frente.</p>
+  <img src="https://i.postimg.cc/764ZFBHc/how-are-you-deaf-1.gif" alt="¿Cómo estás?" />
+</div>
+
+<div class="card">
+  <h2>¿Qué tal?</h2>
+  <p>Similar a "¿Cómo estás?", pero con una expresión más informal o relajada.</p>
+  <img src="https://i.postimg.cc/4dYXr9cQ/como-estas.gif" alt="¿Qué tal?" />
+</div>
+<div class="card">
+  <h2>Mucho gusto</h2>
+  <p>Palmas juntas frente al pecho y gesto de sonrisa. Puede variar por región.</p>
+  <img src="https://i.postimg.cc/K8hhJWQf/nice-to-meet-you-sign-language-2.gif" alt="Mucho gusto" />
+</div>
+
+<div class="card">
+  <h2>Bienvenido(a)</h2>
+  <p>Movimiento circular con las manos abiertas hacia el pecho, invitando a entrar.</p>
+  <img src="https://i.postimg.cc/MpRDtTvD/please-sign-language-1.gif" alt="Bienvenido(a)" />
+</div>
+
+<div class="card">
+  <h2>Adiós</h2>
+  <p>Movimiento de la mano abierta despidiéndose.</p>
+  <img src="https://i.postimg.cc/FzBmHGvh/shincore-wave-emoji.gif" alt="Seña Adiós" />
+</div>
+
+<div class="card">
+  <h2>Nos vemos</h2>
+  <p>Dos dedos desde los ojos hacia adelante, como señalando al otro.</p>
+  <img src="https://i.postimg.cc/9XGnXLWb/bsl-see-you-later.gif" alt="Nos vemos" />
+</div>
+
+<div class="card">
+  <h2>Cuídate</h2>
+  <p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p>
+  <img src="https://i.gifer.com/3OwWj.gif" alt="Cuídate" />
+</div>
+
+<div class="card">
+  <h2>Hasta mañana</h2>
+  <p>Despedida que indica continuidad para el día siguiente.</p>
+  <img src="https://i.postimg.cc/gcD1qgfJ/Hastamaana480-P-ezgif-com-video-to-gif-converter.gif" alt="Hasta mañana" />
+</div>
+
+<!-- Botones de navegación -->
+<div class="nav-buttons">
+  <a href="index.html">← Volver al índice</a>
+  <a href="Prueba.html">Test 1 </a>
+</div>
+
+  <div class="container">
+
+  <footer>
+    Plataforma ALSI • Aprende LSN con estilo 💜
+  </footer>
+</body>
+</html>

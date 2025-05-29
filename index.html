@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ALSI - Plataforma Educativa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f9f6fb;
+      color: #4a3054;
+    }
+    aside {
+      width: 220px;
+      background-color: #c39bd3;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: white;
+      align-items: center;
+    }
+    aside img {
+      width: 130px;
+      height: auto;
+      margin-bottom: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    aside h1 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    aside button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      text-align: left;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    aside button:hover {
+      background-color: #af7ac5;
+      border-radius: 8px;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      position: relative;
+    }/* Barra de progreso delgada en la parte superior */
+.progress-bar-container {
+  background-color: #e8dff3;
+  height: 6px;
+  width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.progress-bar-fill {
+  background-color: #b27ac5;
+  height: 100%;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+.search-container {
+  margin: 1.5rem 0;
+}
+.search-container input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.lessons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.lesson-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.lesson-card:hover {
+  transform: scale(1.02);
+}
+.lesson-card h3 {
+  margin: 0 0 0.5rem;
+}
+.lesson-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+.lesson-card button {
+  background-color: #c39bd3;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.lesson-card.completed {
+  border: 2px solid #af7ac5;
+}
+.lesson-card .check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #28a745;
+}
+#perfil form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#perfil input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+#perfil button {
+  width: fit-content;
+  background-color: #c39bd3;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <aside>
+    <img src="https://i.postimg.cc/TwdbX2Qn/1000037534.png" alt="Logo ALSI" />
+    <h1>ALSI</h1>
+    <button onclick="showSection('lecciones')">Lecciones</button>
+    <button onclick="showSection('progreso')">Progreso</button>
+    <button onclick="showSection('perfil')">Perfil</button>
+    <button onclick="alert('Sesión cerrada')">Salir</button>
+  </aside>  <main>
+    <!-- Barra de progreso visual siempre visible -->
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div><section id="lecciones">
+  <h2>Elige una lección para comenzar</h2>
+  <div class="search-container">
+    <input type="text" id="busqueda" placeholder="Buscar lección..." oninput="filtrarLecciones()" />
+  </div>
+  <div class="lessons" id="lessons-container"></div>
+</section>
+
+<section id="progreso" style="display:none">
+  <h2>Progreso del usuario</h2>
+  <ul id="lista-progreso"></ul>
+  <button onclick="reiniciarProgreso()" style="margin-top: 1rem; background-color: #e74c3c; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer;">
+    Reiniciar progreso
+  </button>
+</section>
+
+<section id="perfil" style="display:none">
+  <h2>Perfil del usuario</h2>
+  <form onsubmit="guardarPerfil(event)">
+    <input type="text" id="nombre" placeholder="Nombre" />
+    <input type="email" id="correo" placeholder="Correo electrónico" />
+    <input type="text" id="nivel" placeholder="Nivel de español" />
+    <button type="submit">Guardar perfil</button>
+  </form>
+</section>
+
+  </main>  <script>
+    function showSection(id) {
+      document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      if (id === 'progreso') actualizarProgreso();
+    }
+
+    const container = document.getElementById('lessons-container');
+    const progresoLista = document.getElementById('lista-progreso');
+    let completadas = JSON.parse(localStorage.getItem('leccionesCompletadas')) || [];
+
+    function crearLecciones() {
+      container.innerHTML = '';
+      const descripciones = {
+        1: "Introducción a las señas básicas.",
+        2: "Abecedario dactilológico.",
+        3: "Colores y números.",
+        4: "Días de la semana y tiempo.",
+        5: "Familia y relaciones.",
+        6: "Emociones y estados de ánimo.",
+        7: "Comidas y bebidas.",
+        8: "Partes del cuerpo.",
+        9: "Ropa y accesorios.",
+        10: "Animales y naturaleza.",
+        11: "Lugares de la ciudad.",
+        12: "Actividades diarias.",
+        13: "Preguntas y respuestas.",
+        14: "Conversaciones cotidianas."
+      };
+
+      for (let i = 1; i <= 14; i++) {
+        const card = document.createElement('div');
+        card.className = 'lesson-card';
+        card.dataset.titulo = `Lección ${i}`;
+
+        const desbloqueada = i === 1 || completadas.includes(i - 1) || completadas.includes(i);
+
+        if (completadas.includes(i)) {
+          card.classList.add('completed');
+          card.innerHTML += '<span class="check">✅</span>';
+        }
+
+        card.innerHTML += `
+          <h3>Lección ${i}</h3>
+          <p>${descripciones[i] || ''}</p>
+          <button onclick="event.stopPropagation(); marcarCompletada(${i})">Marcar como completada</button>
+        `;
+
+        if (desbloqueada) {
+          card.addEventListener("click", () => cargarLeccion(i));
+        } else {
+          card.style.opacity = "0.5";
+          card.style.pointerEvents = "none";
+          card.innerHTML += `<p style="color:#999;font-size:0.9rem;">Completa la anterior para desbloquear</p>`;
+        }
+
+        container.appendChild(card);
+      }
+    }
+
+    function marcarCompletada(num) {
+      if (!completadas.includes(num)) {
+        completadas.push(num);
+        localStorage.setItem('leccionesCompletadas', JSON.stringify(completadas));
+        crearLecciones();
+        actualizarProgreso();
+      }
+    }
+
+    function actualizarProgreso() {
+      progresoLista.innerHTML = '';
+      for (let i = 1; i <= 14; i++) {
+        const li = document.createElement('li');
+        li.textContent = `Lección ${i}: ${completadas.includes(i) ? '✅ Completada' : '❌ Pendiente'}`;
+        progresoLista.appendChild(li);
+      }
+      const progreso = Math.round((completadas.length / 14) * 100);
+      document.getElementById('progressFill').style.width = progreso + '%';
+    }
+
+    function filtrarLecciones() {
+      const filtro = document.getElementById("busqueda").value.toLowerCase();
+      document.querySelectorAll('.lesson-card').forEach(card => {
+        const titulo = card.dataset.titulo.toLowerCase();
+        card.style.display = titulo.includes(filtro) ? 'block' : 'none';
+      });
+    }
+
+    function cargarLeccion(numero) {
+      fetch(`lesson${numero}.html`)
+        .then(res => res.text())
+        .then(html => {
+          document.querySelector("main").innerHTML = html;
+        })
+        .catch(err => {
+          document.querySelector("main").innerHTML = `<p class="text-red-600">Error al cargar la lección ${numero}.</p>`;
+          console.error("Error al cargar la lección:", err);
+        });
+    }
+
+    const perfilData = JSON.parse(localStorage.getItem('perfilUsuario')) || {};
+    document.getElementById('nombre').value = perfilData.nombre || '';
+    document.getElementById('correo').value = perfilData.correo || '';
+    document.getElementById('nivel').value = perfilData.nivel || '';
+
+    function guardarPerfil(event) {
+      event.preventDefault();
+      const data = {
+        nombre: document.getElementById('nombre').value,
+        correo: document.getElementById('correo').value,
+        nivel: document.getElementById('nivel').value
+      };
+      localStorage.setItem('perfilUsuario', JSON.stringify(data));
+      alert('Perfil guardado.');
+    }
+
+    function reiniciarProgreso() {
+      if (confirm("¿Estás seguro de que deseas reiniciar todo tu progreso? Esta acción no se puede deshacer.")) {
+        localStorage.removeItem('leccionesCompletadas');
+        completadas = [];
+        crearLecciones();
+        actualizarProgreso();
+        alert("Progreso reiniciado exitosamente.");
+      }
+    }
+
+    crearLecciones();
+    actualizarProgreso();
+  </script>
+  </body>
+</html>
