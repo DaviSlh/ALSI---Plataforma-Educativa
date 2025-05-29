@@ -183,10 +183,27 @@
   .lesson-card {
     padding: 1rem;
   }
+}.logo-movil {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo-movil {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1001;
+  }
 }
   </style>
 </head>
 <body>
+  <img class="logo-movil" src="https://i.postimg.cc/TwdbX2Qn/1000037534.png" alt="Logo ALSI móvil" />
   <aside>
     <img src="https://i.postimg.cc/TwdbX2Qn/1000037534.png" alt="Logo ALSI" />
     <h1>ALSI</h1>
