@@ -348,10 +348,11 @@
       });
     }
 
-   function cargarLeccion(numero) {
-
+function cargarLeccion(numero) {
+  // Ocultar todas las secciones
   document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
 
+  // Mostrar el contenedor de la lección
   document.getElementById("contenido-leccion").style.display = "block";
 
   fetch(`lesson${numero}.html`)
