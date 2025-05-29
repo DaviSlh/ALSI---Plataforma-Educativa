@@ -348,17 +348,22 @@
       });
     }
 
-    function cargarLeccion(numero) {
-      fetch(`lesson${numero}.html`)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("contenido-leccion").innerHTML = html;
-        })
-        .catch(err => {
-          document.getElementById("contenido-leccion").innerHTML = `<p style="color:red;">Error al cargar la lección ${numero}.</p>`;
-          console.error("Error al cargar la lección:", err);
-        });
-    }
+   function cargarLeccion(numero) {
+
+  document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
+
+  document.getElementById("contenido-leccion").style.display = "block";
+
+  fetch(`lesson${numero}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("contenido-leccion").innerHTML = html;
+    })
+    .catch(err => {
+      document.getElementById("contenido-leccion").innerHTML = `<p style="color:red;">Error al cargar la lección ${numero}.</p>`;
+      console.error("Error al cargar la lección:", err);
+    });
+}
 
     function guardarPerfil(event) {
       event.preventDefault();
