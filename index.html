@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,7 +62,6 @@
       background-color: #e8dff3;
       height: 6px;
       width: 100%;
-      margin: 0;
       position: absolute;
       top: 0;
       left: 0;
@@ -100,14 +100,8 @@
     .lesson-card:hover {
       transform: scale(1.02);
     }
-    .lesson-card h3 {
-      margin: 0 0 0.5rem;
-    }
-    .lesson-card p {
-      font-size: 0.9rem;
-      color: #555;
-      margin-bottom: 1rem;
-    }
+    .lesson-card h3 { margin: 0 0 0.5rem; }
+    .lesson-card p { font-size: 0.9rem; color: #555; margin-bottom: 1rem; }
     .lesson-card button {
       background-color: #c39bd3;
       color: #fff;
@@ -147,59 +141,41 @@
       border-radius: 8px;
       cursor: pointer;
     }
+    .logo-movil {
+      display: none;
+    }
     @media (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
-
-  aside {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 1rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  aside img, aside h1 {
-    display: none; /* Oculta el logo y título para ganar espacio */
-  }
-
-  aside button {
-    flex: 1;
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-
-  main {
-    padding: 1rem;
-  }
-
-  .lessons {
-    grid-template-columns: 1fr; /* Una sola columna en móviles */
-  }
-
-  .lesson-card {
-    padding: 1rem;
-  }
-}.logo-movil {
-  display: none;
-}
-
-@media only screen and (max-width: 768px) {
-  .logo-movil {
-    display: block;
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 50px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 1001;
-  }
-}
+      body { flex-direction: column; }
+      aside {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      aside img, aside h1 { display: none; }
+      aside button {
+        flex: 1;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
+      main { padding: 1rem; }
+      .lessons { grid-template-columns: 1fr; }
+      .lesson-card { padding: 1rem; }
+      .logo-movil {
+        display: block;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 1001;
+      }
+    }
   </style>
 </head>
 <body>
@@ -210,7 +186,7 @@
     <button onclick="showSection('lecciones')">Lecciones</button>
     <button onclick="showSection('progreso')">Progreso</button>
     <button onclick="showSection('perfil')">Perfil</button>
-    <button type="button" onclick="alert('Sesión cerrada')">Salir</button>
+   <button type="button" onclick="cerrarSesion()">Salir</button>
   </aside>
 
   <main>
@@ -247,7 +223,7 @@
         <p><strong>Nombre:</strong> <span id="resNombre">-</span></p>
         <p><strong>Correo:</strong> <span id="resCorreo">-</span></p>
         <p><strong>Nivel:</strong> <span id="resNivel">-</span></p>
-        <button type="button" onclick="editarPerfil()">Editar Perfil</button>
+        <button type="button" onclick="window.location.href = 'https://tusitio.com/inicio'">Salir</button>
       </div>
     </section>
 
@@ -255,12 +231,7 @@
   </main>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const perfilData = JSON.parse(localStorage.getItem('perfilUsuario')) || {};
-      document.getElementById('nombre').value = perfilData.nombre || '';
-      document.getElementById('correo').value = perfilData.correo || '';
-      document.getElementById('nivel').value = perfilData.nivel || '';
-    });
+    let completadas = JSON.parse(localStorage.getItem('leccionesCompletadas')) || [];
 
     function showSection(id) {
       document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
@@ -268,12 +239,8 @@
       if (id === 'progreso') actualizarProgreso();
     }
 
-    const container = document.getElementById('lessons-container');
-    const progresoLista = document.getElementById('lista-progreso');
-    let completadas = JSON.parse(localStorage.getItem('leccionesCompletadas')) || [];
-
     function crearLecciones() {
-      container.innerHTML = '';
+      const container = document.getElementById('lessons-container');
       const descripciones = {
         1: "Introducción a las señas básicas.",
         2: "Abecedario dactilológico.",
@@ -290,24 +257,21 @@
         13: "Preguntas y respuestas.",
         14: "Conversaciones cotidianas."
       };
-
+      container.innerHTML = '';
       for (let i = 1; i <= 14; i++) {
         const card = document.createElement('div');
         card.className = 'lesson-card';
         card.dataset.titulo = `Lección ${i}`;
         const desbloqueada = i === 1 || completadas.includes(i - 1) || completadas.includes(i);
-
         if (completadas.includes(i)) {
           card.classList.add('completed');
           card.innerHTML += '<span class="check">✅</span>';
         }
-
         card.innerHTML += `
           <h3>Lección ${i}</h3>
-          <p>${descripciones[i] || ''}</p>
+          <p>${descripciones[i]}</p>
           <button type="button" onclick="event.stopPropagation(); marcarCompletada(${i})">Marcar como completada</button>
         `;
-
         if (desbloqueada) {
           card.addEventListener("click", () => cargarLeccion(i));
         } else {
@@ -315,7 +279,6 @@
           card.style.pointerEvents = "none";
           card.innerHTML += `<p style="color:#999;font-size:0.9rem;">Completa la anterior para desbloquear</p>`;
         }
-
         container.appendChild(card);
       }
     }
@@ -330,6 +293,7 @@
     }
 
     function actualizarProgreso() {
+      const progresoLista = document.getElementById('lista-progreso');
       progresoLista.innerHTML = '';
       for (let i = 1; i <= 14; i++) {
         const li = document.createElement('li');
@@ -348,23 +312,19 @@
       });
     }
 
-function cargarLeccion(numero) {
-  // Ocultar todas las secciones
-  document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
-
-  // Mostrar el contenedor de la lección
-  document.getElementById("contenido-leccion").style.display = "block";
-
-  fetch(`lesson${numero}.html`)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById("contenido-leccion").innerHTML = html;
-    })
-    .catch(err => {
-      document.getElementById("contenido-leccion").innerHTML = `<p style="color:red;">Error al cargar la lección ${numero}.</p>`;
-      console.error("Error al cargar la lección:", err);
-    });
-}
+    function cargarLeccion(numero) {
+      document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
+      document.getElementById("contenido-leccion").style.display = "block";
+      fetch(`lesson${numero}.html`)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("contenido-leccion").innerHTML = html;
+        })
+        .catch(err => {
+          document.getElementById("contenido-leccion").innerHTML = `<p style="color:red;">Error al cargar la lección ${numero}.</p>`;
+          console.error("Error al cargar la lección:", err);
+        });
+    }
 
     function guardarPerfil(event) {
       event.preventDefault();
@@ -402,9 +362,16 @@ function cargarLeccion(numero) {
       }
     }
 
-    crearLecciones();
-    actualizarProgreso();
-    mostrarResumenPerfil();
+    document.addEventListener("DOMContentLoaded", () => {
+      const perfilData = JSON.parse(localStorage.getItem('perfilUsuario')) || {};
+      document.getElementById('nombre').value = perfilData.nombre || '';
+      document.getElementById('correo').value = perfilData.correo || '';
+      document.getElementById('nivel').value = perfilData.nivel || '';
+      crearLecciones();
+      actualizarProgreso();
+      mostrarResumenPerfil();
+    });
+    
   </script>
 </body>
 </html>
