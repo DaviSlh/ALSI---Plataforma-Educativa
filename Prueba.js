@@ -1,4 +1,4 @@
-<script>
+  <script>
   function verificar() {
     // Pregunta 1: checkbox correctas
     const correctas1 = ["Hola", "Buenas tardes"];
@@ -47,4 +47,5 @@
       resultado.style.color = "#c0392b";
     }
   }
+  localStorage.setItem("testAprobado1", "true");
 </script>
