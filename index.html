@@ -145,37 +145,140 @@
       display: none;
     }
     @media (max-width: 768px) {
-      body { flex-direction: column; }
-      aside {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 1rem;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
-      aside img, aside h1 { display: none; }
-      aside button {
-        flex: 1;
-        font-size: 0.9rem;
-        padding: 0.5rem;
-      }
-      main { padding: 1rem; }
-      .lessons { grid-template-columns: 1fr; }
-      .lesson-card { padding: 1rem; }
-      .logo-movil {
-        display: block;
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        width: 50px;
-        height: auto;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        z-index: 1001;
-      }
-    }
+  body {
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  aside img,
+  aside h1 {
+    display: none;
+  }
+
+  aside button {
+    flex: 1;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .lessons {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-card {
+    padding: 1rem;
+  }
+
+  .logo-movil {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+  }
+}
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0d8f0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode aside {
+  background-color: #3a2a52;
+  color: #dcd6f7;
+}
+
+body.dark-mode aside button {
+  color: #dcd6f7;
+}
+
+body.dark-mode aside button:hover {
+  background-color: #6b5498;
+}
+
+body.dark-mode main {
+  background-color: #1e1b29;
+  color: #e0d8f0;
+}
+
+body.dark-mode .lesson-card {
+  background-color: #2b2440;
+  color: #ddd;
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .lesson-card button {
+  background-color: #6b5498;
+  color: #fff;
+}
+
+body.dark-mode .lesson-card.completed {
+  border-color: #a87ce2;
+}
+
+body.dark-mode .progress-bar-container {
+  background-color: #4e3f70;
+}
+
+body.dark-mode .progress-bar-fill {
+  background-color: #a87ce2;
+}
+
+body.dark-mode #perfilResumen {
+  background-color: #3a2a52;
+  color: #e0d8f0;
+}
+
+body.dark-mode #perfil input {
+  background-color: #4e3f70;
+  color: #ddd;
+  border-color: #6b5498;
+}
+
+body.dark-mode #perfil button {
+  background-color: #6b5498;
+  color: white;
+}
+
+body.dark-mode .search-container input {
+  background-color: #4e3f70;
+  color: #ddd;
+  border-color: #6b5498;
+}
+body.dark-mode {
+  background-color: #1e1e2f;  /* Fondo oscuro */
+  color: #ffffff;             /* Letras blancas */
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode input,
+body.dark-mode button,
+body.dark-mode label {
+  color: #ffffff;
+}
   </style>
 </head>
 <body>
@@ -187,8 +290,8 @@
     <button onclick="showSection('progreso')">Progreso</button>
     <button onclick="showSection('perfil')">Perfil</button>
    <button type="button" onclick="cerrarSesion()">Salir</button>
+   <button id="toggle-dark-mode" type="button">🌙 Modo Oscuro</button>
   </aside>
-
   <main>
     <div class="progress-bar-container">
       <div class="progress-bar-fill" id="progressFill"></div>
@@ -215,163 +318,143 @@
       <form onsubmit="guardarPerfil(event)" id="form-perfil">
         <input type="text" id="nombre" placeholder="Nombre" />
         <input type="email" id="correo" placeholder="Correo electrónico" />
-        <input type="text" id="nivel" placeholder="Nivel de español" />
-        <button type="submit">Guardar perfil</button>
+       <button type="submit">Guardar perfil</button>
       </form>
-      <div id="perfilResumen" style="margin-top: 1.5rem; background-color: #f3e6fa; padding: 1rem; border-radius: 8px;">
-        <h3>Resumen del perfil</h3>
-        <p><strong>Nombre:</strong> <span id="resNombre">-</span></p>
-        <p><strong>Correo:</strong> <span id="resCorreo">-</span></p>
-        <p><strong>Nivel:</strong> <span id="resNivel">-</span></p>
-        <button type="button" onclick="window.location.href = 'https://tusitio.com/inicio'">Salir</button>
-      </div>
-    </section>
-
     <div id="contenido-leccion"></div>
   </main>
 
-  <script>
-    let completadas = JSON.parse(localStorage.getItem('leccionesCompletadas')) || [];
+ <script>
+  let completadas = JSON.parse(localStorage.getItem('leccionesCompletadas')) || [];
 
-    function showSection(id) {
-      document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
-      if (id === 'progreso') actualizarProgreso();
-    }
+  // Aquí puedes poner links directos a imágenes
+  const leccionesData = [
+    {
+      titulo: "Lección 1",
+      descripcion: "Introducción a las señas básicas.",
+      imagen: "https://i.imgur.com/1Xo1ZPp.jpg"
+    },
+    {
+      titulo: "Lección 2",
+      descripcion: "Abecedario dactilológico.",
+      imagen: "https://i.postimg.cc/LXKrZw5c/1000037771.png"
+    },
+    {
+      titulo: "Lección 3",
+      descripcion: "Colores y números.",
+      imagen: "https://i.imgur.com/s5q6h0H.jpg"
+    },
+    {
+      titulo: "Lección 4",
+      descripcion: "Días de la semana y tiempo.",
+      imagen: "https://i.imgur.com/4IgBz2v.jpg"
+    },
+    // Agrega más lecciones con sus respectivos links
+  ];
 
-    function crearLecciones() {
-      const container = document.getElementById('lessons-container');
-      const descripciones = {
-        1: "Introducción a las señas básicas.",
-        2: "Abecedario dactilológico.",
-        3: "Presentacion Personal.",
-        4: "Días de la semana y tiempo.",
-        5: "Familia y relaciones.",
-        6: "Emociones y estados de ánimo.",
-        7: "Comidas y bebidas.",
-        8: "Partes del cuerpo.",
-        9: "Ropa y accesorios.",
-        10: "Animales y naturaleza.",
-        11: "Lugares de la ciudad.",
-        12: "Actividades diarias.",
-        13: "Preguntas y respuestas.",
-        14: "Conversaciones cotidianas."
-      };
-      container.innerHTML = '';
-      for (let i = 1; i <= 14; i++) {
-        const card = document.createElement('div');
-        card.className = 'lesson-card';
-        card.dataset.titulo = `Lección ${i}`;
-        const desbloqueada = i === 1 || completadas.includes(i - 1) || completadas.includes(i);
-        if (completadas.includes(i)) {
-          card.classList.add('completed');
-          card.innerHTML += '<span class="check">✅</span>';
-        }
-        card.innerHTML += `
-          <h3>Lección ${i}</h3>
-          <p>${descripciones[i]}</p>
-          <button type="button" onclick="event.stopPropagation(); marcarCompletada(${i})">Marcar como completada</button>
-        `;
-        if (desbloqueada) {
-          card.addEventListener("click", () => cargarLeccion(i));
-        } else {
-          card.style.opacity = "0.5";
-          card.style.pointerEvents = "none";
-          card.innerHTML += `<p style="color:#999;font-size:0.9rem;">Completa la anterior para desbloquear</p>`;
-        }
-        container.appendChild(card);
+  function crearLecciones() {
+    const container = document.getElementById('lessons-container');
+    container.innerHTML = '';
+    leccionesData.forEach((leccion, index) => {
+      const i = index + 1;
+      const desbloqueada = i === 1 || completadas.includes(i - 1) || completadas.includes(i);
+      const card = document.createElement('div');
+      card.className = 'lesson-card';
+      card.dataset.titulo = leccion.titulo; 
+
+      if (completadas.includes(i)) {
+        card.classList.add('completed');
+        card.innerHTML += '<span class="check">✅</span>';
       }
-    }
 
-    function marcarCompletada(num) {
-      if (!completadas.includes(num)) {
-        completadas.push(num);
-        localStorage.setItem('leccionesCompletadas', JSON.stringify(completadas));
-        crearLecciones();
-        actualizarProgreso();
+      const imagenHTML = leccion.imagen
+        ? `<img src="${leccion.imagen}" alt="${leccion.titulo}" style="width:100%;border-radius:12px;margin-bottom:1rem;">`
+        : '';
+      const contenidoHTML = `
+        ${imagenHTML}
+        <h3>${leccion.titulo}</h3>
+        <p>${leccion.descripcion}</p>
+        <button type="button" onclick="event.stopPropagation(); marcarCompletada(${i})">Marcar como completada</button>
+      `;
+
+      card.innerHTML += contenidoHTML;
+
+      if (desbloqueada) {
+        card.addEventListener("click", () => cargarLeccion(i));
+      } else {
+        card.style.opacity = "0.5";
+        card.style.pointerEvents = "none";
+        card.innerHTML += `<p style="color:#999;font-size:0.9rem;">Completa la anterior para desbloquear</p>`;
       }
-    }
 
-    function actualizarProgreso() {
-      const progresoLista = document.getElementById('lista-progreso');
-      progresoLista.innerHTML = '';
-      for (let i = 1; i <= 14; i++) {
-        const li = document.createElement('li');
-        li.textContent = `Lección ${i}: ${completadas.includes(i) ? '✅ Completada' : '❌ Pendiente'}`;
-        progresoLista.appendChild(li);
-      }
-      const progreso = Math.round((completadas.length / 14) * 100);
-      document.getElementById('progressFill').style.width = progreso + '%';
-    }
-
-    function filtrarLecciones() {
-      const filtro = document.getElementById("busqueda").value.toLowerCase();
-      document.querySelectorAll('.lesson-card').forEach(card => {
-        const titulo = card.dataset.titulo.toLowerCase();
-        card.style.display = titulo.includes(filtro) ? 'block' : 'none';
-      });
-    }
-
-    function cargarLeccion(numero) {
-      document.querySelectorAll('main section').forEach(s => s.style.display = 'none');
-      document.getElementById("contenido-leccion").style.display = "block";
-      fetch(`lesson${numero}.html`)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("contenido-leccion").innerHTML = html;
-        })
-        .catch(err => {
-          document.getElementById("contenido-leccion").innerHTML = `<p style="color:red;">Error al cargar la lección ${numero}.</p>`;
-          console.error("Error al cargar la lección:", err);
-        });
-    }
-
-    function guardarPerfil(event) {
-      event.preventDefault();
-      const data = {
-        nombre: document.getElementById('nombre').value,
-        correo: document.getElementById('correo').value,
-        nivel: document.getElementById('nivel').value
-      };
-      localStorage.setItem('perfilUsuario', JSON.stringify(data));
-      alert('Perfil guardado.');
-      mostrarResumenPerfil();
-      document.getElementById('form-perfil').style.display = 'none';
-      document.getElementById('perfilResumen').style.display = 'block';
-    }
-
-    function mostrarResumenPerfil() {
-      const datos = JSON.parse(localStorage.getItem("perfilUsuario")) || {};
-      document.getElementById("resNombre").textContent = datos.nombre || "-";
-      document.getElementById("resCorreo").textContent = datos.correo || "-";
-      document.getElementById("resNivel").textContent = datos.nivel || "-";
-    }
-
-    function editarPerfil() {
-      document.getElementById('form-perfil').style.display = 'block';
-      document.getElementById('perfilResumen').style.display = 'none';
-    }
-
-    function reiniciarProgreso() {
-      if (confirm("¿Estás seguro de que deseas reiniciar todo tu progreso? Esta acción no se puede deshacer.")) {
-        localStorage.removeItem('leccionesCompletadas');
-        completadas = [];
-        crearLecciones();
-        actualizarProgreso();
-        alert("Progreso reiniciado exitosamente.");
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const perfilData = JSON.parse(localStorage.getItem('perfilUsuario')) || {};
-      document.getElementById('nombre').value = perfilData.nombre || '';
-      document.getElementById('correo').value = perfilData.correo || '';
-      document.getElementById('nivel').value = perfilData.nivel || '';
-      crearLecciones();
-      actualizarProgreso();
-      mostrarResumenPerfil();
+      container.appendChild(card);
     });
-    
-  </script>
+  }
+  function filtrarLecciones() {
+  const texto = document.getElementById('busqueda').value.toLowerCase();
+  const cards = document.querySelectorAll('.lesson-card');
+  cards.forEach(card => {
+    const titulo = card.dataset.titulo.toLowerCase();
+    card.style.display = titulo.includes(texto) ? "block" : "none";
+  });
+}
+
+function marcarCompletada(leccionId) {
+  if (!completadas.includes(leccionId)) {
+    completadas.push(leccionId);
+    localStorage.setItem('leccionesCompletadas', JSON.stringify(completadas));
+    crearLecciones();
+  }
+}
+
+function cargarLeccion(i) {
+  window.location.href = `lesson${i}.html`;
+}
+
+crearLecciones();
+const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
+const body = document.body;
+
+// Al cargar la página, revisamos si hay preferencia guardada
+if (localStorage.getItem('darkMode') === 'enabled') {
+  body.classList.add('dark-mode');
+  toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+}
+
+toggleDarkModeBtn.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  if (body.classList.contains('dark-mode')) {
+    toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+    localStorage.setItem('darkMode', 'disabled');
+  }
+});
+function showSection(id) {
+  const secciones = ['lecciones', 'progreso', 'perfil'];
+  secciones.forEach(sec => {
+    document.getElementById(sec).style.display = sec === id ? 'block' : 'none';
+  });
+}
+function guardarPerfil(event) {
+  event.preventDefault();
+  const nombre = document.getElementById('nombre').value;
+  const correo = document.getElementById('correo').value;
+  const nivel = document.getElementById('nivel').value;
+
+  const perfil = { nombre, correo, nivel };
+  localStorage.setItem('perfilUsuario', JSON.stringify(perfil));
+
+  mostrarResumenPerfil();
+}
+function mostrarResumenPerfil() {
+  const perfil = JSON.parse(localStorage.getItem('perfilUsuario'));
+  if (perfil) {
+    document.getElementById('resNombre').textContent = perfil.nombre || '-';
+    document.getElementById('resCorreo').textContent = perfil.correo || '-';
+    document.getElementById('resNivel').textContent = perfil.nivel || '-';
+  }
+}
+</script>
 </body>
 </html>
