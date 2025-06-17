@@ -168,7 +168,69 @@
     .float2 { top: 20%; right: 10%; animation-delay: 3s; }
     .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
     .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
-  </style>
+    body.modo-oscuro {
+  background-color: #1e1e2f;
+  color: white;
+}
+
+body.modo-oscuro .lesson-card {
+  background-color: #2a2a3a;
+  color: white;
+}
+
+body.modo-oscuro input,
+body.modo-oscuro textarea {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.modo-oscuro button {
+  background-color: #6c5ce7;
+  color: white;
+}
+body.modo-oscuro h1,
+body.modo-oscuro h2,
+body.modo-oscuro p,
+body.modo-oscuro footer,
+body.modo-oscuro .hero h2,
+body.modo-oscuro .hero p,
+body.modo-oscuro .card h2,
+body.modo-oscuro .card p {
+  color: white !important;
+}
+
+body.modo-oscuro .card {
+  background-color: #2c2c3a;
+  border: 1px solid #444;
+}
+
+body.modo-oscuro header {
+  background: rgba(30, 30, 48, 0.85);
+}
+
+body.modo-oscuro .nav-buttons a {
+  background-color: #6c5ce7;
+  color: white;
+}
+
+body.modo-oscuro .nav-buttons a:hover {
+  background-color: #8e74e7;
+}
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;
+    border: none;
+    background-color: #c39bd3;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  body.modo-oscuro button {
+    background-color: #6c5ce7;
+  }
+</style>
 </head>
 <body>
   
@@ -177,6 +239,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
 
   <header>
+    <button onclick="alternarModoOscuro()">🌙 Modo Oscuro</button>
     <h1>Lección 1: Saludos Básicos</h1>
   </header>
 
@@ -261,6 +324,9 @@
 
   <div class="container">
 
-  
+  <footer>
+    Plataforma ALSI • Aprende LSN con estilo 💜
+  </footer>
+  <script src="modo-oscuro.js"></script>
 </body>
-</html>
+  </html>
