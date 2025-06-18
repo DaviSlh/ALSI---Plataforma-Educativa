@@ -148,7 +148,6 @@
       margin-top: 2rem;
     }
 
-    /* Elementos flotantes */
     .floaty {
       position: absolute;
       width: 60px;
@@ -164,169 +163,127 @@
       100% { transform: translateY(0) rotate(0deg); }
     }
 
-    .float1 { top: 10%; left: 5%; animation-delay: 0s; }
     .float2 { top: 20%; right: 10%; animation-delay: 3s; }
     .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
     .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 0.6rem;
+      border: none;
+      background-color: #c39bd3;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* ==== MODO OSCURO ==== */
     body.modo-oscuro {
-  background-color: #1e1e2f;
-  color: white;
-}
+      background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
+      background-size: 600% 600%;
+      animation: backgroundShift 20s ease infinite;
+      color: white;
+    }
 
-body.modo-oscuro .lesson-card {
-  background-color: #2a2a3a;
-  color: white;
-}
+    body.modo-oscuro header,
+    body.modo-oscuro footer {
+      background: rgba(30, 30, 48, 0.85);
+      color: white;
+    }
 
-body.modo-oscuro input,
-body.modo-oscuro textarea {
-  background-color: #333;
-  color: white;
-  border: 1px solid #555;
-}
+    body.modo-oscuro .hero {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+    }
 
-body.modo-oscuro button {
-  background-color: #6c5ce7;
-  color: white;
-}
-body.modo-oscuro h1,
-body.modo-oscuro h2,
-body.modo-oscuro p,
-body.modo-oscuro footer,
-body.modo-oscuro .hero h2,
-body.modo-oscuro .hero p,
-body.modo-oscuro .card h2,
-body.modo-oscuro .card p {
-  color: white !important;
-}
+    body.modo-oscuro .hero::before {
+      background: none;
+    }
 
-body.modo-oscuro .card {
-  background-color: #2c2c3a;
-  border: 1px solid #444;
-}
+    body.modo-oscuro .card {
+      background-color: #2c2c3a;
+      border: 1px solid #444;
+      color: white;
+    }
 
-body.modo-oscuro header {
-  background: rgba(30, 30, 48, 0.85);
-}
+    body.modo-oscuro .card h2,
+    body.modo-oscuro .card p,
+    body.modo-oscuro .hero h2,
+    body.modo-oscuro .hero p {
+      color: white;
+    }
 
-body.modo-oscuro .nav-buttons a {
-  background-color: #6c5ce7;
-  color: white;
-}
+    body.modo-oscuro .nav-buttons a {
+      background-color: #6c5ce7;
+      color: white;
+    }
 
-body.modo-oscuro .nav-buttons a:hover {
-  background-color: #8e74e7;
-}
-  button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.6rem;
-    border: none;
-    background-color: #c39bd3;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
+    body.modo-oscuro .nav-buttons a:hover {
+      background-color: #8e74e7;
+    }
 
-  body.modo-oscuro button {
-    background-color: #6c5ce7;
-  }
-</style>
+    body.modo-oscuro button {
+      background-color: #6c5ce7;
+    }
+  </style>
 </head>
 <body>
-  
+
   <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float2" alt="mariposa" />
   <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float3" alt="mariposa" />
   <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
 
   <header>
-    <button onclick="alternarModoOscuro()">🌙 Modo Oscuro</button>
+    <button id="modoBtn" onclick="alternarModoOscuro()">🌙 Modo Oscuro</button>
     <h1>Lección 1: Saludos Básicos</h1>
   </header>
 
   <section class="hero">
     <h2>Aprende saludos en Lengua de Señas</h2>
     <p>Explora cada tarjeta y observa los gestos animados para mejorar tu comunicación.</p>
-  </section>  <div class="container"><!-- Lecciones -->
-<div class="card">
-  <h2>Hola</h2>
-  <p>Extiende la mano desde la frente hacia afuera como si saludaras.</p>
-  <img src="https://i.postimg.cc/SNBkHRQW/1000037879.png" alt="Seña Hola" />
-</div>
-
-<div class="card">
-  <h2>Buenos días</h2>
-  <p>Comienza con la seña de "bueno" (mano desde la boca hacia afuera) y luego simula la salida del sol.</p>
-  <img src="https://i.postimg.cc/tTSBw1by/buenos-dias-good-morning.gif" alt="Seña Buenos días" />
-</div>
-<div class="card">
-  <h2>Buenas tardes</h2>
-  <p>La mano dominante pasa sobre la otra simulando el sol bajando.</p>
-  <img src="https://i.gifer.com/3OwVi.gif" alt="Buenas tardes" />
-</div>
-
-<div class="card">
-  <h2>Buenas noches</h2>
-  <p>Mano dominante curvada baja sobre la otra mano extendida (simulando la noche cubriendo).</p>
-  <img src="https://i.postimg.cc/YC7DmYS7/lsc-fenascol.gif" alt="Buenas noches" />
-</div>
-<div class="card">
-  <h2>¿Cómo estás?</h2>
-  <p>Haz un gesto de pregunta con las cejas levantadas y ambas manos girando hacia el frente.</p>
-  <img src="https://i.postimg.cc/764ZFBHc/how-are-you-deaf-1.gif" alt="¿Cómo estás?" />
-</div>
-
-<div class="card">
-  <h2>¿Qué tal?</h2>
-  <p>Similar a "¿Cómo estás?", pero con una expresión más informal o relajada.</p>
-  <img src="https://i.postimg.cc/4dYXr9cQ/como-estas.gif" alt="¿Qué tal?" />
-</div>
-<div class="card">
-  <h2>Mucho gusto</h2>
-  <p>Palmas juntas frente al pecho y gesto de sonrisa. Puede variar por región.</p>
-  <img src="https://i.postimg.cc/K8hhJWQf/nice-to-meet-you-sign-language-2.gif" alt="Mucho gusto" />
-</div>
-
-<div class="card">
-  <h2>Bienvenido(a)</h2>
-  <p>Movimiento circular con las manos abiertas hacia el pecho, invitando a entrar.</p>
-  <img src="https://i.postimg.cc/MpRDtTvD/please-sign-language-1.gif" alt="Bienvenido(a)" />
-</div>
-
-<div class="card">
-  <h2>Adiós</h2>
-  <p>Movimiento de la mano abierta despidiéndose.</p>
-  <img src="https://i.postimg.cc/FzBmHGvh/shincore-wave-emoji.gif" alt="Seña Adiós" />
-</div>
-
-<div class="card">
-  <h2>Nos vemos</h2>
-  <p>Dos dedos desde los ojos hacia adelante, como señalando al otro.</p>
-  <img src="https://i.postimg.cc/9XGnXLWb/bsl-see-you-later.gif" alt="Nos vemos" />
-</div>
-
-<div class="card">
-  <h2>Cuídate</h2>
-  <p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p>
-  <img src="https://i.gifer.com/3OwWj.gif" alt="Cuídate" />
-</div>
-
-<div class="card">
-  <h2>Hasta mañana</h2>
-  <p>Despedida que indica continuidad para el día siguiente.</p>
-  <img src="https://i.postimg.cc/gcD1qgfJ/Hastamaana480-P-ezgif-com-video-to-gif-converter.gif" alt="Hasta mañana" />
-</div>
-
-<!-- Botones de navegación -->
-<div class="nav-buttons">
-  <a href="index.html">← Volver al índice</a>
-  <a href="Prueba.html">Test 1 </a>
-</div>
+  </section>
 
   <div class="container">
 
+    <!-- Tarjetas -->
+    <div class="card"><h2>Hola</h2><p>Extiende la mano desde la frente hacia afuera como si saludaras.</p><img src="https://i.postimg.cc/SNBkHRQW/1000037879.png" alt="Seña Hola" /></div>
+    <div class="card"><h2>Buenos días</h2><p>Comienza con la seña de "bueno" y luego simula la salida del sol.</p><img src="https://i.postimg.cc/tTSBw1by/buenos-dias-good-morning.gif" alt="Seña Buenos días" /></div>
+    <div class="card"><h2>Buenas tardes</h2><p>La mano dominante pasa sobre la otra simulando el sol bajando.</p><img src="https://i.gifer.com/3OwVi.gif" alt="Buenas tardes" /></div>
+    <div class="card"><h2>Buenas noches</h2><p>Mano dominante curvada baja sobre la otra mano extendida.</p><img src="https://i.postimg.cc/YC7DmYS7/lsc-fenascol.gif" alt="Buenas noches" /></div>
+    <div class="card"><h2>¿Cómo estás?</h2><p>Gesto de pregunta con cejas levantadas y manos girando hacia el frente.</p><img src="https://i.postimg.cc/764ZFBHc/how-are-you-deaf-1.gif" alt="¿Cómo estás?" /></div>
+    <div class="card"><h2>¿Qué tal?</h2><p>Similar a "¿Cómo estás?" pero más informal.</p><img src="https://i.postimg.cc/4dYXr9cQ/como-estas.gif" alt="¿Qué tal?" /></div>
+    <div class="card"><h2>Mucho gusto</h2><p>Palmas juntas frente al pecho con sonrisa.</p><img src="https://i.postimg.cc/K8hhJWQf/nice-to-meet-you-sign-language-2.gif" alt="Mucho gusto" /></div>
+    <div class="card"><h2>Bienvenido(a)</h2><p>Movimiento circular con manos abiertas hacia el pecho.</p><img src="https://i.postimg.cc/MpRDtTvD/please-sign-language-1.gif" alt="Bienvenido(a)" /></div>
+    <div class="card"><h2>Adiós</h2><p>Movimiento de la mano abierta despidiéndose.</p><img src="https://i.postimg.cc/FzBmHGvh/shincore-wave-emoji.gif" alt="Seña Adiós" /></div>
+    <div class="card"><h2>Nos vemos</h2><p>Dos dedos desde los ojos hacia adelante.</p><img src="https://i.postimg.cc/9XGnXLWb/bsl-see-you-later.gif" alt="Nos vemos" /></div>
+    <div class="card"><h2>Cuídate</h2><p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p><img src="https://i.gifer.com/3OwWj.gif" alt="Cuídate" /></div>
+    <div class="card"><h2>Hasta mañana</h2><p>Despedida que indica continuidad.</p><img src="https://i.postimg.cc/gcD1qgfJ/Hastamaana480-P-ezgif-com-video-to-gif-converter.gif" alt="Hasta mañana" /></div>
+
+    <!-- Navegación -->
+    <div class="nav-buttons">
+      <a href="index.html">← Volver al índice</a>
+      <a href="Prueba.html">Test 1</a>
+    </div>
+  </div>
+
   <footer>
-    Plataforma ALSI • Aprende LSN con estilo 💜
+    ALSI • Una forma de aprender sin barreras
   </footer>
-  <script src="modo-oscuro.js"></script>
+
+  <script>
+    const btn = document.getElementById("modoBtn");
+
+    function alternarModoOscuro() {
+      document.body.classList.toggle("modo-oscuro");
+      const activado = document.body.classList.contains("modo-oscuro");
+      localStorage.setItem("modoOscuro", activado);
+      btn.textContent = activado ? "☀️ Modo Claro" : "🌙 Modo Oscuro";
+    }
+
+    if (localStorage.getItem("modoOscuro") === "true") {
+      document.body.classList.add("modo-oscuro");
+      btn.textContent = "☀️ Modo Claro";
+    }
+  </script>
 </body>
-  </html>
+</html>
