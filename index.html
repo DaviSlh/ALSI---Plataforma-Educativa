@@ -280,6 +280,11 @@ body.dark-mode label {
   color: #ffffff;
 }
   </style>
+  <script>
+  if (localStorage.getItem('modoOscuro') === 'true') {
+    document.documentElement.classList.add('modo-oscuro');
+  }
+</script>
 </head>
 <body>
   <img class="logo-movil" src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI móvil" />
