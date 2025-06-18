@@ -6,15 +6,77 @@
   <title>Lección 2 - Alfabeto Dactilológico</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* Variables de color para modo claro */
+    :root {
+      --color-text: #5c3c74;
+      --color-bg-start: #f3e5f5;
+      --color-bg-mid1: #e1bee7;
+      --color-bg-mid2: #ce93d8;
+      --color-header-bg: rgba(215, 188, 232, 0.85);
+      --color-header-text: #4a3054;
+      --color-hero-bg: rgba(255, 255, 255, 0.6);
+      --color-hero-text-h2: #6c3e9b;
+      --color-hero-text-p: #7d5a8b;
+      --color-card-bg: #fff;
+      --color-card-shadow: rgba(0, 0, 0, 0.05);
+      --color-card-shadow-hover: rgba(0, 0, 0, 0.1);
+      --color-card-title: #a45db6;
+      --color-card-border: #ebd6f4;
+      --color-nav-bg: #c39bd3;
+      --color-nav-bg-hover: #a569bd;
+      --color-nav-text: white;
+      --color-letter-bg: rgba(255, 255, 255, 0.8);
+      --color-letter-bg-hover: rgba(255, 255, 255, 0.75);
+      --color-letter-title: #8e44ad;
+      --color-letter-text: #6a4c7a;
+      --color-letter-border: #e8d0f0;
+      --color-footer-bg: rgba(215, 188, 232, 0.9);
+      --color-footer-text: #4a3054;
+      --float-opacity: 0.6;
+    }
+
+    /* Variables de color para modo oscuro */
+    body.dark-mode {
+      --color-text: #d8c0e3;
+      --color-bg-start: #1c1a2e;
+      --color-bg-mid1: #2e2b4f;
+      --color-bg-mid2: #3f3a6e;
+      --color-header-bg: rgba(60, 56, 89, 0.85);
+      --color-header-text: #d8c0e3;
+      --color-hero-bg: rgba(40, 36, 65, 0.7);
+      --color-hero-text-h2: #c9a1f7;
+      --color-hero-text-p: #c5b1d7;
+      --color-card-bg: #2e2a4e;
+      --color-card-shadow: rgba(0, 0, 0, 0.7);
+      --color-card-shadow-hover: rgba(0, 0, 0, 0.9);
+      --color-card-title: #b188e4;
+      --color-card-border: #8a69ac;
+      --color-nav-bg: #8a69ac;
+      --color-nav-bg-hover: #6f52a0;
+      --color-nav-text: #f2e6ff;
+      --color-letter-bg: rgba(50, 45, 78, 0.8);
+      --color-letter-bg-hover: rgba(50, 45, 78, 0.95);
+      --color-letter-title: #c2a0ff;
+      --color-letter-text: #b6a5cc;
+      --color-letter-border: #7f6ca2;
+      --color-footer-bg: rgba(60, 56, 89, 0.9);
+      --color-footer-text: #d8c0e3;
+      --float-opacity: 0.3;
+    }
+
+    /* Reset y base */
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-      color: #5c3c74;
-      background: linear-gradient(135deg, #f3e5f5, #e1bee7, #ce93d8);
+      color: var(--color-text);
+      background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-mid1), var(--color-bg-mid2));
       background-size: 600% 600%;
       animation: backgroundShift 20s ease infinite;
       overflow-x: hidden;
+      transition: background 0.8s ease, color 0.8s ease;
+      position: relative;
+      min-height: 100vh;
     }
 
     @keyframes backgroundShift {
@@ -24,15 +86,19 @@
     }
 
     header {
-      background: rgba(215, 188, 232, 0.85);
+      background: var(--color-header-bg);
       padding: 1.5rem 0;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       backdrop-filter: blur(4px);
+      transition: background 0.8s ease, color 0.8s ease;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     header h1 {
-      color: #4a3054;
+      color: var(--color-header-text);
       font-size: 2.2rem;
       margin: 0;
       font-weight: 700;
@@ -40,13 +106,15 @@
 
     .hero {
       position: relative;
-      background: rgba(255, 255, 255, 0.6);
+      background: var(--color-hero-bg);
       backdrop-filter: blur(6px);
       border-radius: 1.5rem;
       margin: 2rem 1rem;
       padding: 2.5rem;
       text-align: center;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: background 0.8s ease, color 0.8s ease;
+      overflow: hidden;
     }
 
     .hero::before {
@@ -59,46 +127,44 @@
       opacity: 0.2;
       border-radius: 1.5rem;
       z-index: 0;
+      transition: opacity 0.8s ease;
     }
 
     .hero h2, .hero p {
       position: relative;
       z-index: 1;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      color: #6c3e9b;
-      margin-bottom: 0.5rem;
+      color: var(--color-hero-text-h2);
+      transition: color 0.8s ease;
     }
 
     .hero p {
-      color: #7d5a8b;
-      font-size: 1.1rem;
+      color: var(--color-hero-text-p);
     }
 
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 2rem 1rem;
+      transition: color 0.8s ease;
     }
 
     .card {
-      background: #fff;
+      background: var(--color-card-bg);
       border-radius: 1rem;
       padding: 1.5rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 16px var(--color-card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.8s ease, color 0.8s ease;
+      color: var(--color-text);
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 24px var(--color-card-shadow-hover);
     }
 
     .card h2 {
-      color: #a45db6;
+      color: var(--color-card-title);
       font-size: 1.6rem;
       margin-top: 0;
     }
@@ -112,7 +178,8 @@
       margin-top: 1rem;
       max-width: 100%;
       border-radius: 1rem;
-      border: 2px solid #ebd6f4;
+      border: 2px solid var(--color-card-border);
+      transition: border-color 0.8s ease;
     }
 
     .nav-buttons {
@@ -125,8 +192,8 @@
 
     .nav-buttons a {
       text-decoration: none;
-      background-color: #c39bd3;
-      color: white;
+      background-color: var(--color-nav-bg);
+      color: var(--color-nav-text);
       padding: 0.9rem 1.6rem;
       border-radius: 1rem;
       font-weight: 600;
@@ -135,33 +202,59 @@
     }
 
     .nav-buttons a:hover {
-      background-color: #a569bd;
+      background-color: var(--color-nav-bg-hover);
       transform: scale(1.06);
     }
 
-.alphabet {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  padding: 1rem;
-}
+    .alphabet {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
 
-.letter {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+    .letter {
+      background: var(--color-letter-bg);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px var(--color-card-shadow);
+      transition: transform 0.3s ease, background 0.8s ease, box-shadow 0.3s ease;
+      cursor: default;
+      color: var(--color-letter-text);
+    }
+
+    .letter:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px var(--color-card-shadow-hover);
+      background: var(--color-letter-bg-hover);
+    }
+
+    .letter h3 {
+      color: var(--color-letter-title);
+      margin-bottom: 0.5rem;
+    }
+
+    .letter p {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .letter img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      border: 2px solid var(--color-letter-border);
+      transition: border-color 0.8s ease;
+    }
 
     footer {
-      background: rgba(215, 188, 232, 0.9);
+      background: var(--color-footer-bg);
       text-align: center;
       padding: 1.5rem;
-      color: #4a3054;
+      color: var(--color-footer-text);
       font-weight: 500;
       margin-top: 2rem;
+      transition: background 0.8s ease, color 0.8s ease;
     }
 
     /* Elementos flotantes */
@@ -169,9 +262,10 @@
       position: absolute;
       width: 60px;
       height: 60px;
-      opacity: 0.6;
+      opacity: var(--float-opacity);
       animation: float 10s infinite ease-in-out;
       pointer-events: none;
+      transition: opacity 0.8s ease;
     }
 
     @keyframes float {
@@ -184,59 +278,34 @@
     .float2 { top: 20%; right: 10%; animation-delay: 3s; }
     .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
     .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
-    
-    .alphabet {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
 
-.letter {
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 1rem;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
+    /* Botón modo oscuro */
+    #toggle-darkmode {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: var(--color-nav-bg);
+      color: var(--color-nav-text);
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      z-index: 150;
+    }
 
-.letter:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+    #toggle-darkmode:hover {
+      background-color: var(--color-nav-bg-hover);
+      transform: scale(1.1);
+    }
 
-.letter h3 {
-  color: #8e44ad;
-  margin-bottom: 0.5rem;
-}
-
-.letter p {
-  font-size: 0.95rem;
-  color: #6a4c7a;
-  margin-bottom: 0.5rem;
-}
-
-.letter img {
-  max-width: 100%;
-  border-radius: 0.5rem;
-  border: 2px solid #e8d0f0;
-}
   </style>
 </head>
 <body>
-  <!-- Elementos flotantes -->
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float2" alt="mariposa" />
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float3" alt="mariposa" />
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
-
   <header>
-    <h1>Lección 2: Alfabeto Dactilológico</h1>
-  </header>
-
-   <div class="container">
-  <div class="hero">
-    <h2>Abecedario en Señas - LSN</h2>
+     <h2>Abecedario en Señas - LSN</h2>
     <p>Cada letra tiene una seña específica con la mano. Aprende el abecedario completo.</p>
     <img src="https://i.postimg.cc/rFkwLZ9Y/alphabet-hand-sign-sign-language.gif" alt="abecedario" />
   </div>
@@ -311,7 +380,7 @@
     <div class="letter">
       <h3>K</h3>
       <p>Dedo índice y medio levantados en “V”, con el pulgar entre ellos.</p>
-      <img src="https://i.postimg.cc/43Pt2z12/1000037827.png" alt="Letra K" />
+      <img src="https://i.postimg.cc/xCMVxcZv/1000038062.png" alt="Letra K" />
     </div>
 
     <div class="letter">
@@ -416,19 +485,47 @@
       <img src="https://i.postimg.cc/CxxzLzT9/1000037870.png" alt="Letra Z" />
     </div>
   </div>
-</div>
+    </div>
+      </div>
+
     <div class="card">
       <h2>Deletrear palabras</h2>
       <p>Se utiliza el alfabeto para deletrear nombres o palabras sin seña.</p>
     </div>
 
-    <div class="nav-buttons">
-      <a href="index.html">← Volver al índice</a>
-      <a href="lesson1.html">← Anterior</a>
-      <a href="lesson3.html">Siguiente →</a>
-    </div>
-  </div>
+    <nav class="nav-buttons">
+      <a href="index.html">Volver al índice</a>
+      <a href="lesson3.html">Siguiente lección</a>
+    </nav>
+  </main>
 
-  <footer>© 2025 ALSI - Todos los derechos reservados</footer>
+  <footer>
+    <p>© 2025 Plataforma Educativa </p>
+  </footer>
+
+  <!-- Botón para activar/desactivar modo oscuro -->
+  <button id="toggle-darkmode" aria-label="Alternar modo oscuro">Modo Oscuro</button>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-darkmode');
+    const body = document.body;
+
+    // Si quieres guardar la preferencia en localStorage
+    if(localStorage.getItem('darkMode') === 'enabled'){
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = "Modo Claro";
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if(body.classList.contains('dark-mode')){
+        toggleBtn.textContent = "Modo Claro";
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        toggleBtn.textContent = "Modo Oscuro";
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+  </script>
 </body>
 </html>
