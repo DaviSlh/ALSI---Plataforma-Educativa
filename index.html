@@ -434,9 +434,7 @@
     const perfil = { nombre, correo };
     localStorage.setItem('perfilUsuario', JSON.stringify(perfil));
 
-    // Si tuvieras una sección para mostrar el resumen del perfil, la llamarías aquí.
-    // Por ejemplo: mostrarResumenPerfil();
-    alert('Perfil guardado exitosamente!');
+    alert('¡Perfil guardado exitosamente!');
   }
 
   function reiniciarProgreso() {
@@ -449,9 +447,10 @@
   }
 
   function cerrarSesion() {
-  
+    // Aquí puedes añadir la lógica para cerrar sesión, como limpiar localStorage
+    // y redirigir al usuario a una página de inicio de sesión, si aplica.
     alert('Sesión cerrada.');
- 
+  }
 </script>
 </body>
 </html>
