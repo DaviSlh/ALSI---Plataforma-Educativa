@@ -336,6 +336,7 @@
   // Al cargar la página, se inicializan las tarjetas según el progreso guardado
   document.addEventListener('DOMContentLoaded', () => {
     actualizarEstadoLecciones();
+    aplicarModoOscuroInicial(); // Llama a la nueva función aquí
   });
 
   function actualizarEstadoLecciones() {
@@ -402,20 +403,54 @@
   const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
   const body = document.body;
 
-  // Al cargar la página, revisamos si hay preferencia guardada
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
-    toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+  // Nueva función para aplicar el modo oscuro al inicio
+  function aplicarModoOscuroInicial() {
+    const savedMode = localStorage.getItem('darkMode');
+
+    if (savedMode === 'enabled') {
+      // Si hay una preferencia guardada y es 'enabled', aplicarla.
+      body.classList.add('dark-mode');
+      toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+    } else if (savedMode === 'disabled') {
+      // Si hay una preferencia guardada y es 'disabled', asegurarse de que no haya dark-mode.
+      body.classList.remove('dark-mode');
+      toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+    } else {
+      // Si no hay preferencia guardada, detectar la preferencia del sistema operativo.
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.add('dark-mode');
+        toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+      } else {
+        body.classList.remove('dark-mode');
+        toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+      }
+    }
+  }
+
+  // Escuchar cambios en la preferencia del sistema operativo
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      // Solo actualiza si no hay una preferencia manual guardada
+      if (!localStorage.getItem('darkMode')) {
+        if (event.matches) {
+          body.classList.add('dark-mode');
+          toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+        } else {
+          body.classList.remove('dark-mode');
+          toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+        }
+      }
+    });
   }
 
   toggleDarkModeBtn.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     if (body.classList.contains('dark-mode')) {
       toggleDarkModeBtn.textContent = '☀️ Modo Claro';
-      localStorage.setItem('darkMode', 'enabled');
+      localStorage.setItem('darkMode', 'enabled'); // Guarda la preferencia manual
     } else {
       toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
-      localStorage.setItem('darkMode', 'disabled');
+      localStorage.setItem('darkMode', 'disabled'); // Guarda la preferencia manual
     }
   });
 
@@ -447,8 +482,7 @@
   }
 
   function cerrarSesion() {
-    // Aquí puedes añadir la lógica para cerrar sesión, como limpiar localStorage
-    // y redirigir al usuario a una página de inicio de sesión, si aplica.
+
     alert('Sesión cerrada.');
   }
 </script>
