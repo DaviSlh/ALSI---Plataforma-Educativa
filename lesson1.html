@@ -3,377 +3,900 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lección 1 - Saludos Básicos</title>
+  <title>ALSI - Plataforma Educativa</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Global styles */
+    * { box-sizing: border-box; }
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #5c3c74;
-      background: linear-gradient(135deg, #f3e5f5, #e1bee7, #ce93d8);
-      background-size: 600% 600%;
-      animation: backgroundShift 20s ease infinite;
-      overflow-x: hidden;
-    }
-
-    @keyframes backgroundShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header {
-      background: rgba(215, 188, 232, 0.85);
-      padding: 1.5rem 0;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(4px);
-    }
-
-    header h1 {
+      display: flex;
+      height: 100vh;
+      background-color: #f9f6fb;
       color: #4a3054;
-      font-size: 2.2rem;
-      margin: 0;
-      font-weight: 700;
+      overflow: hidden; /* Evita el scroll mientras el splash esté activo */
+      flex-direction: row; /* Default for larger screens */
     }
 
-    .hero {
-      position: relative;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(6px);
-      border-radius: 1.5rem;
-      margin: 2rem 1rem;
-      padding: 2.5rem;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    body.content-visible {
+      overflow: auto; /* Permite scroll una vez que el contenido es visible */
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -20px; left: -20px;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
-      opacity: 0.2;
-      border-radius: 1.5rem;
-      z-index: 0;
-    }
-
-    .hero h2, .hero p {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      color: #6c3e9b;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero p {
-      color: #7d5a8b;
-      font-size: 1.1rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
+    /* Sidebar styles (for larger screens) */
+    aside {
+      width: 220px;
+      background-color: #c39bd3;
       padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: white;
+      align-items: center;
+    }
+    aside img {
+      width: 130px;
+      height: auto;
+      margin-bottom: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    aside h1 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    aside button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      text-align: left;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    aside button:hover {
+      background-color: #af7ac5;
+      border-radius: 8px;
     }
 
-    .card {
+    /* Main content area */
+    main {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      position: relative;
+    }
+    .progress-bar-container {
+      background-color: #e8dff3;
+      height: 6px;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .progress-bar-fill {
+      background-color: #b27ac5;
+      height: 100%;
+      width: 0%;
+      transition: width 0.6s ease;
+    }
+    .search-container {
+      margin: 1.5rem 0;
+    }
+    .search-container input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .lessons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .lesson-card {
       background: #fff;
       border-radius: 1rem;
       padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .card h2 {
-      color: #a45db6;
-      font-size: 1.6rem;
-      margin-top: 0;
-    }
-
-    .card p {
-      line-height: 1.6;
-      margin: 1rem 0;
-    }
-
-    .card img {
-      margin-top: 1rem;
-      max-width: 100%;
-      border-radius: 1rem;
-      border: 2px solid #ebd6f4;
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 2rem 1rem;
-    }
-
-    .nav-buttons a {
-      text-decoration: none;
-      background-color: #c39bd3;
-      color: white;
-      padding: 0.9rem 1.6rem;
-      border-radius: 1rem;
-      font-weight: 600;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .nav-buttons a:hover {
-      background-color: #a569bd;
-      transform: scale(1.06);
-    }
-
-    footer {
-      background: rgba(215, 188, 232, 0.9);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
       text-align: center;
-      padding: 1.5rem;
-      color: #4a3054;
-      font-weight: 500;
-      margin-top: 2rem;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
-
-    .floaty {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      opacity: 0.6;
-      animation: float 10s infinite ease-in-out;
-      pointer-events: none;
+    .lesson-card:hover {
+      transform: scale(1.02);
     }
-
-    @keyframes float {
-      0%   { transform: translateY(0) rotate(0deg); }
-      50%  { transform: translateY(-20px) rotate(10deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
-
-    .float2 { top: 20%; right: 10%; animation-delay: 3s; }
-    .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
-    .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
-
-    button {
-      padding: 0.5rem 1rem;
-      border-radius: 0.6rem;
+    .lesson-card h3 { margin: 0 0 0.5rem; }
+    .lesson-card p { font-size: 0.9rem; color: #555; margin-bottom: 1rem; }
+    .lesson-card button {
+      background-color: #c39bd3;
+      color: #fff;
       border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .lesson-card.completed {
+      border: 2px solid #af7ac5;
+    }
+    .lesson-card .check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: #28a745;
+    }
+    /* Estilos para lecciones bloqueadas */
+    .lesson-card.locked {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+    .lesson-card.locked button {
+        background-color: #ccc; /* Botón deshabilitado */
+        cursor: not-allowed;
+    }
+    .lesson-card.locked .unlock-message {
+        color: #777;
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+
+    #perfil form {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #perfil input {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    #perfil button {
+      width: fit-content;
       background-color: #c39bd3;
       color: white;
-      font-weight: bold;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
       cursor: pointer;
     }
+    .logo-movil {
+      display: none;
+    }
 
-    /* ==== MODO OSCURO (EXISTENTE) ==== */
-    body.dark-mode { /* Usamos 'dark-mode' para consistencia con index.html */
-      background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
-      background-size: 600% 600%;
-      animation: backgroundShift 20s ease infinite;
+    /* Media query for small screens AND portrait orientation */
+    @media (max-width: 768px) and (orientation: portrait) {
+      body {
+        flex-direction: column; /* Stack elements vertically */
+        height: 100vh; /* Make body take full viewport height */
+        overflow: hidden; /* Control overflow for the entire body */
+      }
+      #main-content-wrapper {
+        flex-direction: column; /* Ensure main content wrapper also stacks */
+        flex: 1; /* Allow wrapper to take available space */
+        height: 100%; /* Ensure wrapper takes full height */
+        display: flex; /* Make it a flex container */
+      }
+
+      /* Ocultar main al inicio para mostrar solo la navegación y el logo */
+      main {
+        display: none; /* Oculta el contenido principal por defecto en vertical */
+        flex: 1; /* Permite que main ocupe el espacio cuando se muestre */
+        padding: 1rem; /* Reduced padding for main content */
+        /* No necesitamos padding-bottom aquí si main está oculto por defecto */
+      }
+
+      aside {
+        width: 100%;
+        flex-direction: row; /* Buttons in a row */
+        justify-content: space-around;
+        padding: 0.8rem 0.5rem; /* Reduced padding for compact layout */
+        position: fixed; /* Make the navigation sticky */
+        bottom: 0; /* Position at the bottom of the screen */
+        top: auto; /* Remove top positioning */
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for better separation */
+        height: auto; /* Ensure aside's height adjusts to content */
+      }
+      aside img,
+      aside h1 {
+        display: none; /* Hide logo and title in mobile nav */
+      }
+      aside button {
+        flex: 1; /* Distribute space equally among buttons */
+        font-size: 0.85rem; /* Slightly smaller font for buttons */
+        padding: 0.4rem 0.2rem; /* Reduced padding */
+        text-align: center; /* Center button text */
+      }
+
+      .lessons {
+        grid-template-columns: 1fr; /* Single column layout for lessons */
+        gap: 1rem; /* Slightly reduced gap between lesson cards */
+      }
+      .lesson-card {
+        padding: 1rem; /* Reduced padding for lesson cards */
+      }
+      .search-container {
+        margin: 1rem 0; /* Adjusted margin */
+      }
+      .search-container input {
+        padding: 0.5rem; /* Slightly smaller padding for search input */
+      }
+      .logo-movil {
+        display: block; /* Show mobile logo */
+        position: fixed;
+        top: 10px;
+        right: 10px; /* Position to the top-right as in your image */
+        width: 45px; /* Slightly smaller logo */
+        height: auto;
+        border-radius: 10px; /* Slightly smaller border-radius */
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Adjusted shadow */
+        z-index: 1001;
+      }
+      h2 {
+        font-size: 1.3rem; /* Slightly smaller heading font size */
+        margin-top: 0.5rem; /* Adjusted top margin */
+      }
+
+      /* Para que el cuerpo no se mueva cuando main esté oculto */
+      body > #main-content-wrapper > main {
+        display: none; /* Asegura que main esté oculto inicialmente */
+      }
+       /* Define un estilo para cuando main DEBE mostrarse */
+      body.show-main-content > #main-content-wrapper > main {
+        display: block; /* O flex, dependiendo de cómo lo quieras dentro de main */
+        overflow-y: auto; /* Permitir scroll dentro de main cuando esté visible */
+      }
+
+      /* Estilo para el fondo oscuro cuando main está oculto */
+      body.dark-mode:not(.show-main-content) {
+          background-color: #1e1e2f; /* Mismo fondo que tu dark mode principal */
+      }
+      body:not(.dark-mode):not(.show-main-content) {
+          background-color: #f9f6fb; /* Mismo fondo que tu light mode principal */
+      }
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0d8f0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.dark-mode aside {
+      background-color: #3a2a52;
+      color: #dcd6f7;
+      box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.05); /* Dark mode shadow for fixed footer */
+    }
+    body.dark-mode aside button {
+      color: #dcd6f7;
+    }
+    body.dark-mode aside button:hover {
+      background-color: #6b5498;
+    }
+    body.dark-mode main {
+      background-color: #1e1b29;
+      color: #e0d8f0;
+    }
+    body.dark-mode .lesson-card {
+      background-color: #2b2440;
+      color: #ddd;
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+    }
+    body.dark-mode .lesson-card button {
+      background-color: #6b5498;
+      color: #fff;
+    }
+    body.dark-mode .lesson-card.completed {
+      border-color: #a87ce2;
+    }
+    body.dark-mode .progress-bar-container {
+      background-color: #4e3f70;
+    }
+    body.dark-mode .progress-bar-fill {
+      background-color: #a87ce2;
+    }
+    body.dark-mode #perfilResumen {
+      background-color: #3a2a52;
+      color: #e0d8f0;
+    }
+    body.dark-mode #perfil input {
+      background-color: #4e3f70;
+      color: #ddd;
+      border-color: #6b5498;
+    }
+    body.dark-mode #perfil button {
+      background-color: #6b5498;
       color: white;
     }
-
-    body.dark-mode header,
-    body.dark-mode footer {
-      background: rgba(30, 30, 48, 0.85);
-      color: white;
+    body.dark-mode .search-container input {
+      background-color: #4e3f70;
+      color: #ddd;
+      border-color: #6b5498;
+    }
+    body.dark-mode {
+      background-color: #1e1e2f;  /* Fondo oscuro */
+      color: #ffffff;             /* Letras blancas */
+    }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode p,
+    body.dark-mode span,
+    body.dark-mode li,
+    body.dark-mode input,
+    body.dark-mode button,
+    body.dark-mode label {
+      color: #ffffff;
     }
 
-    body.dark-mode .hero {
-      background: rgba(255, 255, 255, 0.05);
-      color: white;
+    /* --- Styles for splash screen --- */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
     }
 
-    body.dark-mode .hero::before {
-      background: none;
+    /* Splash screen colors - Light Mode */
+    #splash-screen.light-mode {
+      background-color: #f0e6fa; /* Very light lavender */
+      color: #4a3054; /* Dark purple for text */
     }
 
-    body.dark-mode .card {
-      background-color: #2c2c3a;
-      border: 1px solid #444;
-      color: white;
+    /* Splash screen colors - Dark Mode */
+    #splash-screen.dark-mode {
+      background-color: #1e1e2f; /* Matches your dark mode background */
+      color: #ffffff; /* Pure white for text */
     }
 
-    body.dark-mode .card h2,
-    body.dark-mode .card p,
-    body.dark-mode .hero h2,
-    body.dark-mode .hero p {
-      color: white;
+    /* --- iPhone-like entry animations --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    body.dark-mode .nav-buttons a {
-      background-color: #6c5ce7;
-      color: white;
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
-    body.dark-mode .nav-buttons a:hover {
-      background-color: #8e74e7;
+    /* Fonts and animations for splash screen */
+    #splash-screen .welcome-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5em;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.5s;
     }
 
-    body.dark-mode button {
-      background-color: #6c5ce7;
+    #splash-screen .app-name {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 2.2em;
+      font-weight: 800;
+      margin-top: 0.5em;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: fadeInScale 0.8s ease-out forwards;
+      animation-delay: 1.2s;
     }
 
-    /* ==== PREFERS-COLOR-SCHEME LOGIC (AJUSTADO PARA CONSISTENCIA) ==== */
-    /* Estas reglas se aplicarán si el sistema prefiere modo oscuro Y si localStorage no tiene una preferencia explícita por el modo claro */
-    @media (prefers-color-scheme: dark) {
-      body:not(.light-mode-manual) { /* Aplica si el sistema es oscuro y el usuario NO ha seleccionado el modo claro manualmente */
-        background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
-        background-size: 600% 600%;
-        animation: backgroundShift 20s ease infinite;
-        color: white;
-      }
-
-      body:not(.light-mode-manual) header,
-      body:not(.light-mode-manual) footer {
-        background: rgba(30, 30, 48, 0.85);
-        color: white;
-      }
-
-      body:not(.light-mode-manual) .hero {
-        background: rgba(255, 255, 255, 0.05);
-        color: white;
-      }
-
-      body:not(.light-mode-manual) .hero::before {
-        background: none;
-      }
-
-      body:not(.light-mode-manual) .card {
-        background-color: #2c2c3a;
-        border: 1px solid #444;
-        color: white;
-      }
-
-      body:not(.light-mode-manual) .card h2,
-      body:not(.light-mode-manual) .card p,
-      body:not(.light-mode-manual) .hero h2,
-      body:not(.light-mode-manual) .hero p {
-        color: white;
-      }
-
-      body:not(.light-mode-manual) .nav-buttons a {
-        background-color: #6c5ce7;
-        color: white;
-      }
-
-      body:not(.light-mode-manual) .nav-buttons a:hover {
-        background-color: #8e74e7;
-      }
-
-      body:not(.light-mode-manual) button {
-        background-color: #6c5ce7;
-      }
+    /* Class for exit animation */
+    #splash-screen.fade-out {
+      opacity: 0;
+      visibility: hidden;
     }
   </style>
 </head>
 <body>
 
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float2" alt="mariposa" />
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float3" alt="mariposa" />
-  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
+<div id="splash-screen">
+    <div class="welcome-text">Bienvenido</div>
+    <div class="app-name">ALSI</div>
+</div>
 
-  <header>
-    <button id="toggle-dark-mode" onclick="alternarModo()">🌙 Modo Oscuro</button> <h1>Lección 1: Saludos Básicos</h1>
-  </header>
 
-  <section class="hero">
-    <h2>Aprende saludos en Lengua de Señas</h2>
-    <p>Explora cada tarjeta y observa los gestos animados para mejorar tu comunicación.</p>
-  </section>
+<div id="main-content-wrapper" style="display:none; flex: 1; width: 100%; height: 100%;">
+    <img class="logo-movil" src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI móvil" />
+    <aside>
+      <img src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI" />
+      <h1>ALSI</h1>
+      <button onclick="showSection('lecciones')">Lecciones</button>
+      <button onclick="showSection('progreso')">Progreso</button>
+      <button onclick="showSection('perfil')">Perfil</button>
+      <button type="button" onclick="cerrarSesion()">Salir</button>
+      <button id="toggle-dark-mode" type="button">🌙 Modo Oscuro</button>
+    </aside>
+    <main>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
 
-  <div class="container">
+      <section id="lecciones">
+        <h2>Elige una lección para comenzar</h2>
+        <div class="search-container">
+          <input type="text" id="busqueda" placeholder="Buscar lección..." oninput="filtrarLecciones()" />
+        </div>
+        <div class="lessons" id="lessons-container">
+          <div class="lesson-card" id="lesson1" data-leccion-id="1" data-titulo="Lección 1" data-quiz-required="false">
+            <img src="TP1/leccion1.png" alt="Lección 1" style="width:100%;border-radius:12px;margin-bottom:1rem;">
+            <h3>Lección 1</h3>
+            <p>Introducción a las señas básicas.</p>
+          </div>
 
-    <div class="card"><h2>Hola</h2><p>Extiende la mano desde la frente hacia afuera como si saludaras.</p><img src="TP1/hola.gif" alt="Seña Hola" /></div>
-    <div class="card"><h2>Buenos días</h2><p>Comienza con la seña de "bueno" y luego simula la salida del sol.</p><img src="TP1/buenos-dias.gif" alt="Seña Buenos días" /></div>
-    <div class="card"><h2>Buenas tardes</h2><p>La mano dominante pasa sobre la otra simulando el sol bajando.</p><img src="TP1/buenas-tardes.gif" alt="Buenas tardes" /></div>
-   
-    <div class="card"><h2>¿Cómo estás?</h2><p>Gesto de pregunta con cejas levantadas y manos girando hacia el frente.</p><img src="TP1/como-estas.gif" alt="¿Cómo estás?" /></div>
-    
-    <div class="card"><h2>Mucho gusto</h2><p>Palmas juntas frente al pecho con sonrisa.</p><img src="TP1/encantado-de-conocerte.gif" alt="Mucho gusto" /></div>
-    <div class="card"><h2>Bienvenido(a)</h2><p>Movimiento circular con manos abiertas hacia el pecho.</p><img src="TP1/bienvenido.gif" alt="Bienvenido(a)" /></div>
-    <div class="card"><h2>Adiós</h2><p>Movimiento de la mano abierta despidiéndose.</p><img src="TP1/adios.gif" alt="Seña Adiós" /></div>
+          <div class="lesson-card" id="lesson2" data-leccion-id="2" data-titulo="Lección 2" data-quiz-required="true" data-min-score="70">
+            <img src="TP1/leccion2.png" alt="Lección 2" style="width:100%;border-radius:12px;margin-bottom:1rem;">
+            <h3>Lección 2</h3>
+            <p>Abecedario dactilológico.</p>
+          </div>
 
-    <div class="card"><h2>¿De donde eres?</h2><p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p><img src="TP1/de-donde-eres.gif" alt="¿De donde eres?" /></div>
-    <div class="card"><h2>Muchas Gracias</h2><p>Despedida que indica continuidad.</p><img src="TP1/muchas-gracias.gif" alt="Muchas Gracias" /></div>
+          <div class="lesson-card" id="lesson3" data-leccion-id="3" data-titulo="Lección 3" data-quiz-required="false">
+            <img src="TP1/leccion3.png" alt="Lección 3" style="width:100%;border-radius:12px;margin-bottom:1rem;">
+            <h3>Lección 3</h3>
+            <p>Colores y números.</p>
+          </div>
 
-    <div class="nav-buttons">
-      <a href="index.html">← Volver al índice</a>
-      <a href="Prueba.html">Test 1</a>
-    </div>
-  </div>
+          <div class="lesson-card" id="lesson4" data-leccion-id="4" data-titulo="Lección 4" data-quiz-required="true" data-min-score="60">
+            <img src="TP1/leccion4.png" alt="Lección 4" style="width:100%;border-radius:12px;margin-bottom:1rem;">
+            <h3>Lección 4</h3>
+            <p>Días de la semana y tiempo.</p>
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    ALSI • Una forma de aprender sin barreras
-  </footer>
+      <section id="progreso" style="display:none">
+        <h2>Progreso del usuario</h2>
+        <ul id="lista-progreso"></ul>
+        <button type="button" onclick="reiniciarProgreso()" style="margin-top: 1rem; background-color: #e74c3c; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer;">
+          Reiniciar progreso
+        </button>
+      </section>
 
-  <script>
-    // Se renombra a 'toggle-dark-mode' para consistencia con el index.html
-    const toggleDarkModeBtn = document.getElementById("toggle-dark-mode");
+      <section id="perfil" style="display:none">
+        <h2>Perfil del usuario</h2>
+        <form onsubmit="guardarPerfil(event)" id="form-perfil">
+          <input type="text" id="nombre" placeholder="Nombre" />
+          <input type="email" id="correo" placeholder="Correo electrónico" />
+          <button type="submit">Guardar perfil</button>
+        </form>
+      </section>
+      <div id="contenido-leccion"></div>
+    </main>
+</div>
+
+<script>
+    const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
     const body = document.body;
+    const splashScreen = document.getElementById('splash-screen');
+    const mainContentWrapper = document.getElementById('main-content-wrapper');
+    const mainElement = document.querySelector('main'); // Referencia al elemento main
 
-    // Función para aplicar el modo (claro/oscuro) y actualizar el texto del botón
-    function applyMode(isDarkMode) { // Función renombrada para consistencia
-      if (isDarkMode) {
-        body.classList.add("dark-mode");
-        body.classList.remove("light-mode-manual"); // Asegurarse de quitar la clase de anulación manual
-        toggleDarkModeBtn.textContent = "☀️ Modo Claro";
+    function aplicarModoOscuroInicial() {
+      const savedMode = localStorage.getItem('darkMode');
+      if (savedMode === 'enabled') {
+        body.classList.add('dark-mode');
+        splashScreen.classList.add('dark-mode'); // Aplicar a splash también
+        splashScreen.classList.remove('light-mode');
+        toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+      } else if (savedMode === 'disabled') {
+        body.classList.remove('dark-mode');
+        splashScreen.classList.add('light-mode'); // Aplicar a splash también
+        splashScreen.classList.remove('dark-mode');
+        toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
       } else {
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode-manual"); // Marcar que el modo claro fue seleccionado manualmente
-        toggleDarkModeBtn.textContent = "🌙 Modo Oscuro";
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          body.classList.add('dark-mode');
+          splashScreen.classList.add('dark-mode'); // Aplicar a splash también
+          splashScreen.classList.remove('light-mode');
+          toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+        } else {
+          body.classList.remove('dark-mode');
+          splashScreen.classList.add('light-mode'); // Aplicar a splash también
+          splashScreen.classList.remove('dark-mode');
+          toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+        }
       }
     }
 
-    // Función para alternar el modo manualmente
-    function alternarModo() {
-      // Usamos 'darkMode' en localStorage para consistencia con index.html
-      const currentMode = localStorage.getItem("darkMode"); // 'enabled', 'disabled' o null
-      let newMode;
-
-      // Lógica para determinar el nuevo modo
-      if (currentMode === 'enabled' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        // Si estaba en oscuro (manual o por sistema), cambiar a claro
-        newMode = 'disabled';
-      } else {
-        // Si estaba en claro (manual o por sistema), cambiar a oscuro
-        newMode = 'enabled';
-      }
-      localStorage.setItem("darkMode", newMode); // Guardar la preferencia
-      applyMode(newMode === 'enabled'); // Aplicar el nuevo modo
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        if (!localStorage.getItem('darkMode')) {
+          if (event.matches) {
+            body.classList.add('dark-mode');
+            splashScreen.classList.add('dark-mode'); // Aplicar a splash también
+            splashScreen.classList.remove('light-mode');
+            toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+          } else {
+            body.classList.remove('dark-mode');
+            splashScreen.classList.add('light-mode'); // Aplicar a splash también
+            splashScreen.classList.remove('dark-mode');
+            toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+          }
+        }
+      });
     }
 
-    // Lógica al cargar la página
+    toggleDarkModeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      splashScreen.classList.toggle('dark-mode'); // Alternar modo en splash también
+      splashScreen.classList.toggle('light-mode'); // Asegurar que el otro modo se quite
+      if (body.classList.contains('dark-mode')) {
+        toggleDarkModeBtn.textContent = '☀️ Modo Claro';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+
+    // Función para verificar si estamos en modo móvil vertical
+    function isMobilePortrait() {
+        return window.matchMedia("(max-width: 768px) and (orientation: portrait)").matches;
+    }
+
+    // Modificamos showSection para manejar la visibilidad de 'main'
+    function showSection(id) {
+      const secciones = ['lecciones', 'progreso', 'perfil'];
+      secciones.forEach(sec => {
+        const sectionElement = document.getElementById(sec);
+        if (sectionElement) {
+          sectionElement.style.display = sec === id ? 'block' : 'none';
+        }
+      });
+
+      // Si estamos en móvil vertical, asegurarnos de que 'main' sea visible
+      if (isMobilePortrait()) {
+          mainElement.style.display = 'block'; // O 'flex' si tu main necesita flex
+          body.classList.add('show-main-content'); // Añadir clase para control CSS
+          // Añadir padding-bottom a main cuando el contenido sea visible en móvil
+          mainElement.style.paddingBottom = '70px';
+      } else {
+          mainElement.style.paddingBottom = ''; // Resetear padding en escritorio
+      }
+
+      if (id === 'progreso') {
+          displayProgress();
+      }
+    }
+
+    // Nueva función para ocultar el contenido principal en móvil (cuando no hay sección seleccionada)
+    function hideMainContentForMobile() {
+        if (isMobilePortrait()) {
+            mainElement.style.display = 'none';
+            body.classList.remove('show-main-content');
+            mainElement.style.paddingBottom = ''; // Remover padding cuando main está oculto
+        }
+    }
+
+    // Añadir listeners para los botones de navegación
+    document.querySelectorAll('aside button').forEach(button => {
+        if (button.textContent.includes('Lecciones')) {
+            button.onclick = () => showSection('lecciones');
+        } else if (button.textContent.includes('Progreso')) {
+            button.onclick = () => showSection('progreso');
+        } else if (button.textContent.includes('Perfil')) {
+            button.onclick = () => showSection('perfil');
+        } else if (button.textContent.includes('Salir')) {
+            button.onclick = cerrarSesion; // No ocultar el main al salir, solo alertar
+        }
+        // El botón de modo oscuro tiene su propio listener
+    });
+
+
+    function guardarPerfil(event) {
+      event.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const correo = document.getElementById('correo').value;
+      const perfil = { nombre, correo };
+      localStorage.setItem('perfilUsuario', JSON.stringify(perfil));
+      alert('¡Perfil guardado exitosamente!');
+    }
+
+    function reiniciarProgreso() {
+        if (confirm('¿Estás seguro de que quieres reiniciar tu progreso? Se borrarán todas las lecciones completadas.')) {
+            const keysToRemove = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('lessonProgress_')) {
+                    keysToRemove.push(key);
+                }
+            }
+            keysToRemove.forEach(key => localStorage.removeItem(key));
+            saveProgress('lesson1', 'unlocked');
+            updateLessonAvailability();
+            displayProgress();
+            alert('Tu progreso ha sido reiniciado.');
+        }
+    }
+
+    function cerrarSesion() {
+      alert('Sesión cerrada.');
+      // En un caso real, aquí redirigirías al login o harías un logout.
+      // Para esta demostración, simplemente puedes ocultar el contenido.
+      hideMainContentForMobile(); // Ocultar el main cuando se cierra sesión en móvil
+    }
+
+    const MIN_PASS_SCORE = 70;
+
+    function loadProgress() {
+        const lessons = document.querySelectorAll('.lesson-card');
+        lessons.forEach(lesson => {
+            const lessonId = lesson.id;
+            const progress = localStorage.getItem(`lessonProgress_${lessonId}`);
+            if (progress === 'completed') {
+                lesson.classList.add('completed');
+                const existingCheck = lesson.querySelector('.check');
+                if (!existingCheck) {
+                    lesson.innerHTML += '<span class="check">✅</span>';
+                }
+            }
+        });
+        updateLessonAvailability();
+        updateProgressBar();
+    }
+
+    function saveProgress(lessonId, status) {
+        localStorage.setItem(`lessonProgress_${lessonId}`, status);
+        updateProgressBar();
+    }
+
+    function updateLessonAvailability() {
+        const lessons = document.querySelectorAll('.lesson-card');
+        for (let i = 0; i < lessons.length; i++) {
+            const currentLesson = lessons[i];
+            const currentLessonId = currentLesson.id;
+            const leccionDataId = parseInt(currentLesson.dataset.leccionId);
+
+            const isCurrentLessonCompleted = localStorage.getItem(`lessonProgress_${currentLessonId}`) === 'completed';
+
+            currentLesson.classList.remove('locked');
+            currentLesson.style.pointerEvents = "auto";
+            currentLesson.onclick = () => cargarLeccion(leccionDataId);
+            let unlockMessage = currentLesson.querySelector('.unlock-message');
+            if (unlockMessage) {
+                unlockMessage.remove();
+            }
+
+            if (leccionDataId === 1) {
+                if (localStorage.getItem(`lessonProgress_${currentLessonId}`) === null) {
+                    saveProgress(currentLessonId, 'unlocked');
+                }
+                continue;
+            }
+
+            const previousLesson = document.querySelector(`.lesson-card[data-leccion-id="${leccionDataId - 1}"]`);
+            if (!previousLesson) {
+                console.warn(`No se encontró la lección anterior para ${currentLessonId}`);
+                continue;
+            }
+
+            const previousLessonId = previousLesson.id;
+            const previousQuizRequired = previousLesson.dataset.quizRequired === 'true';
+            const isPreviousLessonCompleted = localStorage.getItem(`lessonProgress_${previousLessonId}`) === 'completed';
+
+            if (previousQuizRequired) {
+                if (isPreviousLessonCompleted) {
+                    currentLesson.classList.remove('locked');
+                    saveProgress(currentLessonId, 'unlocked');
+                } else {
+                    currentLesson.classList.add('locked');
+                    currentLesson.style.pointerEvents = "none";
+                    currentLesson.onclick = null;
+                    if (!unlockMessage) {
+                        unlockMessage = document.createElement('p');
+                        unlockMessage.classList.add('unlock-message');
+                        currentLesson.appendChild(unlockMessage);
+                    }
+                    unlockMessage.textContent = 'Completa el cuestionario anterior para desbloquear';
+                    saveProgress(currentLessonId, 'locked');
+                }
+            } else {
+                const isPreviousLessonUnlockedOrCompleted = localStorage.getItem(`lessonProgress_${previousLessonId}`) === 'unlocked' || isPreviousLessonCompleted;
+                if (isPreviousLessonUnlockedOrCompleted) {
+                    currentLesson.classList.remove('locked');
+                    saveProgress(currentLessonId, 'unlocked');
+                } else {
+                    currentLesson.classList.add('locked');
+                    currentLesson.style.pointerEvents = "none";
+                    currentLesson.onclick = null;
+                    if (!unlockMessage) {
+                        unlockMessage = document.createElement('p');
+                        unlockMessage.classList.add('unlock-message');
+                        currentLesson.appendChild(unlockMessage);
+                    }
+                    unlockMessage.textContent = 'Completa la lección anterior para desbloquear';
+                    saveProgress(currentLessonId, 'locked');
+                }
+            }
+
+            if (isCurrentLessonCompleted) {
+                currentLesson.classList.add('completed');
+                const existingCheck = currentLesson.querySelector('.check');
+                if (existingCheck) {
+                    existingCheck.remove();
+                }
+                currentLesson.innerHTML += '<span class="check">✅</span>';
+            } else {
+                const existingCheck = currentLesson.querySelector('.check');
+                if (existingCheck) {
+                    existingCheck.remove();
+                }
+            }
+        }
+    }
+
+    function submitQuiz(lessonId, scoreObtained) {
+        const lessonElement = document.getElementById(lessonId);
+        if (!lessonElement) {
+            console.error(`Lección con ID ${lessonId} no encontrada.`);
+            return;
+        }
+
+        const minScore = parseInt(lessonElement.dataset.minScore) || MIN_PASS_SCORE;
+        let passed = false;
+
+        if (scoreObtained >= minScore) {
+            passed = true;
+            alert(`¡Cuestionario de ${lessonElement.dataset.titulo} aprobado con ${scoreObtained}%!`);
+            saveProgress(lessonId, 'completed');
+        } else {
+            alert(`Cuestionario de ${lessonElement.dataset.titulo} reprobado con ${scoreObtained}%. Necesitas ${minScore}%.`);
+            saveProgress(lessonId, 'unlocked');
+        }
+
+        updateLessonAvailability();
+        displayProgress();
+    }
+
+    function cargarLeccion(leccionDataId) {
+        const lessonElement = document.querySelector(`.lesson-card[data-leccion-id="${leccionDataId}"]`);
+        const lessonId = lessonElement.id;
+
+        if (lessonElement.dataset.quizRequired !== 'true' && localStorage.getItem(`lessonProgress_${lessonId}`) === 'unlocked') {
+            saveProgress(lessonId, 'completed');
+        }
+
+        window.location.href = `lesson${leccionDataId}.html`;
+    }
+
+    function updateProgressBar() {
+        const totalLessons = document.querySelectorAll('.lesson-card').length;
+        let completedLessonsCount = 0;
+        document.querySelectorAll('.lesson-card').forEach(lesson => {
+            const lessonId = lesson.id;
+            if (localStorage.getItem(`lessonProgress_${lessonId}`) === 'completed') {
+                completedLessonsCount++;
+            }
+        });
+        const progressPercentage = (totalLessons > 0) ? (completedLessonsCount / totalLessons) * 100 : 0;
+        document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+    }
+
+    function displayProgress() {
+        const listaProgreso = document.getElementById('lista-progreso');
+        listaProgreso.innerHTML = '';
+        const lessons = document.querySelectorAll('.lesson-card');
+        lessons.forEach(lesson => {
+            const lessonId = lesson.id;
+            const title = lesson.dataset.titulo;
+            const status = localStorage.getItem(`lessonProgress_${lessonId}`) || 'locked';
+
+            const listItem = document.createElement('li');
+            let statusText = '';
+            let statusColor = '';
+
+            switch (status) {
+                case 'completed':
+                    statusText = '✅ Completada';
+                    statusColor = 'green';
+                    break;
+                case 'unlocked':
+                    statusText = '➡️ Desbloqueada (Pendiente)';
+                    statusColor = 'orange';
+                    break;
+                case 'locked':
+                    statusText = '🔒 Bloqueada';
+                    statusColor = 'red';
+                    break;
+                default:
+                    statusText = 'Estado desconocido';
+                    statusColor = 'gray';
+            }
+            listItem.innerHTML = `${title}: <span style="color: ${statusColor};">${statusText}</span>`;
+            listaProgreso.appendChild(listItem);
+        });
+    }
+
+    // Función para manejar el cambio de orientación
+    function handleOrientationChange() {
+        if (isMobilePortrait()) {
+            // Si es móvil vertical, por defecto oculta el main
+            hideMainContentForMobile();
+        } else {
+            // Si es escritorio o móvil horizontal, muestra el main y las lecciones
+            mainElement.style.display = 'block'; // O 'flex'
+            body.classList.remove('show-main-content');
+            showSection('lecciones'); // Asegúrate de que las lecciones sean visibles por defecto en desktop
+            mainElement.style.paddingBottom = ''; // Asegúrate de que no haya padding extra del footer móvil
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      const savedMode = localStorage.getItem("darkMode"); // Usamos 'darkMode' en localStorage
+        const splashDuration = 3000; // Aumentado a 3 segundos (3000 milisegundos)
 
-      if (savedMode) {
-        // Si hay una preferencia guardada, úsala
-        applyMode(savedMode === 'enabled');
-      } else {
-        // Si no hay preferencia guardada, usa la del sistema
-        applyMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }
-    });
+        // Aplicar el modo oscuro/claro al splash screen y al body al inicio
+        aplicarModoOscuroInicial();
+        splashScreen.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        mainContentWrapper.style.display = 'none';
 
-    // Escuchar cambios en la preferencia del sistema (solo si no hay una preferencia manual guardada)
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      if (!localStorage.getItem("darkMode")) { // Si el usuario no ha elegido manualmente
-        applyMode(event.matches);
-      }
+        setTimeout(() => {
+            splashScreen.classList.add('fade-out');
+            splashScreen.addEventListener('transitionend', function handler() {
+                if (splashScreen.classList.contains('fade-out')) {
+                    splashScreen.removeEventListener('transitionend', handler);
+                    splashScreen.style.display = 'none';
+                    mainContentWrapper.style.display = 'flex'; // Mostrar el wrapper principal
+                    document.body.classList.add('content-visible'); // Permitir scroll si es necesario
+
+                    // Después del splash, aplicar lógica de visibilidad inicial basada en orientación
+                    handleOrientationChange();
+
+                    // Inicializaciones del contenido principal
+                    loadProgress();
+                    updateProgressBar();
+                    document.querySelectorAll('.lesson-card').forEach(card => {
+                        card.addEventListener('click', () => {
+                            const leccionDataId = parseInt(card.dataset.leccionId);
+                            cargarLeccion(leccionDataId);
+                        });
+                    });
+                }
+            }, { once: true });
+        }, splashDuration);
+
+        // Escuchar cambios de orientación/tamaño de ventana
+        window.addEventListener('resize', handleOrientationChange);
+        window.addEventListener('orientationchange', handleOrientationChange);
+
+        // Llamada inicial para asegurar el estado correcto al cargar la página
+        handleOrientationChange(); // Asegura el estado correcto incluso si no hay resize/orientationchange
     });
-  </script>
+</script>
 </body>
 </html>
