@@ -15,7 +15,6 @@
       height: 100vh;
       background-color: #f9f6fb;
       color: #4a3054;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el modo oscuro */
     }
     aside {
       width: 220px;
@@ -26,7 +25,6 @@
       gap: 1rem;
       color: white;
       align-items: center;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el modo oscuro */
     }
     aside img {
       width: 130px;
@@ -60,7 +58,6 @@
       padding: 2rem;
       overflow-y: auto;
       position: relative;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el modo oscuro */
     }
     .progress-bar-container {
       background-color: #e8dff3;
@@ -69,13 +66,12 @@
       position: absolute;
       top: 0;
       left: 0;
-      transition: background-color 0.3s ease; /* Transición para el modo oscuro */
     }
     .progress-bar-fill {
       background-color: #b27ac5;
       height: 100%;
       width: 0%;
-      transition: width 0.6s ease, background-color 0.3s ease; /* Transición para el modo oscuro */
+      transition: width 0.6s ease;
     }
     .search-container {
       margin: 1.5rem 0;
@@ -86,9 +82,6 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
-      background-color: #fff; /* Asegurar color de fondo en claro */
-      color: #4a3054; /* Asegurar color de texto en claro */
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transición para el modo oscuro */
     }
     .lessons {
       display: grid;
@@ -103,13 +96,13 @@
       text-align: center;
       position: relative;
       cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Transición para el modo oscuro */
+      transition: transform 0.2s ease;
     }
     .lesson-card:hover {
       transform: scale(1.02);
     }
     .lesson-card h3 { margin: 0 0 0.5rem; }
-    .lesson-card p { font-size: 0.9rem; color: #555; margin-bottom: 1rem; transition: color 0.3s ease; /* Transición para el modo oscuro */ }
+    .lesson-card p { font-size: 0.9rem; color: #555; margin-bottom: 1rem; }
     .lesson-card button {
       background-color: #c39bd3;
       color: #fff;
@@ -118,7 +111,6 @@
       border-radius: 0.5rem;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el modo oscuro */
     }
     .lesson-card.completed {
       border: 2px solid #af7ac5;
@@ -132,13 +124,12 @@
     }
     /* Estilos para lecciones bloqueadas */
     .lesson-card.locked {
-        opacity: 0.6; /* Un poco más de opacidad para indicar bloqueo */
-        pointer-events: none; /* Desactiva clics */
+        opacity: 0.5;
+        pointer-events: none;
         cursor: not-allowed;
-        box-shadow: none; /* Sin sombra para las bloqueadas */
     }
     .lesson-card.locked button {
-        background-color: #aaa; /* Botón deshabilitado */
+        background-color: #ccc; /* Botón deshabilitado */
         cursor: not-allowed;
     }
     .lesson-card.locked .unlock-message {
@@ -157,9 +148,6 @@
       padding: 0.6rem;
       border: 1px solid #ccc;
       border-radius: 8px;
-      background-color: #fff; /* Asegurar color de fondo en claro */
-      color: #4a3054; /* Asegurar color de texto en claro */
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transición para el modo oscuro */
     }
     #perfil button {
       width: fit-content;
@@ -169,7 +157,6 @@
       padding: 0.6rem 1.2rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el modo oscuro */
     }
     .logo-movil {
       display: none;
@@ -219,8 +206,9 @@
     }
     /* Modo oscuro */
     body.dark-mode {
-      background-color: #1e1e2f;  /* Fondo oscuro */
-      color: #e0d8f0;             /* Letras claras */
+      background-color: #121212;
+      color: #e0d8f0;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     body.dark-mode aside {
       background-color: #3a2a52;
@@ -233,23 +221,20 @@
       background-color: #6b5498;
     }
     body.dark-mode main {
-      background-color: #1e1e2f;
+      background-color: #1e1b29;
       color: #e0d8f0;
     }
     body.dark-mode .lesson-card {
       background-color: #2b2440;
       color: #ddd;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    }
-    body.dark-mode .lesson-card p {
-        color: #bbb; /* Color para el texto del párrafo en modo oscuro */
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
     }
     body.dark-mode .lesson-card button {
       background-color: #6b5498;
       color: #fff;
     }
     body.dark-mode .lesson-card.completed {
-      border-color: #af7ac5; /* Mantener color de borde similar */
+      border-color: #a87ce2;
     }
     body.dark-mode .progress-bar-container {
       background-color: #4e3f70;
@@ -275,12 +260,20 @@
       color: #ddd;
       border-color: #6b5498;
     }
-    body.dark-mode .lesson-card.locked {
-        background-color: #2b2440; /* Fondo más oscuro para tarjetas bloqueadas */
-        opacity: 0.4; /* Menos opacidad para que resalte más el bloqueo */
+    body.dark-mode {
+      background-color: #1e1e2f;  /* Fondo oscuro */
+      color: #ffffff;             /* Letras blancas */
     }
-    body.dark-mode .lesson-card.locked .unlock-message {
-        color: #999; /* Color más claro para el mensaje de bloqueo en modo oscuro */
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode p,
+    body.dark-mode span,
+    body.dark-mode li,
+    body.dark-mode input,
+    body.dark-mode button,
+    body.dark-mode label {
+      color: #ffffff;
     }
   </style>
 </head>
@@ -306,17 +299,17 @@
         <input type="text" id="busqueda" placeholder="Buscar lección..." oninput="filtrarLecciones()" />
       </div>
       <div class="lessons" id="lessons-container">
-        <div class="lesson-card" id="lesson1" data-leccion-id="1" data-titulo="Lección 1" data-quiz-required="true" data-min-score="70">
+        <div class="lesson-card" id="lesson1" data-leccion-id="1" data-titulo="Lección 1" data-quiz-required="false">
           <img src="TP1/leccion1.png" alt="Lección 1" style="width:100%;border-radius:12px;margin-bottom:1rem;">
           <h3>Lección 1</h3>
           <p>Introducción a las señas básicas.</p>
-        </div>
+          </div>
 
         <div class="lesson-card" id="lesson2" data-leccion-id="2" data-titulo="Lección 2" data-quiz-required="true" data-min-score="70">
           <img src="TP1/leccion2.png" alt="Lección 2" style="width:100%;border-radius:12px;margin-bottom:1rem;">
           <h3>Lección 2</h3>
           <p>Abecedario dactilológico.</p>
-        </div>
+          </div>
 
         <div class="lesson-card" id="lesson3" data-leccion-id="3" data-titulo="Lección 3" data-quiz-required="false">
           <img src="TP1/leccion3.png" alt="Lección 3" style="width:100%;border-radius:12px;margin-bottom:1rem;">
@@ -329,7 +322,7 @@
           <h3>Lección 4</h3>
           <p>Días de la semana y tiempo.</p>
         </div>
-      </div>
+        </div>
     </section>
 
     <section id="progreso" style="display:none">
@@ -354,10 +347,9 @@
     // Tu script de Dark Mode y manejo de secciones existente
     const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
     const body = document.body;
-    const localStorageDarkModeKey = 'darkMode'; // Clave unificada con las otras páginas
 
     function aplicarModoOscuroInicial() {
-      const savedMode = localStorage.getItem(localStorageDarkModeKey);
+      const savedMode = localStorage.getItem('darkMode');
       if (savedMode === 'enabled') {
         body.classList.add('dark-mode');
         toggleDarkModeBtn.textContent = '☀️ Modo Claro';
@@ -377,7 +369,7 @@
 
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        if (!localStorage.getItem(localStorageDarkModeKey)) { // Solo si el usuario no ha forzado un modo
+        if (!localStorage.getItem('darkMode')) {
           if (event.matches) {
             body.classList.add('dark-mode');
             toggleDarkModeBtn.textContent = '☀️ Modo Claro';
@@ -393,10 +385,10 @@
       body.classList.toggle('dark-mode');
       if (body.classList.contains('dark-mode')) {
         toggleDarkModeBtn.textContent = '☀️ Modo Claro';
-        localStorage.setItem(localStorageDarkModeKey, 'enabled');
+        localStorage.setItem('darkMode', 'enabled');
       } else {
         toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
-        localStorage.setItem(localStorageDarkModeKey, 'disabled');
+        localStorage.setItem('darkMode', 'disabled');
       }
     });
 
@@ -422,6 +414,7 @@
 
     function reiniciarProgreso() {
         if (confirm('¿Estás seguro de que quieres reiniciar tu progreso? Se borrarán todas las lecciones completadas.')) {
+            // Eliminar solo las lecciones completadas, no la preferencia de dark mode ni el perfil
             const keysToRemove = [];
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
@@ -431,12 +424,11 @@
             }
             keysToRemove.forEach(key => localStorage.removeItem(key));
 
-            // Después de borrar, la Lección 1 debe volver a estar desbloqueada.
+            // Asegurarse de que lesson1 se marque como unlocked de nuevo
             saveProgress('lesson1', 'unlocked');
 
-            updateLessonAvailability(); // Recalcula el estado de todas las lecciones
-            displayProgress(); // Actualiza la vista de progreso
-            updateProgressBar(); // Actualiza la barra de progreso
+            actualizarEstadoLecciones();
+            displayProgress(); // Actualizar la vista de progreso
             alert('Tu progreso ha sido reiniciado.');
         }
     }
@@ -447,19 +439,26 @@
       // window.location.href = 'login.html'; // Ejemplo de redirección
     }
 
-    // --- JAVASCRIPT PARA PROGRESO Y DESBLOQUEO DE LECCIONES ---
+    // --- NUEVO JAVASCRIPT PARA PROGRESO Y DESBLOQUEO DE LECCIONES ---
 
     const MIN_PASS_SCORE = 70; // Puntaje mínimo global para aprobar si no se especifica en la lección
 
     // Función para cargar el progreso desde localStorage
     function loadProgress() {
-        // Asegurarse de que lesson1 se marque como unlocked si no tiene estado.
-        // Esto previene que se quede 'null' o 'locked' si se borra el localStorage.
-        if (localStorage.getItem('lessonProgress_lesson1') === null) {
-            saveProgress('lesson1', 'unlocked');
-        }
-        // Luego actualizamos la disponibilidad de todas las lecciones.
-        updateLessonAvailability();
+        const lessons = document.querySelectorAll('.lesson-card');
+        lessons.forEach(lesson => {
+            const lessonId = lesson.id; // Usamos el ID del div de la lección
+            const progress = localStorage.getItem(`lessonProgress_${lessonId}`);
+            if (progress === 'completed') {
+                lesson.classList.add('completed');
+                const existingCheck = lesson.querySelector('.check');
+                if (!existingCheck) { // Evitar duplicados
+                    lesson.innerHTML += '<span class="check">✅</span>';
+                }
+                // Si la lección tiene quiz, podrías mostrar el resultado aquí si lo guardas
+            }
+        });
+        updateLessonAvailability(); // Asegura que las lecciones se desbloqueen correctamente al cargar
         updateProgressBar(); // Actualizar la barra de progreso al cargar
     }
 
@@ -475,98 +474,94 @@
         for (let i = 0; i < lessons.length; i++) {
             const currentLesson = lessons[i];
             const currentLessonId = currentLesson.id;
-            const leccionDataId = parseInt(currentLesson.dataset.leccionId);
+            const leccionDataId = parseInt(currentLesson.dataset.leccionId); // Su 'leccion-id'
+
+            const isCurrentLessonCompleted = localStorage.getItem(`lessonProgress_${currentLessonId}`) === 'completed';
 
             // Limpiar clases y mensajes de bloqueo/desbloqueo anteriores
-            currentLesson.classList.remove('locked', 'completed'); // Remover 'completed' también para reevaluar
-            currentLesson.style.pointerEvents = "auto"; // Re-habilitar clics por defecto
+            currentLesson.classList.remove('locked');
+            currentLesson.style.pointerEvents = "auto";
+            currentLesson.onclick = () => cargarLeccion(leccionDataId); // Restablecer el click event
             let unlockMessage = currentLesson.querySelector('.unlock-message');
             if (unlockMessage) {
                 unlockMessage.remove();
             }
-            // Asegurar que el check de completado no esté si no lo está
-            const existingCheck = currentLesson.querySelector('.check');
-            if (existingCheck) {
-                existingCheck.remove();
-            }
 
-            const currentLessonStatus = localStorage.getItem(`lessonProgress_${currentLessonId}`);
-
-            // Lógica para el estado de la Lección 1 (siempre desbloqueada para empezar)
-            if (leccionDataId === 1) {
-                if (currentLessonStatus === 'completed') {
-                    currentLesson.classList.add('completed');
-                    currentLesson.innerHTML += '<span class="check">✅</span>';
+            // La primera lección siempre está desbloqueada por defecto
+            if (leccionDataId === 1) { // Usa data-leccion-id para la primera lección
+                if (localStorage.getItem(`lessonProgress_${currentLessonId}`) === null) {
+                    saveProgress(currentLessonId, 'unlocked');
                 }
-                // Si está desbloqueada o nula, ya fue manejada al inicio de loadProgress para ser 'unlocked'
-                currentLesson.onclick = () => cargarLeccion(leccionDataId);
-                continue; // Pasar a la siguiente lección
+                continue; // Ya procesada, pasar a la siguiente
             }
 
-            // Lógica para las lecciones siguientes
             const previousLesson = document.querySelector(`.lesson-card[data-leccion-id="${leccionDataId - 1}"]`);
-            if (!previousLesson) {
-                console.warn(`No se encontró la lección anterior para ${currentLessonId}. Lección probablemente bloqueada.`);
-                currentLesson.classList.add('locked');
-                currentLesson.style.pointerEvents = "none";
-                currentLesson.onclick = null;
-                unlockMessage = document.createElement('p');
-                unlockMessage.classList.add('unlock-message');
-                unlockMessage.textContent = 'Lección anterior no encontrada o no válida.';
-                currentLesson.appendChild(unlockMessage);
-                saveProgress(currentLessonId, 'locked');
+            if (!previousLesson) { // Si no hay lección anterior (debería existir si no es la primera)
+                console.warn(`No se encontró la lección anterior para ${currentLessonId}`);
                 continue;
             }
 
-            const previousLessonId = previousLesson.id;
+            const previousLessonId = previousLesson.id; // El ID HTML de la lección anterior
             const previousQuizRequired = previousLesson.dataset.quizRequired === 'true';
             const isPreviousLessonCompleted = localStorage.getItem(`lessonProgress_${previousLessonId}`) === 'completed';
 
             if (previousQuizRequired) {
+                // Si la lección anterior requería cuestionario
                 if (isPreviousLessonCompleted) {
-                    // Desbloquear si la anterior con quiz requerido está completada
+                    currentLesson.classList.remove('locked');
                     saveProgress(currentLessonId, 'unlocked');
-                    currentLesson.onclick = () => cargarLeccion(leccionDataId);
                 } else {
-                    // Bloquear si la anterior con quiz requerido NO está completada
                     currentLesson.classList.add('locked');
-                    currentLesson.style.pointerEvents = "none";
-                    currentLesson.onclick = null;
-                    unlockMessage = document.createElement('p');
-                    unlockMessage.classList.add('unlock-message');
-                    unlockMessage.textContent = 'Completa el cuestionario de la lección anterior para desbloquear.';
-                    currentLesson.appendChild(unlockMessage);
+                    currentLesson.style.pointerEvents = "none"; // Desactivar clics
+                    currentLesson.onclick = null; // Quitar el evento onclick
+                    if (!unlockMessage) { // Si no existe el mensaje, crearlo
+                        unlockMessage = document.createElement('p');
+                        unlockMessage.classList.add('unlock-message');
+                        currentLesson.appendChild(unlockMessage);
+                    }
+                    unlockMessage.textContent = 'Completa el cuestionario anterior para desbloquear';
                     saveProgress(currentLessonId, 'locked');
                 }
             } else {
-                // Si la lección anterior NO requería quiz, solo necesita estar "unlocked" o "completed"
-                const isPreviousLessonUnlockedOrCompleted = (localStorage.getItem(`lessonProgress_${previousLessonId}`) === 'unlocked' || isPreviousLessonCompleted);
+                // Si la lección anterior NO requería cuestionario, solo se necesita que la anterior esté "unlocked" o "completed"
+                const isPreviousLessonUnlockedOrCompleted = localStorage.getItem(`lessonProgress_${previousLessonId}`) === 'unlocked' || isPreviousLessonCompleted;
                 if (isPreviousLessonUnlockedOrCompleted) {
+                    currentLesson.classList.remove('locked');
                     saveProgress(currentLessonId, 'unlocked');
-                    currentLesson.onclick = () => cargarLeccion(leccionDataId);
                 } else {
                     currentLesson.classList.add('locked');
                     currentLesson.style.pointerEvents = "none";
                     currentLesson.onclick = null;
-                    unlockMessage = document.createElement('p');
-                    unlockMessage.classList.add('unlock-message');
-                    unlockMessage.textContent = 'Completa la lección anterior para desbloquear.';
-                    currentLesson.appendChild(unlockMessage);
+                    if (!unlockMessage) {
+                        unlockMessage = document.createElement('p');
+                        unlockMessage.classList.add('unlock-message');
+                        currentLesson.appendChild(unlockMessage);
+                    }
+                    unlockMessage.textContent = 'Completa la lección anterior para desbloquear';
                     saveProgress(currentLessonId, 'locked');
                 }
             }
 
-            // Después de determinar si está bloqueada o desbloqueada, verificar si está completada
-            if (localStorage.getItem(`lessonProgress_${currentLessonId}`) === 'completed') {
+            // Si la lección actual ya está completada, asegúrate de que tenga el ✅
+            if (isCurrentLessonCompleted) {
                 currentLesson.classList.add('completed');
-                currentLesson.innerHTML += '<span class="check">✅</span>';
+                const existingCheck = currentLesson.querySelector('.check');
+                if (!existingCheck) {
+                    currentLesson.innerHTML += '<span class="check">✅</span>';
+                }
+            } else {
+                // Si no está completada, asegurar que no tenga el ✅
+                const existingCheck = currentLesson.querySelector('.check');
+                if (existingCheck) {
+                    existingCheck.remove();
+                }
             }
         }
     }
 
-
-    // Función para simular el envío de un cuestionario (llamada desde los quizzes)
-    function submitQuiz(lessonId, scoreObtained) { // lessonId debe ser el ID del div de la lección (ej. 'lesson1', 'lesson2')
+    // Función para simular el envío de un cuestionario
+    // Esta función se llamará desde tus archivos de cuestionario (ej. desde un botón de envío)
+    function submitQuiz(lessonId, scoreObtained) { // lessonId debe ser el ID del div de la lección (ej. 'lesson2')
         const lessonElement = document.getElementById(lessonId);
         if (!lessonElement) {
             console.error(`Lección con ID ${lessonId} no encontrada.`);
@@ -582,28 +577,24 @@
             saveProgress(lessonId, 'completed');
         } else {
             alert(`Cuestionario de ${lessonElement.dataset.titulo} reprobado con ${scoreObtained}%. Necesitas ${minScore}%.`);
-            // Si reprueba, la lección sigue "unlocked" para que pueda reintentar el quiz.
-            saveProgress(lessonId, 'unlocked');
+            saveProgress(lessonId, 'unlocked'); // Si reprueba, la lección sigue "desbloqueada" pero no "completada"
         }
 
-        // No actualizamos la UI aquí porque el usuario generalmente regresará al index.html
-        // donde DOMContentLoaded llamará a loadProgress y updateLessonAvailability.
+        updateLessonAvailability(); // Actualizar el estado de las lecciones después de enviar el cuestionario
+        displayProgress(); // Actualizar la vista de progreso
     }
 
     // Función para manejar el clic en las tarjetas de lección (para ir a la lección)
     function cargarLeccion(leccionDataId) {
         const lessonElement = document.querySelector(`.lesson-card[data-leccion-id="${leccionDataId}"]`);
-        const lessonId = lessonElement.id;
+        const lessonId = lessonElement.id; // El ID HTML de la lección
 
         // Si la lección no tiene cuestionario obligatorio y está desbloqueada, marcarla como completada al hacer clic
-        // Esto es para lecciones puramente informativas que se "completan" al visitarlas
         if (lessonElement.dataset.quizRequired !== 'true' && localStorage.getItem(`lessonProgress_${lessonId}`) === 'unlocked') {
             saveProgress(lessonId, 'completed');
-            // No es necesario llamar a updateLessonAvailability aquí, ya que el usuario se redirige
-            // y al volver al index, se volverá a cargar.
         }
 
-        window.location.href = `leccion${leccionDataId}.html`; // Redirige a la página de la lección
+        window.location.href = `lesson${leccionDataId}.html`; // Redirige a la página de la lección
     }
 
     // Función para actualizar la barra de progreso
@@ -656,36 +647,19 @@
         });
     }
 
-    // Función de búsqueda
-    function filtrarLecciones() {
-        const input = document.getElementById('busqueda');
-        const filtro = input.value.toLowerCase();
-        const lessonsContainer = document.getElementById('lessons-container');
-        const cards = lessonsContainer.querySelectorAll('.lesson-card');
-
-        cards.forEach(card => {
-            const title = card.dataset.titulo.toLowerCase();
-            if (title.includes(filtro)) {
-                card.style.display = ''; // Mostrar
-            } else {
-                card.style.display = 'none'; // Ocultar
-            }
-        });
-    }
-
     // Asegurarse de que todo se inicialice al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
         aplicarModoOscuroInicial();
         loadProgress(); // Carga el progreso inicial y actualiza la disponibilidad de las lecciones
-        // Nota: updateProgressBar y displayProgress son llamadas dentro de loadProgress y saveProgress
-        // Por lo que no es necesario llamarlas directamente aquí de nuevo.
+        updateProgressBar(); // Asegura que la barra de progreso se actualice
     });
 
-    // Añadir event listener para hacer click en la tarjeta y cargar la lección (delegado para manejar bloqueo)
+    // Añadir event listener para hacer click en la tarjeta y cargar la lección o marcar como completada (si no tiene quiz)
     document.querySelectorAll('.lesson-card').forEach(card => {
-        // Removemos el onclick directo del HTML si lo tenías para evitar duplicación
-        // y para que updateLessonAvailability pueda gestionarlo.
-        // No añadimos aquí, updateLessonAvailability lo hará por nosotros.
+        card.addEventListener('click', () => {
+            const leccionDataId = parseInt(card.dataset.leccionId);
+            cargarLeccion(leccionDataId);
+        });
     });
 
   </script>
