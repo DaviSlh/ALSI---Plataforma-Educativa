@@ -283,30 +283,29 @@
       left: 0;
       width: 100%;
       height: 100%;
-      display: flex;
+      display: flex; /* Aseguramos que sea flex desde el CSS inicial */
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 10000; /* Asegura que esté por encima de todo, incluso del logo móvil */
+      z-index: 10000;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Transición de salida */
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
     }
 
     /* Colores para la pantalla de bienvenida - Modo claro */
     #splash-screen.light-mode {
-      background-color: #f9f6fb; /* El mismo color de fondo de tu body en modo claro */
-      color: #4a3054; /* El mismo color de texto de tu body en modo claro */
+      background-color: #f9f6fb;
+      color: #4a3054;
     }
 
     /* Colores para la pantalla de bienvenida - Modo oscuro */
     #splash-screen.dark-mode {
-      background-color: #121212; /* El mismo color de fondo de tu body en modo oscuro */
-      color: #e0d8f0; /* El mismo color de texto de tu body en modo oscuro */
+      background-color: #121212;
+      color: #e0d8f0;
     }
 
     #splash-screen .welcome-text {
-      /* Pila de fuentes para imitar San Francisco, o similar */
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 3em;
       font-weight: 600;
@@ -315,12 +314,11 @@
     }
 
     #splash-screen .app-name {
-      /* Una fuente estética distinta, he elegido 'Inter' de tu diseño para mantener coherencia */
-      font-family: 'Inter', sans-serif; /* Puedes probar con 'Georgia', serif; si prefieres */
-      font-size: 1.8em; /* Más pequeño que el texto de bienvenida, pero un poco más grande que antes */
-      font-weight: 700; /* Para darle más peso a "ALSI" */
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8em;
+      font-weight: 700;
       text-align: center;
-      margin-top: 0.5em; /* Espacio entre las líneas */
+      margin-top: 0.5em;
     }
 
     /* Clase para la animación de salida */
@@ -705,14 +703,13 @@
         });
     }
 
-    // --- NUEVO JAVASCRIPT para la pantalla de bienvenida ---
+    // --- NUEVO JAVASCRIPT para la pantalla de bienvenida (AJUSTADO) ---
     document.addEventListener('DOMContentLoaded', () => {
         const splashScreen = document.getElementById('splash-screen');
         const splashDuration = 2300; // 2.3 segundos en milisegundos
 
         // Función para aplicar el modo de color a la pantalla de bienvenida
         const applySplashScreenMode = () => {
-            // Usa el estado actual del body (que ya es manejado por tu script de dark mode)
             if (body.classList.contains('dark-mode')) {
                 splashScreen.classList.add('dark-mode');
                 splashScreen.classList.remove('light-mode');
@@ -722,26 +719,30 @@
             }
         };
 
-        // Aplica el modo de color a la pantalla de bienvenida inmediatamente
-        applySplashScreenMode();
+        // ****** CAMBIO CLAVE AQUI ******
+        // Aplicar el modo de color y asegurarse de que la pantalla sea visible inmediatamente.
+        // Esto se ejecuta antes de que el resto del DOM esté completamente interactivo,
+        // lo cual es deseable para una pantalla de carga.
+        applySplashScreenMode(); // Aplicar colores
+        splashScreen.style.display = 'flex'; // Asegurar que sea visible como flexbox
+
 
         // Ocultar la pantalla de bienvenida después de la duración especificada
         setTimeout(() => {
             splashScreen.classList.add('fade-out');
-            // Eliminar la pantalla del DOM después de la transición para liberar recursos
             splashScreen.addEventListener('transitionend', () => {
                 if (splashScreen.classList.contains('fade-out')) {
                     splashScreen.style.display = 'none';
                 }
-            }, { once: true }); // Usar { once: true } para que el listener se ejecute solo una vez
+            }, { once: true });
         }, splashDuration);
 
         // --- Tus inicializaciones existentes (movidas aquí para asegurar que se ejecuten después del splash) ---
+        // Estas se ejecutarán *después* de que el splash screen comience a desaparecer.
         aplicarModoOscuroInicial();
-        loadProgress(); // Carga el progreso inicial y actualiza la disponibilidad de las lecciones
-        updateProgressBar(); // Asegura que la barra de progreso se actualice
+        loadProgress();
+        updateProgressBar();
 
-        // Añadir event listener para hacer click en la tarjeta y cargar la lección o marcar como completada (si no tiene quiz)
         document.querySelectorAll('.lesson-card').forEach(card => {
             card.addEventListener('click', () => {
                 const leccionDataId = parseInt(card.dataset.leccionId);
