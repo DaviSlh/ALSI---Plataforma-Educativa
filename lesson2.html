@@ -34,92 +34,71 @@
 --color-footer-text: #4a3054;
 --float-opacity: 0.6;
 }
-/* Variables de color para modo oscuro - basadas en prefers-color-scheme */
+
+/* Variables de color para modo oscuro (aplicadas por .dark-mode o prefers-color-scheme) */
+body.dark-mode, body:not(.light-mode-manual) { /* Combinamos para consistencia */
+    --color-text: #d8c0e3;
+    --color-bg-start: #1c1a2e;
+    --color-bg-mid1: #2e2b4f;
+    --color-bg-mid2: #3f3a6e;
+    --color-header-bg: rgba(60, 56, 89, 0.85);
+    --color-header-text: #d8c0e3;
+    --color-hero-bg: rgba(40, 36, 65, 0.7);
+    --color-hero-text-h2: #c9a1f7;
+    --color-hero-text-p: #c5b1d7;
+    --color-card-bg: #2e2a4e;
+    --color-card-shadow: rgba(0, 0, 0, 0.7);
+    --color-card-shadow-hover: rgba(0, 0, 0, 0.9);
+    --color-card-title: #b188e4;
+    --color-card-border: #8a69ac;
+    --color-nav-bg: #8a69ac;
+    --color-nav-bg-hover: #6f52a0;
+    --color-nav-text: #f2e6ff;
+    --color-letter-bg: rgba(50, 45, 78, 0.8);
+    --color-letter-bg-hover: rgba(50, 45, 78, 0.95);
+    --color-letter-title: #c2a0ff;
+    --color-letter-text: #b6a5cc;
+    --color-letter-border: #7f6ca2;
+    --color-footer-bg: rgba(60, 56, 89, 0.9);
+    --color-footer-text: #d8c0e3;
+    --float-opacity: 0.3;
+}
+
+/* Reglas específicas para prefers-color-scheme (si no hay manual override) */
 @media (prefers-color-scheme: dark) {
-:root {
---color-text: #d8c0e3;
---color-bg-start: #1c1a2e;
---color-bg-mid1: #2e2b4f;
---color-bg-mid2: #3f3a6e;
---color-header-bg: rgba(60, 56, 89, 0.85);
---color-header-text: #d8c0e3;
---color-hero-bg: rgba(40, 36, 65, 0.7);
---color-hero-text-h2: #c9a1f7;
---color-hero-text-p: #c5b1d7;
---color-card-bg: #2e2a4e;
---color-card-shadow: rgba(0, 0, 0, 0.7);
---color-card-shadow-hover: rgba(0, 0, 0, 0.9);
---color-card-title: #b188e4;
---color-card-border: #8a69ac;
---color-nav-bg: #8a69ac;
---color-nav-bg-hover: #6f52a0;
---color-nav-text: #f2e6ff;
---color-letter-bg: rgba(50, 45, 78, 0.8);
---color-letter-bg-hover: rgba(50, 45, 78, 0.95);
---color-letter-title: #c2a0ff;
---color-letter-text: #b6a5cc;
---color-letter-border: #7f6ca2;
---color-footer-bg: rgba(60, 56, 89, 0.9);
---color-footer-text: #d8c0e3;
---float-opacity: 0.3;
+    body:not(.light-mode-manual) {
+        /* Estas reglas ya están definidas arriba en .dark-mode, pero las mantenemos
+           para asegurar que se apliquen si la clase .dark-mode no se añade aún
+           pero el sistema es oscuro y no hay override manual a light. */
+        --color-text: #d8c0e3;
+        --color-bg-start: #1c1a2e;
+        --color-bg-mid1: #2e2b4f;
+        --color-bg-mid2: #3f3a6e;
+        --color-header-bg: rgba(60, 56, 89, 0.85);
+        --color-header-text: #d8c0e3;
+        --color-hero-bg: rgba(40, 36, 65, 0.7);
+        --color-hero-text-h2: #c9a1f7;
+        --color-hero-text-p: #c5b1d7;
+        --color-card-bg: #2e2a4e;
+        --color-card-shadow: rgba(0, 0, 0, 0.7);
+        --color-card-shadow-hover: rgba(0, 0, 0, 0.9);
+        --color-card-title: #b188e4;
+        --color-card-border: #8a69ac;
+        --color-nav-bg: #8a69ac;
+        --color-nav-bg-hover: #6f52a0;
+        --color-nav-text: #f2e6ff;
+        --color-letter-bg: rgba(50, 45, 78, 0.8);
+        --color-letter-bg-hover: rgba(50, 45, 78, 0.95);
+        --color-letter-title: #c2a0ff;
+        --color-letter-text: #b6a5cc;
+        --color-letter-border: #7f6ca2;
+        --color-footer-bg: rgba(60, 56, 89, 0.9);
+        --color-footer-text: #d8c0e3;
+        --float-opacity: 0.3;
+    }
 }
-}
-/* Variables de color para modo oscuro forzado por el usuario */
-body.dark-mode {
---color-text: #d8c0e3;
---color-bg-start: #1c1a2e;
---color-bg-mid1: #2e2b4f;
---color-bg-mid2: #3f3a6e;
---color-header-bg: rgba(60, 56, 89, 0.85);
---color-header-text: #d8c0e3;
---color-hero-bg: rgba(40, 36, 65, 0.7);
---color-hero-text-h2: #c9a1f7;
---color-hero-text-p: #c5b1d7;
---color-card-bg: #2e2a4e;
---color-card-shadow: rgba(0, 0, 0, 0.7);
---color-card-shadow-hover: rgba(0, 0, 0, 0.9);
---color-card-title: #b188e4;
---color-card-border: #8a69ac;
---color-nav-bg: #8a69ac;
---color-nav-bg-hover: #6f52a0;
---color-nav-text: #f2e6ff;
---color-letter-bg: rgba(50, 45, 78, 0.8);
---color-letter-bg-hover: rgba(50, 45, 78, 0.95);
---color-letter-title: #c2a0ff;
---color-letter-text: #b6a5cc;
---color-letter-border: #7f6ca2;
---color-footer-bg: rgba(60, 56, 89, 0.9);
---color-footer-text: #d8c0e3;
---float-opacity: 0.3;
-}
-/* Variables de color para modo claro forzado por el usuario */
-body.light-mode {
---color-text: #5c3c74;
---color-bg-start: #f3e5f5;
---color-bg-mid1: #e1bee7;
---color-bg-mid2: #ce93d8;
---color-header-bg: rgba(215, 188, 232, 0.85);
---color-header-text: #4a3054;
---color-hero-bg: rgba(255, 255, 255, 0.6);
---color-hero-text-h2: #6c3e9b;
---color-hero-text-p: #7d5a8b;
---color-card-bg: #fff;
---color-card-shadow: rgba(0, 0, 0, 0.05);
---color-card-shadow-hover: rgba(0, 0, 0, 0.1);
---color-card-title: #a45db6;
---color-card-border: #ebd6f4;
---color-nav-bg: #c39bd3;
---color-nav-bg-hover: #a569bd;
---color-nav-text: white;
---color-letter-bg: rgba(255, 255, 255, 0.8);
---color-letter-bg-hover: rgba(255, 255, 255, 0.75);
---color-letter-title: #8e44ad;
---color-letter-text: #6a4c7a;
---color-letter-border: #e8d0f0;
---color-footer-bg: rgba(215, 188, 232, 0.9);
---color-footer-text: #4a3054;
---float-opacity: 0.6;
-}
+
+
 /* Reset y base */
 body {
 font-family: 'Inter', sans-serif;
@@ -319,7 +298,7 @@ transition: opacity 0.8s ease;
 .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
 .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
 /* Botón modo oscuro */
-#toggle-darkmode {
+#toggle-dark-mode { /* ID unificado con las otras páginas */
 position: fixed;
 bottom: 1.5rem;
 right: 1.5rem;
@@ -334,7 +313,7 @@ box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 z-index: 150;
 }
-#toggle-darkmode:hover {
+#toggle-dark-mode:hover {
 background-color: var(--color-nav-bg-hover);
 transform: scale(1.1);
 }
@@ -516,73 +495,68 @@ transform: scale(1.1);
         <p>Se utiliza el alfabeto para deletrear nombres o palabras sin seña.</p>
     </div>
     <nav class="nav-buttons">
-        <a href="index.html">Volver al índice</a>
-        <a href="lesson3.html">Siguiente lección</a>
+        <a href="index.html">← Volver al índice</a>
+        <a href="Test2.html">Ir al Test</a> <a href="lesson3.html">Siguiente Lección →</a>
     </nav>
 </main>
 <footer>
     <p>© 2025 Plataforma Educativa </p>
 </footer>
-<button id="toggle-darkmode" aria-label="Alternar modo oscuro">Modo Oscuro</button>
+<button id="toggle-dark-mode" aria-label="Alternar modo oscuro">🌙 Modo Oscuro</button>
 <script>
-    const themeToggleBtn = document.getElementById('toggle-darkmode');
+    const themeToggleBtn = document.getElementById('toggle-dark-mode'); // ID unificado
     const body = document.body;
-    const localStorageKey = 'user-theme'; // Clave para localStorage
+    const localStorageKey = 'darkMode'; // Clave unificada con index.html
 
     // Función para aplicar el tema
-    function applyTheme(theme) {
-        if (theme === 'dark') {
+    function applyTheme(isDarkMode) {
+        if (isDarkMode) {
             body.classList.add('dark-mode');
-            body.classList.remove('light-mode');
-            themeToggleBtn.textContent = 'Modo Claro';
-        } else if (theme === 'light') {
-            body.classList.add('light-mode');
+            body.classList.remove('light-mode-manual'); // Remover la clase de modo claro manual
+            themeToggleBtn.textContent = '☀️ Modo Claro';
+        } else {
             body.classList.remove('dark-mode');
-            themeToggleBtn.textContent = 'Modo Oscuro';
-        } else { // 'system' o nulo, para permitir que prefers-color-scheme actúe
-            body.classList.remove('dark-mode', 'light-mode');
-            // Actualizar el texto del botón según la preferencia del sistema actual
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                themeToggleBtn.textContent = 'Modo Claro';
-            } else {
-                themeToggleBtn.textContent = 'Modo Oscuro';
-            }
+            body.classList.add('light-mode-manual'); // Añadir la clase de modo claro manual
+            themeToggleBtn.textContent = '🌙 Modo Oscuro';
         }
-        localStorage.setItem(localStorageKey, theme); // Guarda la preferencia
+    }
+
+    // Función para alternar el modo
+    function toggleDarkMode() {
+        const currentMode = localStorage.getItem(localStorageKey);
+        let newMode;
+
+        // Si estaba en oscuro (manual o por sistema), cambiar a claro
+        if (currentMode === 'enabled' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            newMode = 'disabled'; // Deshabilita el modo oscuro
+        } else {
+            newMode = 'enabled'; // Habilita el modo oscuro
+        }
+        localStorage.setItem(localStorageKey, newMode); // Guarda la preferencia
+        applyTheme(newMode === 'enabled'); // Aplica el nuevo modo
     }
 
     // Al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem(localStorageKey);
-        if (savedTheme) {
+        const savedMode = localStorage.getItem(localStorageKey);
+        if (savedMode) {
             // Si hay una preferencia guardada, úsala
-            applyTheme(savedTheme);
-        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // Si no hay preferencia guardada, pero el sistema prefiere oscuro
-            applyTheme('system'); // Indica que se está usando la del sistema
+            applyTheme(savedMode === 'enabled');
         } else {
-            // Por defecto, si no hay preferencia guardada y el sistema no es oscuro
-            applyTheme('system');
+            // Si no hay preferencia guardada, usa la del sistema por defecto
+            applyTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
         }
     });
 
+    // Escuchar cambios en la preferencia del sistema (solo si no hay una preferencia manual guardada)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        // Solo cambia el tema si la preferencia del usuario es 'system' o no hay preferencia guardada
-        if (localStorage.getItem(localStorageKey) === 'system' || !localStorage.getItem(localStorageKey)) {
-            applyTheme('system');
+        if (!localStorage.getItem(localStorageKey)) { // Si el usuario no ha elegido manualmente
+            applyTheme(event.matches);
         }
     });
 
     // Evento del botón de alternar
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = localStorage.getItem(localStorageKey);
-        // Si el tema actual es oscuro (o es sistema oscuro), cambia a claro. De lo contrario, a oscuro.
-        if (currentTheme === 'dark' || (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            applyTheme('light');
-        } else {
-            applyTheme('dark');
-        }
-    });
+    themeToggleBtn.addEventListener('click', toggleDarkMode);
 </script>
 </body>
 </html>
