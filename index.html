@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ALSI - Plataforma Educativa</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Tus estilos CSS existentes */
     * { box-sizing: border-box; }
@@ -15,11 +16,9 @@
       height: 100vh;
       background-color: #f9f6fb;
       color: #4a3054;
-      /* Oculta el contenido principal del body por defecto */
       overflow: hidden; /* Evita el scroll mientras el splash esté activo */
     }
 
-    /* Clase para mostrar el contenido del body */
     body.content-visible {
       overflow: auto; /* Permite scroll una vez que el contenido es visible */
     }
@@ -291,7 +290,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      display: flex; /* Siempre flex */
+      display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -301,32 +300,64 @@
       transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
     }
 
-    /* Colores para la pantalla de bienvenida - Modo claro (AJUSTADO) */
+    /* Colores para la pantalla de bienvenida - Modo claro (AJUSTADOS) */
     #splash-screen.light-mode {
-      background-color: #FFFFFF; /* Blanco puro */
-      color: #333333; /* Gris oscuro para el texto */
+      background-color: #f0e6fa; /* Lavanda muy claro */
+      color: #4a3054; /* Morado oscuro para el texto (tu color principal) */
     }
 
-    /* Colores para la pantalla de bienvenida - Modo oscuro (AJUSTADO) */
+    /* Colores para la pantalla de bienvenida - Modo oscuro (AJUSTADOS) */
     #splash-screen.dark-mode {
-      background-color: #1a1a1a; /* Gris muy oscuro, casi negro */
-      color: #FFFFFF; /* Blanco puro para el texto */
+      background-color: #1e1e2f; /* Coincide con el fondo de tu dark mode */
+      color: #ffffff; /* Blanco puro para el texto */
     }
 
+    /* --- ANIMACIONES DE ENTRADA TIPO IPHONE --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Fuentes y Animaciones para la pantalla de bienvenida */
     #splash-screen .welcome-text {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      font-size: 3em;
-      font-weight: 600;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5em;
+      font-weight: 700;
       text-align: center;
       line-height: 1.2;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+      animation-delay: 0.5s;
     }
 
     #splash-screen .app-name {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.8em;
-      font-weight: 700;
-      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 2.2em;
+      font-weight: 800;
       margin-top: 0.5em;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: fadeInScale 0.8s ease-out forwards;
+      animation-delay: 1.2s;
     }
 
     /* Clase para la animación de salida */
@@ -337,12 +368,14 @@
   </style>
 </head>
 <body>
-  <div id="splash-screen">
+  
+<div id="splash-screen">
     <div class="welcome-text">Bienvenid@</div>
     <div class="app-name">ALSI</div>
   </div>
 
-  <div id="main-content-wrapper" style="display:none; flex: 1; width: 100%; height: 100%;">
+  
+<div id="main-content-wrapper" style="display:none; flex: 1; width: 100%; height: 100%;">
     <img class="logo-movil" src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI móvil" />
     <aside>
       <img src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI" />
@@ -408,25 +441,35 @@
       </section>
       <div id="contenido-leccion"></div>
     </main>
-  </div> <script>
-    // Tu script de Dark Mode y manejo de secciones existente
+  </div> 
+
+<script>
     const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
     const body = document.body;
+    const splashScreen = document.getElementById('splash-screen');
 
     function aplicarModoOscuroInicial() {
       const savedMode = localStorage.getItem('darkMode');
       if (savedMode === 'enabled') {
         body.classList.add('dark-mode');
+        splashScreen.classList.add('dark-mode'); // Aplicar a splash también
+        splashScreen.classList.remove('light-mode');
         toggleDarkModeBtn.textContent = '☀️ Modo Claro';
       } else if (savedMode === 'disabled') {
         body.classList.remove('dark-mode');
+        splashScreen.classList.add('light-mode'); // Aplicar a splash también
+        splashScreen.classList.remove('dark-mode');
         toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
       } else {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
           body.classList.add('dark-mode');
+          splashScreen.classList.add('dark-mode'); // Aplicar a splash también
+          splashScreen.classList.remove('light-mode');
           toggleDarkModeBtn.textContent = '☀️ Modo Claro';
         } else {
           body.classList.remove('dark-mode');
+          splashScreen.classList.add('light-mode'); // Aplicar a splash también
+          splashScreen.classList.remove('dark-mode');
           toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
         }
       }
@@ -437,9 +480,13 @@
         if (!localStorage.getItem('darkMode')) {
           if (event.matches) {
             body.classList.add('dark-mode');
+            splashScreen.classList.add('dark-mode'); // Aplicar a splash también
+            splashScreen.classList.remove('light-mode');
             toggleDarkModeBtn.textContent = '☀️ Modo Claro';
           } else {
             body.classList.remove('dark-mode');
+            splashScreen.classList.add('light-mode'); // Aplicar a splash también
+            splashScreen.classList.remove('dark-mode');
             toggleDarkModeBtn.textContent = '🌙 Modo Oscuro';
           }
         }
@@ -448,6 +495,8 @@
 
     toggleDarkModeBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
+      splashScreen.classList.toggle('dark-mode'); // Alternar modo en splash también
+      splashScreen.classList.toggle('light-mode'); // Asegurar que el otro modo se quite
       if (body.classList.contains('dark-mode')) {
         toggleDarkModeBtn.textContent = '☀️ Modo Claro';
         localStorage.setItem('darkMode', 'enabled');
@@ -462,7 +511,6 @@
       secciones.forEach(sec => {
         document.getElementById(sec).style.display = sec === id ? 'block' : 'none';
       });
-      // Cuando se muestra la sección de progreso, actualizar la lista
       if (id === 'progreso') {
           displayProgress();
       }
@@ -487,8 +535,8 @@
                 }
             }
             keysToRemove.forEach(key => localStorage.removeItem(key));
-            saveProgress('lesson1', 'unlocked'); // Asegurarse de que lesson1 se marque como unlocked
-            actualizarEstadoLecciones();
+            saveProgress('lesson1', 'unlocked');
+            updateLessonAvailability();
             displayProgress();
             alert('Tu progreso ha sido reiniciado.');
         }
@@ -496,11 +544,7 @@
 
     function cerrarSesion() {
       alert('Sesión cerrada.');
-      // Aquí puedes añadir lógica para limpiar tokens o redirigir
-      // window.location.href = 'login.html'; // Ejemplo de redirección
     }
-
-    // --- JAVASCRIPT PARA PROGRESO Y DESBLOQUEO DE LECCIONES ---
 
     const MIN_PASS_SCORE = 70;
 
@@ -598,9 +642,10 @@
             if (isCurrentLessonCompleted) {
                 currentLesson.classList.add('completed');
                 const existingCheck = currentLesson.querySelector('.check');
-                if (!existingCheck) {
-                    currentLesson.innerHTML += '<span class="check">✅</span>';
+                if (existingCheck) {
+                    existingCheck.remove();
                 }
+                currentLesson.innerHTML += '<span class="check">✅</span>';
             } else {
                 const existingCheck = currentLesson.querySelector('.check');
                 if (existingCheck) {
@@ -692,59 +737,39 @@
         });
     }
 
-    // --- JAVASCRIPT para la pantalla de bienvenida (AJUSTE CRÍTICO) ---
     document.addEventListener('DOMContentLoaded', () => {
-        const splashScreen = document.getElementById('splash-screen');
-        const mainContentWrapper = document.getElementById('main-content-wrapper'); // Obtener el wrapper
-        const splashDuration = 4500; // 4.5 segundos
+        const mainContentWrapper = document.getElementById('main-content-wrapper');
+        const splashDuration = 3000; // Aumentado a 3 segundos (3000 milisegundos)
 
-        // Función para aplicar el modo de color a la pantalla de bienvenida
-        const applySplashScreenMode = () => {
-            if (localStorage.getItem('darkMode') === 'enabled' || (localStorage.getItem('darkMode') === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                splashScreen.classList.add('dark-mode');
-                splashScreen.classList.remove('light-mode');
-            } else {
-                splashScreen.classList.add('light-mode');
-                splashScreen.classList.remove('dark-mode');
-            }
-        };
-
-        // Aplica el modo de color a la pantalla de bienvenida inmediatamente.
-        // Y asegúrate de que el body no muestre su contenido aún.
-        applySplashScreenMode();
-        splashScreen.style.display = 'flex'; // Asegura que el splash sea visible como flexbox
-        document.body.style.overflow = 'hidden'; // Evita el scroll del body
-        mainContentWrapper.style.display = 'none'; // Asegura que el contenido principal esté oculto
+        // Aplicar el modo oscuro/claro al splash screen y al body al inicio
+        // Esto es crucial para que el splash tenga los colores correctos desde el primer instante.
+        aplicarModoOscuroInicial();
+        splashScreen.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        mainContentWrapper.style.display = 'none';
 
         setTimeout(() => {
-            splashScreen.classList.add('fade-out'); // Inicia el fade-out del splash
-            splashScreen.addEventListener('transitionend', () => {
+            splashScreen.classList.add('fade-out');
+            splashScreen.addEventListener('transitionend', function handler() {
                 if (splashScreen.classList.contains('fade-out')) {
-                    splashScreen.style.display = 'none'; // Oculta el splash después del fade
-                    // Una vez que el splash desaparece, muestra el contenido principal
-                    mainContentWrapper.style.display = 'flex'; // Muestra el wrapper principal
-                    document.body.classList.add('content-visible'); // Añade la clase para permitir scroll
-                    document.body.style.overflow = ''; // Restablece el overflow del body
+                    splashScreen.removeEventListener('transitionend', handler);
+                    splashScreen.style.display = 'none';
+                    mainContentWrapper.style.display = 'flex';
+                    document.body.classList.add('content-visible');
+                    document.body.style.overflow = '';
+
+                    // Inicializaciones del contenido principal
+                    loadProgress();
+                    updateProgressBar();
+                    document.querySelectorAll('.lesson-card').forEach(card => {
+                        card.addEventListener('click', () => {
+                            const leccionDataId = parseInt(card.dataset.leccionId);
+                            cargarLeccion(leccionDataId);
+                        });
+                    });
                 }
             }, { once: true });
         }, splashDuration);
-
-        // --- Tus inicializaciones existentes (se ejecutarán solo DESPUÉS de que el splash termine y el contenido sea visible) ---
-        // Envuelve estas funciones en un listener para cuando el contenido principal se haga visible
-        splashScreen.addEventListener('transitionend', () => {
-            if (splashScreen.classList.contains('fade-out')) {
-                aplicarModoOscuroInicial(); // Aplica el modo oscuro al resto de la página
-                loadProgress();
-                updateProgressBar();
-
-                document.querySelectorAll('.lesson-card').forEach(card => {
-                    card.addEventListener('click', () => {
-                        const leccionDataId = parseInt(card.dataset.leccionId);
-                        cargarLeccion(leccionDataId);
-                    });
-                });
-            }
-        });
     });
   </script>
 </body>
