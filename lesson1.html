@@ -178,102 +178,102 @@
     }
 
     /* ==== MODO OSCURO (EXISTENTE) ==== */
-    body.modo-oscuro {
+    body.dark-mode { /* Usamos 'dark-mode' para consistencia con index.html */
       background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
       background-size: 600% 600%;
       animation: backgroundShift 20s ease infinite;
       color: white;
     }
 
-    body.modo-oscuro header,
-    body.modo-oscuro footer {
+    body.dark-mode header,
+    body.dark-mode footer {
       background: rgba(30, 30, 48, 0.85);
       color: white;
     }
 
-    body.modo-oscuro .hero {
+    body.dark-mode .hero {
       background: rgba(255, 255, 255, 0.05);
       color: white;
     }
 
-    body.modo-oscuro .hero::before {
+    body.dark-mode .hero::before {
       background: none;
     }
 
-    body.modo-oscuro .card {
+    body.dark-mode .card {
       background-color: #2c2c3a;
       border: 1px solid #444;
       color: white;
     }
 
-    body.modo-oscuro .card h2,
-    body.modo-oscuro .card p,
-    body.modo-oscuro .hero h2,
-    body.modo-oscuro .hero p {
+    body.dark-mode .card h2,
+    body.dark-mode .card p,
+    body.dark-mode .hero h2,
+    body.dark-mode .hero p {
       color: white;
     }
 
-    body.modo-oscuro .nav-buttons a {
+    body.dark-mode .nav-buttons a {
       background-color: #6c5ce7;
       color: white;
     }
 
-    body.modo-oscuro .nav-buttons a:hover {
+    body.dark-mode .nav-buttons a:hover {
       background-color: #8e74e7;
     }
 
-    body.modo-oscuro button {
+    body.dark-mode button {
       background-color: #6c5ce7;
     }
 
-    /* ==== PREFERS-COLOR-SCHEME LOGIC (NUEVO) ==== */
+    /* ==== PREFERS-COLOR-SCHEME LOGIC (AJUSTADO PARA CONSISTENCIA) ==== */
     /* Estas reglas se aplicarán si el sistema prefiere modo oscuro Y si localStorage no tiene una preferencia explícita por el modo claro */
     @media (prefers-color-scheme: dark) {
-      body:not(.modo-claro-manual) { /* Aplica si el sistema es oscuro y el usuario NO ha seleccionado el modo claro manualmente */
+      body:not(.light-mode-manual) { /* Aplica si el sistema es oscuro y el usuario NO ha seleccionado el modo claro manualmente */
         background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
         background-size: 600% 600%;
         animation: backgroundShift 20s ease infinite;
         color: white;
       }
 
-      body:not(.modo-claro-manual) header,
-      body:not(.modo-claro-manual) footer {
+      body:not(.light-mode-manual) header,
+      body:not(.light-mode-manual) footer {
         background: rgba(30, 30, 48, 0.85);
         color: white;
       }
 
-      body:not(.modo-claro-manual) .hero {
+      body:not(.light-mode-manual) .hero {
         background: rgba(255, 255, 255, 0.05);
         color: white;
       }
 
-      body:not(.modo-claro-manual) .hero::before {
+      body:not(.light-mode-manual) .hero::before {
         background: none;
       }
 
-      body:not(.modo-claro-manual) .card {
+      body:not(.light-mode-manual) .card {
         background-color: #2c2c3a;
         border: 1px solid #444;
         color: white;
       }
 
-      body:not(.modo-claro-manual) .card h2,
-      body:not(.modo-claro-manual) .card p,
-      body:not(.modo-claro-manual) .hero h2,
-      body:not(.modo-claro-manual) .hero p {
+      body:not(.light-mode-manual) .card h2,
+      body:not(.light-mode-manual) .card p,
+      body:not(.light-mode-manual) .hero h2,
+      body:not(.light-mode-manual) .hero p {
         color: white;
       }
 
-      body:not(.modo-claro-manual) .nav-buttons a {
+      body:not(.light-mode-manual) .nav-buttons a {
         background-color: #6c5ce7;
         color: white;
       }
 
-      body:not(.modo-claro-manual) .nav-buttons a:hover {
+      body:not(.light-mode-manual) .nav-buttons a:hover {
         background-color: #8e74e7;
       }
 
-      body:not(.modo-claro-manual) button {
+      body:not(.light-mode-manual) button {
         background-color: #6c5ce7;
       }
     }
@@ -286,8 +286,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
 
   <header>
-    <button id="modoBtn" onclick="alternarModo()">🌙 Modo Oscuro</button>
-    <h1>Lección 1: Saludos Básicos</h1>
+    <button id="toggle-dark-mode" onclick="alternarModo()">🌙 Modo Oscuro</button> <h1>Lección 1: Saludos Básicos</h1>
   </header>
 
   <section class="hero">
@@ -321,55 +320,58 @@
   </footer>
 
   <script>
-    const modoBtn = document.getElementById("modoBtn");
+    // Se renombra a 'toggle-dark-mode' para consistencia con el index.html
+    const toggleDarkModeBtn = document.getElementById("toggle-dark-mode");
     const body = document.body;
 
     // Función para aplicar el modo (claro/oscuro) y actualizar el texto del botón
-    function aplicarModo(esOscuro) {
-      if (esOscuro) {
-        body.classList.add("modo-oscuro");
-        body.classList.remove("modo-claro-manual"); // Asegurarse de quitar la clase de anulación manual
-        modoBtn.textContent = "☀️ Modo Claro";
+    function applyMode(isDarkMode) { // Función renombrada para consistencia
+      if (isDarkMode) {
+        body.classList.add("dark-mode");
+        body.classList.remove("light-mode-manual"); // Asegurarse de quitar la clase de anulación manual
+        toggleDarkModeBtn.textContent = "☀️ Modo Claro";
       } else {
-        body.classList.remove("modo-oscuro");
-        body.classList.add("modo-claro-manual"); // Marcar que el modo claro fue seleccionado manualmente
-        modoBtn.textContent = "🌙 Modo Oscuro";
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode-manual"); // Marcar que el modo claro fue seleccionado manualmente
+        toggleDarkModeBtn.textContent = "🌙 Modo Oscuro";
       }
     }
 
     // Función para alternar el modo manualmente
     function alternarModo() {
-      const currentMode = localStorage.getItem("modo"); // 'dark' o 'light' o null
+      // Usamos 'darkMode' en localStorage para consistencia con index.html
+      const currentMode = localStorage.getItem("darkMode"); // 'enabled', 'disabled' o null
       let newMode;
 
-      if (currentMode === 'dark' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      // Lógica para determinar el nuevo modo
+      if (currentMode === 'enabled' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         // Si estaba en oscuro (manual o por sistema), cambiar a claro
-        newMode = 'light';
+        newMode = 'disabled';
       } else {
         // Si estaba en claro (manual o por sistema), cambiar a oscuro
-        newMode = 'dark';
+        newMode = 'enabled';
       }
-      localStorage.setItem("modo", newMode);
-      aplicarModo(newMode === 'dark');
+      localStorage.setItem("darkMode", newMode); // Guardar la preferencia
+      applyMode(newMode === 'enabled'); // Aplicar el nuevo modo
     }
 
     // Lógica al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
-      const savedMode = localStorage.getItem("modo");
+      const savedMode = localStorage.getItem("darkMode"); // Usamos 'darkMode' en localStorage
 
       if (savedMode) {
         // Si hay una preferencia guardada, úsala
-        aplicarModo(savedMode === 'dark');
+        applyMode(savedMode === 'enabled');
       } else {
         // Si no hay preferencia guardada, usa la del sistema
-        aplicarModo(window.matchMedia('(prefers-color-scheme: dark)').matches);
+        applyMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
       }
     });
 
     // Escuchar cambios en la preferencia del sistema (solo si no hay una preferencia manual guardada)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      if (!localStorage.getItem("modo")) { // Si el usuario no ha elegido manualmente
-        aplicarModo(event.matches);
+      if (!localStorage.getItem("darkMode")) { // Si el usuario no ha elegido manualmente
+        applyMode(event.matches);
       }
     });
   </script>
