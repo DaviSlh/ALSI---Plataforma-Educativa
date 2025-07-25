@@ -301,16 +301,16 @@
       transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
     }
 
-    /* Colores para la pantalla de bienvenida - Modo claro */
+    /* Colores para la pantalla de bienvenida - Modo claro (AJUSTADO) */
     #splash-screen.light-mode {
-      background-color: #f9f6fb;
-      color: #4a3054;
+      background-color: #FFFFFF; /* Blanco puro */
+      color: #333333; /* Gris oscuro para el texto */
     }
 
-    /* Colores para la pantalla de bienvenida - Modo oscuro */
+    /* Colores para la pantalla de bienvenida - Modo oscuro (AJUSTADO) */
     #splash-screen.dark-mode {
-      background-color: #121212;
-      color: #e0d8f0;
+      background-color: #1a1a1a; /* Gris muy oscuro, casi negro */
+      color: #FFFFFF; /* Blanco puro para el texto */
     }
 
     #splash-screen .welcome-text {
@@ -723,7 +723,7 @@
                     splashScreen.style.display = 'none'; // Oculta el splash después del fade
                     // Una vez que el splash desaparece, muestra el contenido principal
                     mainContentWrapper.style.display = 'flex'; // Muestra el wrapper principal
-                    document.body.classList.add('content-visible'); // Permite el scroll del body si es necesario
+                    document.body.classList.add('content-visible'); // Añade la clase para permitir scroll
                     document.body.style.overflow = ''; // Restablece el overflow del body
                 }
             }, { once: true });
