@@ -177,7 +177,7 @@
       cursor: pointer;
     }
 
-    /* ==== MODO OSCURO ==== */
+    /* ==== MODO OSCURO (EXISTENTE) ==== */
     body.modo-oscuro {
       background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
       background-size: 600% 600%;
@@ -225,6 +225,58 @@
     body.modo-oscuro button {
       background-color: #6c5ce7;
     }
+
+    /* ==== PREFERS-COLOR-SCHEME LOGIC (NUEVO) ==== */
+    /* Estas reglas se aplicarán si el sistema prefiere modo oscuro Y si localStorage no tiene una preferencia explícita por el modo claro */
+    @media (prefers-color-scheme: dark) {
+      body:not(.modo-claro-manual) { /* Aplica si el sistema es oscuro y el usuario NO ha seleccionado el modo claro manualmente */
+        background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
+        background-size: 600% 600%;
+        animation: backgroundShift 20s ease infinite;
+        color: white;
+      }
+
+      body:not(.modo-claro-manual) header,
+      body:not(.modo-claro-manual) footer {
+        background: rgba(30, 30, 48, 0.85);
+        color: white;
+      }
+
+      body:not(.modo-claro-manual) .hero {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+      }
+
+      body:not(.modo-claro-manual) .hero::before {
+        background: none;
+      }
+
+      body:not(.modo-claro-manual) .card {
+        background-color: #2c2c3a;
+        border: 1px solid #444;
+        color: white;
+      }
+
+      body:not(.modo-claro-manual) .card h2,
+      body:not(.modo-claro-manual) .card p,
+      body:not(.modo-claro-manual) .hero h2,
+      body:not(.modo-claro-manual) .hero p {
+        color: white;
+      }
+
+      body:not(.modo-claro-manual) .nav-buttons a {
+        background-color: #6c5ce7;
+        color: white;
+      }
+
+      body:not(.modo-claro-manual) .nav-buttons a:hover {
+        background-color: #8e74e7;
+      }
+
+      body:not(.modo-claro-manual) button {
+        background-color: #6c5ce7;
+      }
+    }
   </style>
 </head>
 <body>
@@ -234,7 +286,7 @@
   <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
 
   <header>
-    <button id="modoBtn" onclick="alternarModoOscuro()">🌙 Modo Oscuro</button>
+    <button id="modoBtn" onclick="alternarModo()">🌙 Modo Oscuro</button>
     <h1>Lección 1: Saludos Básicos</h1>
   </header>
 
@@ -245,21 +297,19 @@
 
   <div class="container">
 
-    <!-- Tarjetas -->
-    <div class="card"><h2>Hola</h2><p>Extiende la mano desde la frente hacia afuera como si saludaras.</p><img src="https://i.postimg.cc/SNBkHRQW/1000037879.png" alt="Seña Hola" /></div>
-    <div class="card"><h2>Buenos días</h2><p>Comienza con la seña de "bueno" y luego simula la salida del sol.</p><img src="https://i.postimg.cc/tTSBw1by/buenos-dias-good-morning.gif" alt="Seña Buenos días" /></div>
-    <div class="card"><h2>Buenas tardes</h2><p>La mano dominante pasa sobre la otra simulando el sol bajando.</p><img src="https://i.gifer.com/3OwVi.gif" alt="Buenas tardes" /></div>
-    <div class="card"><h2>Buenas noches</h2><p>Mano dominante curvada baja sobre la otra mano extendida.</p><img src="https://i.postimg.cc/YC7DmYS7/lsc-fenascol.gif" alt="Buenas noches" /></div>
-    <div class="card"><h2>¿Cómo estás?</h2><p>Gesto de pregunta con cejas levantadas y manos girando hacia el frente.</p><img src="https://i.postimg.cc/764ZFBHc/how-are-you-deaf-1.gif" alt="¿Cómo estás?" /></div>
-    <div class="card"><h2>¿Qué tal?</h2><p>Similar a "¿Cómo estás?" pero más informal.</p><img src="https://i.postimg.cc/4dYXr9cQ/como-estas.gif" alt="¿Qué tal?" /></div>
-    <div class="card"><h2>Mucho gusto</h2><p>Palmas juntas frente al pecho con sonrisa.</p><img src="https://i.postimg.cc/K8hhJWQf/nice-to-meet-you-sign-language-2.gif" alt="Mucho gusto" /></div>
-    <div class="card"><h2>Bienvenido(a)</h2><p>Movimiento circular con manos abiertas hacia el pecho.</p><img src="https://i.postimg.cc/MpRDtTvD/please-sign-language-1.gif" alt="Bienvenido(a)" /></div>
-    <div class="card"><h2>Adiós</h2><p>Movimiento de la mano abierta despidiéndose.</p><img src="https://i.postimg.cc/FzBmHGvh/shincore-wave-emoji.gif" alt="Seña Adiós" /></div>
-    <div class="card"><h2>Nos vemos</h2><p>Dos dedos desde los ojos hacia adelante.</p><img src="https://i.postimg.cc/9XGnXLWb/bsl-see-you-later.gif" alt="Nos vemos" /></div>
-    <div class="card"><h2>Cuídate</h2><p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p><img src="https://i.gifer.com/3OwWj.gif" alt="Cuídate" /></div>
-    <div class="card"><h2>Hasta mañana</h2><p>Despedida que indica continuidad.</p><img src="https://i.postimg.cc/gcD1qgfJ/Hastamaana480-P-ezgif-com-video-to-gif-converter.gif" alt="Hasta mañana" /></div>
+    <div class="card"><h2>Hola</h2><p>Extiende la mano desde la frente hacia afuera como si saludaras.</p><img src="TP1/hola.gif" alt="Seña Hola" /></div>
+    <div class="card"><h2>Buenos días</h2><p>Comienza con la seña de "bueno" y luego simula la salida del sol.</p><img src="TP1/buenos-dias.gif" alt="Seña Buenos días" /></div>
+    <div class="card"><h2>Buenas tardes</h2><p>La mano dominante pasa sobre la otra simulando el sol bajando.</p><img src="TP1/buenas-tardes.gif" alt="Buenas tardes" /></div>
+   
+    <div class="card"><h2>¿Cómo estás?</h2><p>Gesto de pregunta con cejas levantadas y manos girando hacia el frente.</p><img src="img/como_estas.gif" alt="¿Cómo estás?" /></div>
+    
+    <div class="card"><h2>Mucho gusto</h2><p>Palmas juntas frente al pecho con sonrisa.</p><img src="TP1/encantado-de-conocerte.gif" alt="Mucho gusto" /></div>
+    <div class="card"><h2>Bienvenido(a)</h2><p>Movimiento circular con manos abiertas hacia el pecho.</p><img src="TP1/bienvenido.gif" alt="Bienvenido(a)" /></div>
+    <div class="card"><h2>Adiós</h2><p>Movimiento de la mano abierta despidiéndose.</p><img src="TP1/adios.gif" alt="Seña Adiós" /></div>
 
-    <!-- Navegación -->
+    <div class="card"><h2>¿De donde eres?</h2><p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p><img src="TP1/de-donde-eres.gif" alt="" />¿De donde eres?</div>
+    <div class="card"><h2>Muchas Gracias</h2><p>Despedida que indica continuidad.</p><img src="TP1/muchas-gracias.gif" alt="Muchas Gracias" /></div>
+
     <div class="nav-buttons">
       <a href="index.html">← Volver al índice</a>
       <a href="Prueba.html">Test 1</a>
@@ -271,19 +321,57 @@
   </footer>
 
   <script>
-    const btn = document.getElementById("modoBtn");
+    const modoBtn = document.getElementById("modoBtn");
+    const body = document.body;
 
-    function alternarModoOscuro() {
-      document.body.classList.toggle("modo-oscuro");
-      const activado = document.body.classList.contains("modo-oscuro");
-      localStorage.setItem("modoOscuro", activado);
-      btn.textContent = activado ? "☀️ Modo Claro" : "🌙 Modo Oscuro";
+    // Función para aplicar el modo (claro/oscuro) y actualizar el texto del botón
+    function aplicarModo(esOscuro) {
+      if (esOscuro) {
+        body.classList.add("modo-oscuro");
+        body.classList.remove("modo-claro-manual"); // Asegurarse de quitar la clase de anulación manual
+        modoBtn.textContent = "☀️ Modo Claro";
+      } else {
+        body.classList.remove("modo-oscuro");
+        body.classList.add("modo-claro-manual"); // Marcar que el modo claro fue seleccionado manualmente
+        modoBtn.textContent = "🌙 Modo Oscuro";
+      }
     }
 
-    if (localStorage.getItem("modoOscuro") === "true") {
-      document.body.classList.add("modo-oscuro");
-      btn.textContent = "☀️ Modo Claro";
+    // Función para alternar el modo manualmente
+    function alternarModo() {
+      const currentMode = localStorage.getItem("modo"); // 'dark' o 'light' o null
+      let newMode;
+
+      if (currentMode === 'dark' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Si estaba en oscuro (manual o por sistema), cambiar a claro
+        newMode = 'light';
+      } else {
+        // Si estaba en claro (manual o por sistema), cambiar a oscuro
+        newMode = 'dark';
+      }
+      localStorage.setItem("modo", newMode);
+      aplicarModo(newMode === 'dark');
     }
+
+    // Lógica al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedMode = localStorage.getItem("modo");
+
+      if (savedMode) {
+        // Si hay una preferencia guardada, úsala
+        aplicarModo(savedMode === 'dark');
+      } else {
+        // Si no hay preferencia guardada, usa la del sistema
+        aplicarModo(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+    });
+
+    // Escuchar cambios en la preferencia del sistema (solo si no hay una preferencia manual guardada)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      if (!localStorage.getItem("modo")) { // Si el usuario no ha elegido manualmente
+        aplicarModo(event.matches);
+      }
+    });
   </script>
 </body>
 </html>
