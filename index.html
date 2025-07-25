@@ -283,7 +283,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      display: flex; /* Aseguramos que sea flex desde el CSS inicial */
+      display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -703,12 +703,11 @@
         });
     }
 
-    // --- NUEVO JAVASCRIPT para la pantalla de bienvenida (AJUSTADO) ---
+    // --- JAVASCRIPT para la pantalla de bienvenida (DURACIÓN AJUSTADA) ---
     document.addEventListener('DOMContentLoaded', () => {
         const splashScreen = document.getElementById('splash-screen');
-        const splashDuration = 2300; // 2.3 segundos en milisegundos
+        const splashDuration = 4500; // Aumentado a 4.5 segundos (4500 milisegundos)
 
-        // Función para aplicar el modo de color a la pantalla de bienvenida
         const applySplashScreenMode = () => {
             if (body.classList.contains('dark-mode')) {
                 splashScreen.classList.add('dark-mode');
@@ -719,15 +718,9 @@
             }
         };
 
-        // ****** CAMBIO CLAVE AQUI ******
-        // Aplicar el modo de color y asegurarse de que la pantalla sea visible inmediatamente.
-        // Esto se ejecuta antes de que el resto del DOM esté completamente interactivo,
-        // lo cual es deseable para una pantalla de carga.
-        applySplashScreenMode(); // Aplicar colores
+        applySplashScreenMode();
         splashScreen.style.display = 'flex'; // Asegurar que sea visible como flexbox
 
-
-        // Ocultar la pantalla de bienvenida después de la duración especificada
         setTimeout(() => {
             splashScreen.classList.add('fade-out');
             splashScreen.addEventListener('transitionend', () => {
@@ -737,8 +730,7 @@
             }, { once: true });
         }, splashDuration);
 
-        // --- Tus inicializaciones existentes (movidas aquí para asegurar que se ejecuten después del splash) ---
-        // Estas se ejecutarán *después* de que el splash screen comience a desaparecer.
+        // --- Tus inicializaciones existentes (se ejecutarán después del splash) ---
         aplicarModoOscuroInicial();
         loadProgress();
         updateProgressBar();
