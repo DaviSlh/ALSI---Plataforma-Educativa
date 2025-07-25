@@ -47,6 +47,17 @@
       margin-bottom: 1rem;
     }
 
+    .question img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.8rem;
+        margin-bottom: 1rem;
+        border: 2px solid #ebd6f4;
+        display: block; /* Para centrar si es necesario y manejar mejor el flujo */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .options label {
       display: block;
       margin: 0.5rem 0;
@@ -195,46 +206,105 @@
 <body>
 
   <div class="toggle-container">
-    <button id="toggle-dark-mode" class="toggle-btn">🌓 Modo Oscuro</button>
+    <button id="toggle-dark-mode" class="toggle-btn">🌙 Modo Oscuro</button>
   </div>
 
   <h1>Lección 1</h1> <h2>Cuestionario de Repaso</h2>
 
   <section class="question">
-    <p><strong>1. ¿Cuáles de los siguientes son saludos apropiados en español?</strong></p>
+    <p><strong>1. ¿Qué saludo representa la siguiente seña?</strong></p>
+    <img src="TP1/hola.gif" alt="Seña de Hola" />
     <div class="options">
-      <label><input type="checkbox" name="q1" value="Hola" /> Hola</label>
-      <label><input type="checkbox" name="q1" value="Adiós" /> Adiós</label>
-      <label><input type="checkbox" name="q1" value="Gracias" /> Gracias</label>
-      <label><input type="checkbox" name="q1" value="Buenas tardes" /> Buenas tardes</label>
-      <label><input type="checkbox" name="q1" value="Mesa" /> Mesa</label>
+      <label><input type="radio" name="q1" value="A" /> Buenos días</label>
+      <label><input type="radio" name="q1" value="B" /> Hola</label>
+      <label><input type="radio" name="q1" value="C" /> Adiós</label>
     </div>
   </section>
 
   <section class="question">
-    <p><strong>2. ¿Cómo se hace la seña de "Buenos días"?</strong></p>
+    <p><strong>2. Observa la seña. ¿Qué significa este gesto en español?</strong></p>
+    <img src="TP1/muchas-gracias.gif" alt="Seña de Muchas Gracias" />
     <div class="options">
-      <label><input type="radio" name="q2" value="A" /> Mano desde el pecho hacia afuera como si empujaras algo</label>
-      <label><input type="radio" name="q2" value="B" /> Mano desde la boca hacia afuera y luego gesto de sol saliendo</label>
-      <label><input type="radio" name="q2" value="C" /> Palmas juntas frente al pecho</label>
+      <label><input type="radio" name="q2" value="A" /> Por favor</label>
+      <label><input type="radio" name="q2" value="B" /> De nada</label>
+      <label><input type="radio" name="q2" value="C" /> Muchas Gracias</label>
     </div>
   </section>
 
   <section class="question">
-    <p><strong>3. ¿Cuál de estos gestos representa "Cuídate"?</strong></p>
+    <p><strong>3. Esta seña indica:</strong></p>
+    <img src="TP1/buenas-tardes.gif" alt="Seña de Buenas Tardes" />
     <div class="options">
-      <label><input type="radio" name="q3" value="A" /> Dos dedos desde los ojos hacia adelante</label>
-      <label><input type="radio" name="q3" value="B" /> Mano en forma de garra sobre el corazón y luego hacia la persona</label>
-      <label><input type="radio" name="q3" value="C" /> Mano abierta moviéndose como saludo</label>
+      <label><input type="radio" name="q3" value="A" /> Buenos días</label>
+      <label><input type="radio" name="q3" value="B" /> Buenas tardes</label>
+      <label><input type="radio" name="q3" value="C" /> Buenas noches</label>
     </div>
   </section>
 
   <section class="question">
-    <p><strong>4. ¿Qué seña implica un movimiento circular con las manos hacia el pecho?</strong></p>
+    <p><strong>4. ¿Qué expresión se asocia con el siguiente movimiento?</strong></p>
+    <img src="TP1/como-estas.gif" alt="Seña de ¿Cómo estás?" />
     <div class="options">
-      <label><input type="radio" name="q4" value="A" /> Mucho gusto</label>
-      <label><input type="radio" name="q4" value="B" /> Bienvenido(a)</label>
-      <label><input type="radio" name="q4" value="C" /> Hasta mañana</label>
+      <label><input type="radio" name="q4" value="A" /> ¿Qué tal?</label>
+      <label><input type="radio" name="q4" value="B" /> ¿Quién eres?</label>
+      <label><input type="radio" name="q4" value="C" /> ¿Cómo estás?</label>
+    </div>
+  </section>
+
+  <section class="question">
+    <p><strong>5. Identifica la seña para "Bienvenido(a)":</strong></p>
+    <img src="TP1/bienvenido.gif" alt="Seña de Bienvenido" />
+    <div class="options">
+      <label><input type="radio" name="q5" value="A" /> Mucho gusto</label>
+      <label><input type="radio" name="q5" value="B" /> Adiós</label>
+      <label><input type="radio" name="q5" value="C" /> Bienvenido(a)</label>
+    </div>
+  </section>
+
+  <section class="question">
+    <p><strong>6. Observa el gesto. ¿A qué se refiere?</strong></p>
+    <img src="TP1/adios.gif" alt="Seña de Adiós" />
+    <div class="options">
+      <label><input type="radio" name="q6" value="A" /> Hasta luego</label>
+      <label><input type="radio" name="q6" value="B" /> Adiós</label>
+      <label><input type="radio" name="q6" value="C" /> Nos vemos</label>
+    </div>
+  </section>
+
+  <section class="question">
+    <p><strong>7. ¿Qué seña se muestra en la imagen?</strong></p>
+    <img src="TP1/de-donde-eres.gif" alt="Seña de ¿De dónde eres?" />
+    <div class="options">
+      <label><input type="radio" name="q7" value="A" /> Mi nombre es...</label>
+      <label><input type="radio" name="q7" value="B" /> ¿De dónde eres?</label>
+      <label><input type="radio" name="q7" value="C" /> ¿Cuántos años tienes?</label>
+    </div>
+  </section>
+
+  <section class="question">
+    <p><strong>8. ¿Cuál es el propósito principal de la Lección 1, según su título y descripción inicial?</strong></p>
+    <div class="options">
+      <label><input type="radio" name="q8" value="A" /> Aprender el alfabeto en lengua de señas.</label>
+      <label><input type="radio" name="q8" value="B" /> Explorar y aprender saludos básicos en Lengua de Señas.</label>
+      <label><input type="radio" name="q8" value="C" /> Conocer la historia de la Lengua de Señas.</label>
+    </div>
+  </section>
+
+  <section class="question">
+    <p><strong>9. En la seña de "Buenos días", ¿qué simula el segundo movimiento?</strong></p>
+    <div class="options">
+      <label><input type="radio" name="q9" value="A" /> La salida del sol.</label>
+      <label><input type="radio" name="q9" value="B" /> El atardecer.</label>
+      <label><input type="radio" name="q9" value="C" /> Una nube.</label>
+    </div>
+  </section>
+
+  <section class="question">
+    <p><strong>10. ¿Cuál de las siguientes descripciones corresponde a la seña de "Mucho gusto"?</strong></p>
+    <div class="options">
+      <label><input type="radio" name="q10" value="A" /> Extender la mano desde la frente hacia afuera.</label>
+      <label><input type="radio" name="q10" value="B" /> Gesto de pregunta con cejas levantadas.</label>
+      <label><input type="radio" name="q10" value="C" /> Palmas juntas frente al pecho con sonrisa.</label>
     </div>
   </section>
 
@@ -242,25 +312,27 @@
   <div class="result-message" id="resultado"></div>
 
   <a href="index.html">Volver al índice</a>
-  <a href="lesson2.html">Siguiente →</a> <script>
+  <a href="leccion2.html">Siguiente →</a>
+  <script>
     // --- LÓGICA DE MODO OSCURO (CONSISTENTE CON LAS OTRAS PÁGINAS) ---
     const toggleDarkModeBtn = document.getElementById("toggle-dark-mode");
     const body = document.body;
+    const localStorageDarkModeKey = 'darkMode'; // Clave unificada
 
     function applyMode(isDarkMode) {
       if (isDarkMode) {
         body.classList.add("dark-mode");
         body.classList.remove("light-mode-manual");
-        toggleDarkModeBtn.textContent = "☀️ Modo Claro";
+        toggleDarkModeBtn.textContent = "☀️ Modo Claro"; // Texto uniforme
       } else {
         body.classList.remove("dark-mode");
         body.classList.add("light-mode-manual");
-        toggleDarkModeBtn.textContent = "🌙 Modo Oscuro";
+        toggleDarkModeBtn.textContent = "🌙 Modo Oscuro"; // Texto uniforme
       }
     }
 
     function toggleDarkMode() {
-      const currentMode = localStorage.getItem("darkMode");
+      const currentMode = localStorage.getItem(localStorageDarkModeKey);
       let newMode;
 
       if (currentMode === 'enabled' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -268,122 +340,104 @@
       } else {
         newMode = 'enabled';
       }
-      localStorage.setItem("darkMode", newMode);
+      localStorage.setItem(localStorageDarkModeKey, newMode);
       applyMode(newMode === 'enabled');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const savedMode = localStorage.getItem("darkMode");
+      const savedMode = localStorage.getItem(localStorageDarkModeKey);
       if (savedMode) {
         applyMode(savedMode === 'enabled');
       } else {
+        // Si no hay preferencia guardada, aplicar según la preferencia del sistema
         applyMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+      // Asignar el evento al botón de modo oscuro al cargar el DOM
+      if (toggleDarkModeBtn) {
+          toggleDarkModeBtn.addEventListener('click', toggleDarkMode);
       }
     });
 
+    // Escuchar cambios en la preferencia del sistema si no hay preferencia del usuario
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      if (!localStorage.getItem("darkMode")) {
+      if (!localStorage.getItem(localStorageDarkModeKey)) { // Solo si el usuario no ha forzado un modo
         applyMode(event.matches);
       }
     });
 
+
     // --- LÓGICA DEL CUESTIONARIO Y CONEXIÓN CON EL PROGRESO GLOBAL ---
 
-    // Importa la función submitQuiz del index.html.
-    // Para que esto funcione, este script debe ser cargado DESPUÉS del script principal en index.html,
-    // o el script principal de index.html debe ser un archivo externo (ej. script.js)
-    // que se vincule a todas las páginas.
-    // Por ahora, asumimos que submitQuiz está disponible globalmente,
-    // o que este script se copiará dentro de index.html si es un quiz "en línea".
-    // SI Prueba.html es un archivo SEPARADO, NECESITAS CARGAR EL SCRIPT COMPLETO DEL INDEX.HTML AQUÍ TAMBIÉN.
-    // La forma más robusta es poner todo el JS de control de lecciones en un archivo externo como 'main.js'
-    // y vincular 'main.js' tanto en index.html como en Prueba.html.
-
-    // === INICIO DEL CÓDIGO NECESARIO DEL SCRIPT PRINCIPAL DEL INDEX.HTML ===
-    // (Esto es un ejemplo, lo ideal es que lo tengas en un archivo JS externo y lo cargues en todas las páginas)
-    const MIN_PASS_SCORE = 70; // Debe ser consistente con el valor en index.html
-
+    // La función saveProgress guarda el estado de la lección
     function saveProgress(lessonId, status) {
         localStorage.setItem(`lessonProgress_${lessonId}`, status);
-        // En un entorno de múltiples páginas, no podemos actualizar la barra de progreso
-        // ni las tarjetas del index directamente desde aquí.
-        // Esto se hará cuando el usuario vuelva al index.html.
     }
 
-    // Adaptamos la función `submitQuiz` para que este archivo pueda llamarla.
-    // Esta es una versión simplificada, la versión completa está en index.html
-    // y es la que actualiza el UI de las tarjetas.
+    // La función submitQuiz es la que se usa para interactuar con el sistema de progreso del index.html
     function submitQuiz(lessonId, scoreObtained) {
-        const lessonElement = document.getElementById(lessonId); // Este elemento NO existirá en Prueba.html
-                                                                 // así que el mensaje de alerta es importante.
-        let minScoreFromIndex = MIN_PASS_SCORE; // Usamos el valor por defecto
+        // En este archivo de quiz, simplemente llamamos al padre (index.html) para que actualice el progreso
+        // ya que la lógica de desbloqueo y UI está centralizada en index.html.
+        // Esto asume que 'index.html' es el 'parent' en el contexto de un iframe o que se usa localStorage.
+        // Como estamos usando localStorage, no necesitamos `parent.submitQuiz`.
+        // Guardamos directamente aquí y el index.html se encargará al recargar.
+        const MIN_SCORE_FOR_THIS_QUIZ = 70; // Traerlo del data-min-score de la lección en index si quieres que sea dinámico, pero para este archivo específico lo ponemos fijo.
 
-        // Intentar leer el minScore de localStorage si se guardó
-        // (Sería ideal si el index.html guardara la configuración de las lecciones en localStorage)
-        // Por ahora, nos basamos en el MIN_PASS_SCORE global.
-
-        if (scoreObtained >= minScoreFromIndex) {
-            alert(`¡Cuestionario aprobado con ${scoreObtained}%! La siguiente lección se desbloqueará.`);
+        if (scoreObtained >= MIN_SCORE_FOR_THIS_QUIZ) {
+            alert(`¡Cuestionario aprobado con ${scoreObtained.toFixed(0)}%! Volviendo al índice para continuar.`);
             saveProgress(lessonId, 'completed');
         } else {
-            alert(`Cuestionario reprobado con ${scoreObtained}%. Necesitas ${minScoreFromIndex}%.`);
-            saveProgress(lessonId, 'unlocked'); // La lección sigue desbloqueada para reintentar
+            alert(`Cuestionario reprobado con ${scoreObtained.toFixed(0)}%. Necesitas ${MIN_SCORE_FOR_THIS_QUIZ}%. Puedes volver a intentarlo.`);
+            saveProgress(lessonId, 'unlocked'); // Si reprueba, la lección sigue desbloqueada para reintentar
         }
-
-        // Después de enviar el quiz, podrías redirigir al index o a la siguiente lección
-        // window.location.href = 'index.html'; // O redirigir a la siguiente lección directamente si la aprueba
+        // Después de guardar el progreso, redirigimos al index.html
+        window.location.href = 'index.html';
     }
-    // === FIN DEL CÓDIGO NECESARIO DEL SCRIPT PRINCIPAL ===
+
 
     function verificar() {
-      // ID de la lección a la que pertenece este cuestionario (corresponde a id="lesson1" en index.html)
-      const LESSON_ID = 'lesson1';
-      const MIN_SCORE_FOR_THIS_QUIZ = 70; // Asegúrate que este sea el mismo que en data-min-score de index.html
-
-      // Pregunta 1 (checkbox)
-      const correctas1 = ["Hola", "Buenas tardes"];
-      const seleccionadas1 = Array.from(document.querySelectorAll('input[name="q1"]:checked')).map(cb => cb.value);
-      const p1_correcta = correctas1.every(r => seleccionadas1.includes(r)) && seleccionadas1.every(r => correctas1.includes(r));
-
-      // Pregunta 2 (radio)
-      const respuesta2 = document.querySelector('input[name="q2"]:checked');
-      const p2_correcta = respuesta2 && respuesta2.value === "B";
-
-      // Pregunta 3 (radio)
-      const respuesta3 = document.querySelector('input[name="q3"]:checked');
-      const p3_correcta = respuesta3 && respuesta3.value === "B"; // La respuesta correcta es 'B' según tu lección
-
-      // Pregunta 4 (radio)
-      const respuesta4 = document.querySelector('input[name="q4"]:checked');
-      const p4_correcta = respuesta4 && respuesta4.value === "B";
+      const LESSON_ID = 'lesson1'; // ID de la lección para guardar el progreso
+      const MIN_SCORE_FOR_THIS_QUIZ = 70; // Puntaje mínimo para aprobar este cuestionario
 
       let aciertos = 0;
-      if (p1_correcta) aciertos++;
-      if (p2_correcta) aciertos++;
-      if (p3_correcta) aciertos++;
-      if (p4_correcta) aciertos++;
+      const totalPreguntas = 10;
 
-      const total = 4;
-      const score = (aciertos / total) * 100;
+      // Respuestas correctas (asegúrate de que estas coincidan con tus preguntas y opciones)
+      const answers = {
+          q1: "B", // Hola
+          q2: "C", // Muchas Gracias
+          q3: "B", // Buenas tardes
+          q4: "C", // ¿Cómo estás?
+          q5: "C", // Bienvenido(a)
+          q6: "B", // Adiós
+          q7: "B", // ¿De dónde eres?
+          q8: "B", // Explorar y aprender saludos básicos en Lengua de Señas.
+          q9: "A", // La salida del sol.
+          q10: "C" // Palmas juntas frente al pecho con sonrisa.
+      };
+
+      for (let i = 1; i <= totalPreguntas; i++) {
+          const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+          if (selectedOption && selectedOption.value === answers[`q${i}`]) {
+              aciertos++;
+          }
+      }
+
+      const score = (aciertos / totalPreguntas) * 100;
       const resultadoDiv = document.getElementById("resultado");
 
-      resultadoDiv.textContent = ''; // Limpiar mensajes anteriores
+      resultadoDiv.textContent = ''; // Limpiar mensaje anterior
       resultadoDiv.classList.remove('passed', 'failed'); // Limpiar clases anteriores
 
       if (score >= MIN_SCORE_FOR_THIS_QUIZ) {
         resultadoDiv.textContent = `✅ ¡Felicidades! Has aprobado el cuestionario con un ${score.toFixed(0)}%.`;
         resultadoDiv.classList.add('passed');
-        submitQuiz(LESSON_ID, score); // Llama a la función global para registrar el progreso
+        // Llama a submitQuiz para guardar el progreso y redirigir
+        submitQuiz(LESSON_ID, score);
       } else {
-        let mensajesError = [];
-        if (!p1_correcta) mensajesError.push("Pregunta 1: respuestas incorrectas.");
-        if (!p2_correcta) mensajesError.push("Pregunta 2: respuesta incorrecta.");
-        if (!p3_correcta) mensajesError.push("Pregunta 3: respuesta incorrecta.");
-        if (!p4_correcta) mensajesError.push("Pregunta 4: respuesta incorrecta.");
-
-        resultadoDiv.innerHTML = `❌ Necesitas un ${MIN_SCORE_FOR_THIS_QUIZ}% para aprobar. Tu puntuación: ${score.toFixed(0)}%.<br>Errores: ${mensajesError.join("<br>")}`;
+        resultadoDiv.innerHTML = `❌ Necesitas un ${MIN_SCORE_FOR_THIS_QUIZ}% para aprobar. Tu puntuación: ${score.toFixed(0)}%.<br>¡Sigue practicando!`;
         resultadoDiv.classList.add('failed');
-        submitQuiz(LESSON_ID, score); // Llama a la función global para registrar el progreso (como no completado)
+        // Llama a submitQuiz para guardar el progreso y redirigir
+        submitQuiz(LESSON_ID, score);
       }
     }
   </script>
