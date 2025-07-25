@@ -275,9 +275,67 @@
     body.dark-mode label {
       color: #ffffff;
     }
+
+    /* --- Nuevos estilos para la pantalla de bienvenida --- */
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000; /* Asegura que esté por encima de todo, incluso del logo móvil */
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Transición de salida */
+    }
+
+    /* Colores para la pantalla de bienvenida - Modo claro */
+    #splash-screen.light-mode {
+      background-color: #f9f6fb; /* El mismo color de fondo de tu body en modo claro */
+      color: #4a3054; /* El mismo color de texto de tu body en modo claro */
+    }
+
+    /* Colores para la pantalla de bienvenida - Modo oscuro */
+    #splash-screen.dark-mode {
+      background-color: #121212; /* El mismo color de fondo de tu body en modo oscuro */
+      color: #e0d8f0; /* El mismo color de texto de tu body en modo oscuro */
+    }
+
+    #splash-screen .welcome-text {
+      /* Pila de fuentes para imitar San Francisco, o similar */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 3em;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    #splash-screen .app-name {
+      /* Una fuente estética distinta, he elegido 'Inter' de tu diseño para mantener coherencia */
+      font-family: 'Inter', sans-serif; /* Puedes probar con 'Georgia', serif; si prefieres */
+      font-size: 1.8em; /* Más pequeño que el texto de bienvenida, pero un poco más grande que antes */
+      font-weight: 700; /* Para darle más peso a "ALSI" */
+      text-align: center;
+      margin-top: 0.5em; /* Espacio entre las líneas */
+    }
+
+    /* Clase para la animación de salida */
+    #splash-screen.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
   </style>
 </head>
 <body>
+  <div id="splash-screen">
+    <div class="welcome-text">Bienvenid@</div>
+    <div class="app-name">ALSI</div>
+  </div>
+
   <img class="logo-movil" src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI móvil" />
   <aside>
     <img src="https://i.postimg.cc/gktsPS9Z/1000040884.png" alt="Logo ALSI" />
@@ -647,21 +705,50 @@
         });
     }
 
-    // Asegurarse de que todo se inicialice al cargar la página
+    // --- NUEVO JAVASCRIPT para la pantalla de bienvenida ---
     document.addEventListener('DOMContentLoaded', () => {
+        const splashScreen = document.getElementById('splash-screen');
+        const splashDuration = 2300; // 2.3 segundos en milisegundos
+
+        // Función para aplicar el modo de color a la pantalla de bienvenida
+        const applySplashScreenMode = () => {
+            // Usa el estado actual del body (que ya es manejado por tu script de dark mode)
+            if (body.classList.contains('dark-mode')) {
+                splashScreen.classList.add('dark-mode');
+                splashScreen.classList.remove('light-mode');
+            } else {
+                splashScreen.classList.add('light-mode');
+                splashScreen.classList.remove('dark-mode');
+            }
+        };
+
+        // Aplica el modo de color a la pantalla de bienvenida inmediatamente
+        applySplashScreenMode();
+
+        // Ocultar la pantalla de bienvenida después de la duración especificada
+        setTimeout(() => {
+            splashScreen.classList.add('fade-out');
+            // Eliminar la pantalla del DOM después de la transición para liberar recursos
+            splashScreen.addEventListener('transitionend', () => {
+                if (splashScreen.classList.contains('fade-out')) {
+                    splashScreen.style.display = 'none';
+                }
+            }, { once: true }); // Usar { once: true } para que el listener se ejecute solo una vez
+        }, splashDuration);
+
+        // --- Tus inicializaciones existentes (movidas aquí para asegurar que se ejecuten después del splash) ---
         aplicarModoOscuroInicial();
         loadProgress(); // Carga el progreso inicial y actualiza la disponibilidad de las lecciones
         updateProgressBar(); // Asegura que la barra de progreso se actualice
-    });
 
-    // Añadir event listener para hacer click en la tarjeta y cargar la lección o marcar como completada (si no tiene quiz)
-    document.querySelectorAll('.lesson-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const leccionDataId = parseInt(card.dataset.leccionId);
-            cargarLeccion(leccionDataId);
+        // Añadir event listener para hacer click en la tarjeta y cargar la lección o marcar como completada (si no tiene quiz)
+        document.querySelectorAll('.lesson-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const leccionDataId = parseInt(card.dataset.leccionId);
+                cargarLeccion(leccionDataId);
+            });
         });
     });
-
   </script>
 </body>
 </html>
