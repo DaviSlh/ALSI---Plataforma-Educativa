@@ -1,531 +1,560 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lección 2 - Alfabeto Dactilológico</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* Variables de color para modo claro */
-    :root {
-      --color-text: #5c3c74;
-      --color-bg-start: #f3e5f5;
-      --color-bg-mid1: #e1bee7;
-      --color-bg-mid2: #ce93d8;
-      --color-header-bg: rgba(215, 188, 232, 0.85);
-      --color-header-text: #4a3054;
-      --color-hero-bg: rgba(255, 255, 255, 0.6);
-      --color-hero-text-h2: #6c3e9b;
-      --color-hero-text-p: #7d5a8b;
-      --color-card-bg: #fff;
-      --color-card-shadow: rgba(0, 0, 0, 0.05);
-      --color-card-shadow-hover: rgba(0, 0, 0, 0.1);
-      --color-card-title: #a45db6;
-      --color-card-border: #ebd6f4;
-      --color-nav-bg: #c39bd3;
-      --color-nav-bg-hover: #a569bd;
-      --color-nav-text: white;
-      --color-letter-bg: rgba(255, 255, 255, 0.8);
-      --color-letter-bg-hover: rgba(255, 255, 255, 0.75);
-      --color-letter-title: #8e44ad;
-      --color-letter-text: #6a4c7a;
-      --color-letter-border: #e8d0f0;
-      --color-footer-bg: rgba(215, 188, 232, 0.9);
-      --color-footer-text: #4a3054;
-      --float-opacity: 0.6;
-    }
-
-    /* Variables de color para modo oscuro */
-    body.dark-mode {
-      --color-text: #d8c0e3;
-      --color-bg-start: #1c1a2e;
-      --color-bg-mid1: #2e2b4f;
-      --color-bg-mid2: #3f3a6e;
-      --color-header-bg: rgba(60, 56, 89, 0.85);
-      --color-header-text: #d8c0e3;
-      --color-hero-bg: rgba(40, 36, 65, 0.7);
-      --color-hero-text-h2: #c9a1f7;
-      --color-hero-text-p: #c5b1d7;
-      --color-card-bg: #2e2a4e;
-      --color-card-shadow: rgba(0, 0, 0, 0.7);
-      --color-card-shadow-hover: rgba(0, 0, 0, 0.9);
-      --color-card-title: #b188e4;
-      --color-card-border: #8a69ac;
-      --color-nav-bg: #8a69ac;
-      --color-nav-bg-hover: #6f52a0;
-      --color-nav-text: #f2e6ff;
-      --color-letter-bg: rgba(50, 45, 78, 0.8);
-      --color-letter-bg-hover: rgba(50, 45, 78, 0.95);
-      --color-letter-title: #c2a0ff;
-      --color-letter-text: #b6a5cc;
-      --color-letter-border: #7f6ca2;
-      --color-footer-bg: rgba(60, 56, 89, 0.9);
-      --color-footer-text: #d8c0e3;
-      --float-opacity: 0.3;
-    }
-
-    /* Reset y base */
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: var(--color-text);
-      background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-mid1), var(--color-bg-mid2));
-      background-size: 600% 600%;
-      animation: backgroundShift 20s ease infinite;
-      overflow-x: hidden;
-      transition: background 0.8s ease, color 0.8s ease;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    @keyframes backgroundShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header {
-      background: var(--color-header-bg);
-      padding: 1.5rem 0;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(4px);
-      transition: background 0.8s ease, color 0.8s ease;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    header h1 {
-      color: var(--color-header-text);
-      font-size: 2.2rem;
-      margin: 0;
-      font-weight: 700;
-    }
-
-    .hero {
-      position: relative;
-      background: var(--color-hero-bg);
-      backdrop-filter: blur(6px);
-      border-radius: 1.5rem;
-      margin: 2rem 1rem;
-      padding: 2.5rem;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      transition: background 0.8s ease, color 0.8s ease;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -20px; left: -20px;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
-      opacity: 0.2;
-      border-radius: 1.5rem;
-      z-index: 0;
-      transition: opacity 0.8s ease;
-    }
-
-    .hero h2, .hero p {
-      position: relative;
-      z-index: 1;
-      color: var(--color-hero-text-h2);
-      transition: color 0.8s ease;
-    }
-
-    .hero p {
-      color: var(--color-hero-text-p);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem 1rem;
-      transition: color 0.8s ease;
-    }
-
-    .card {
-      background: var(--color-card-bg);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 16px var(--color-card-shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.8s ease, color 0.8s ease;
-      color: var(--color-text);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 24px var(--color-card-shadow-hover);
-    }
-
-    .card h2 {
-      color: var(--color-card-title);
-      font-size: 1.6rem;
-      margin-top: 0;
-    }
-
-    .card p {
-      line-height: 1.6;
-      margin: 1rem 0;
-    }
-
-    .card img {
-      margin-top: 1rem;
-      max-width: 100%;
-      border-radius: 1rem;
-      border: 2px solid var(--color-card-border);
-      transition: border-color 0.8s ease;
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 2rem 1rem;
-    }
-
-    .nav-buttons a {
-      text-decoration: none;
-      background-color: var(--color-nav-bg);
-      color: var(--color-nav-text);
-      padding: 0.9rem 1.6rem;
-      border-radius: 1rem;
-      font-weight: 600;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .nav-buttons a:hover {
-      background-color: var(--color-nav-bg-hover);
-      transform: scale(1.06);
-    }
-
-    .alphabet {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .letter {
-      background: var(--color-letter-bg);
-      border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 4px 12px var(--color-card-shadow);
-      transition: transform 0.3s ease, background 0.8s ease, box-shadow 0.3s ease;
-      cursor: default;
-      color: var(--color-letter-text);
-    }
-
-    .letter:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px var(--color-card-shadow-hover);
-      background: var(--color-letter-bg-hover);
-    }
-
-    .letter h3 {
-      color: var(--color-letter-title);
-      margin-bottom: 0.5rem;
-    }
-
-    .letter p {
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .letter img {
-      max-width: 100%;
-      border-radius: 0.5rem;
-      border: 2px solid var(--color-letter-border);
-      transition: border-color 0.8s ease;
-    }
-
-    footer {
-      background: var(--color-footer-bg);
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--color-footer-text);
-      font-weight: 500;
-      margin-top: 2rem;
-      transition: background 0.8s ease, color 0.8s ease;
-    }
-
-    /* Elementos flotantes */
-    .floaty {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      opacity: var(--float-opacity);
-      animation: float 10s infinite ease-in-out;
-      pointer-events: none;
-      transition: opacity 0.8s ease;
-    }
-
-    @keyframes float {
-      0%   { transform: translateY(0) rotate(0deg); }
-      50%  { transform: translateY(-20px) rotate(10deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
-
-    .float1 { top: 10%; left: 5%; animation-delay: 0s; }
-    .float2 { top: 20%; right: 10%; animation-delay: 3s; }
-    .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
-    .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
-
-    /* Botón modo oscuro */
-    #toggle-darkmode {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background-color: var(--color-nav-bg);
-      color: var(--color-nav-text);
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-      z-index: 150;
-    }
-
-    #toggle-darkmode:hover {
-      background-color: var(--color-nav-bg-hover);
-      transform: scale(1.1);
-    }
-
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lección 2 - Alfabeto Dactilológico</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+/* Variables de color para modo claro */
+:root {
+--color-text: #5c3c74;
+--color-bg-start: #f3e5f5;
+--color-bg-mid1: #e1bee7;
+--color-bg-mid2: #ce93d8;
+--color-header-bg: rgba(215, 188, 232, 0.85);
+--color-header-text: #4a3054;
+--color-hero-bg: rgba(255, 255, 255, 0.6);
+--color-hero-text-h2: #6c3e9b;
+--color-hero-text-p: #7d5a8b;
+--color-card-bg: #fff;
+--color-card-shadow: rgba(0, 0, 0, 0.05);
+--color-card-shadow-hover: rgba(0, 0, 0, 0.1);
+--color-card-title: #a45db6;
+--color-card-border: #ebd6f4;
+--color-nav-bg: #c39bd3;
+--color-nav-bg-hover: #a569bd;
+--color-nav-text: white;
+--color-letter-bg: rgba(255, 255, 255, 0.8);
+--color-letter-bg-hover: rgba(255, 255, 255, 0.75);
+--color-letter-title: #8e44ad;
+--color-letter-text: #6a4c7a;
+--color-letter-border: #e8d0f0;
+--color-footer-bg: rgba(215, 188, 232, 0.9);
+--color-footer-text: #4a3054;
+--float-opacity: 0.6;
+}
+/* Variables de color para modo oscuro - basadas en prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+:root {
+--color-text: #d8c0e3;
+--color-bg-start: #1c1a2e;
+--color-bg-mid1: #2e2b4f;
+--color-bg-mid2: #3f3a6e;
+--color-header-bg: rgba(60, 56, 89, 0.85);
+--color-header-text: #d8c0e3;
+--color-hero-bg: rgba(40, 36, 65, 0.7);
+--color-hero-text-h2: #c9a1f7;
+--color-hero-text-p: #c5b1d7;
+--color-card-bg: #2e2a4e;
+--color-card-shadow: rgba(0, 0, 0, 0.7);
+--color-card-shadow-hover: rgba(0, 0, 0, 0.9);
+--color-card-title: #b188e4;
+--color-card-border: #8a69ac;
+--color-nav-bg: #8a69ac;
+--color-nav-bg-hover: #6f52a0;
+--color-nav-text: #f2e6ff;
+--color-letter-bg: rgba(50, 45, 78, 0.8);
+--color-letter-bg-hover: rgba(50, 45, 78, 0.95);
+--color-letter-title: #c2a0ff;
+--color-letter-text: #b6a5cc;
+--color-letter-border: #7f6ca2;
+--color-footer-bg: rgba(60, 56, 89, 0.9);
+--color-footer-text: #d8c0e3;
+--float-opacity: 0.3;
+}
+}
+/* Variables de color para modo oscuro forzado por el usuario */
+body.dark-mode {
+--color-text: #d8c0e3;
+--color-bg-start: #1c1a2e;
+--color-bg-mid1: #2e2b4f;
+--color-bg-mid2: #3f3a6e;
+--color-header-bg: rgba(60, 56, 89, 0.85);
+--color-header-text: #d8c0e3;
+--color-hero-bg: rgba(40, 36, 65, 0.7);
+--color-hero-text-h2: #c9a1f7;
+--color-hero-text-p: #c5b1d7;
+--color-card-bg: #2e2a4e;
+--color-card-shadow: rgba(0, 0, 0, 0.7);
+--color-card-shadow-hover: rgba(0, 0, 0, 0.9);
+--color-card-title: #b188e4;
+--color-card-border: #8a69ac;
+--color-nav-bg: #8a69ac;
+--color-nav-bg-hover: #6f52a0;
+--color-nav-text: #f2e6ff;
+--color-letter-bg: rgba(50, 45, 78, 0.8);
+--color-letter-bg-hover: rgba(50, 45, 78, 0.95);
+--color-letter-title: #c2a0ff;
+--color-letter-text: #b6a5cc;
+--color-letter-border: #7f6ca2;
+--color-footer-bg: rgba(60, 56, 89, 0.9);
+--color-footer-text: #d8c0e3;
+--float-opacity: 0.3;
+}
+/* Variables de color para modo claro forzado por el usuario */
+body.light-mode {
+--color-text: #5c3c74;
+--color-bg-start: #f3e5f5;
+--color-bg-mid1: #e1bee7;
+--color-bg-mid2: #ce93d8;
+--color-header-bg: rgba(215, 188, 232, 0.85);
+--color-header-text: #4a3054;
+--color-hero-bg: rgba(255, 255, 255, 0.6);
+--color-hero-text-h2: #6c3e9b;
+--color-hero-text-p: #7d5a8b;
+--color-card-bg: #fff;
+--color-card-shadow: rgba(0, 0, 0, 0.05);
+--color-card-shadow-hover: rgba(0, 0, 0, 0.1);
+--color-card-title: #a45db6;
+--color-card-border: #ebd6f4;
+--color-nav-bg: #c39bd3;
+--color-nav-bg-hover: #a569bd;
+--color-nav-text: white;
+--color-letter-bg: rgba(255, 255, 255, 0.8);
+--color-letter-bg-hover: rgba(255, 255, 255, 0.75);
+--color-letter-title: #8e44ad;
+--color-letter-text: #6a4c7a;
+--color-letter-border: #e8d0f0;
+--color-footer-bg: rgba(215, 188, 232, 0.9);
+--color-footer-text: #4a3054;
+--float-opacity: 0.6;
+}
+/* Reset y base */
+body {
+font-family: 'Inter', sans-serif;
+margin: 0;
+padding: 0;
+color: var(--color-text);
+background: linear-gradient(135deg, var(--color-bg-start), var(--color-bg-mid1), var(--color-bg-mid2));
+background-size: 600% 600%;
+animation: backgroundShift 20s ease infinite;
+overflow-x: hidden;
+transition: background 0.8s ease, color 0.8s ease;
+position: relative;
+min-height: 100vh;
+}
+@keyframes backgroundShift {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+header {
+background: var(--color-header-bg);
+padding: 1.5rem 0;
+text-align: center;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+backdrop-filter: blur(4px);
+transition: background 0.8s ease, color 0.8s ease;
+position: sticky;
+top: 0;
+z-index: 100;
+}
+header h1 {
+color: var(--color-header-text);
+font-size: 2.2rem;
+margin: 0;
+font-weight: 700;
+}
+.hero {
+position: relative;
+background: var(--color-hero-bg);
+backdrop-filter: blur(6px);
+border-radius: 1.5rem;
+margin: 2rem 1rem;
+padding: 2.5rem;
+text-align: center;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+transition: background 0.8s ease, color 0.8s ease;
+overflow: hidden;
+}
+.hero::before {
+content: '';
+position: absolute;
+top: -20px; left: -20px;
+width: 100%;
+height: 100%;
+background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+opacity: 0.2;
+border-radius: 1.5rem;
+z-index: 0;
+transition: opacity 0.8s ease;
+}
+.hero h2, .hero p {
+position: relative;
+z-index: 1;
+color: var(--color-hero-text-h2);
+transition: color 0.8s ease;
+}
+.hero p {
+color: var(--color-hero-text-p);
+}
+.container {
+max-width: 1200px;
+margin: auto;
+padding: 2rem 1rem;
+transition: color 0.8s ease;
+}
+.card {
+background: var(--color-card-bg);
+border-radius: 1rem;
+padding: 1.5rem;
+margin-bottom: 2rem;
+box-shadow: 0 4px 16px var(--color-card-shadow);
+transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.8s ease, color 0.8s ease;
+color: var(--color-text);
+}
+.card:hover {
+transform: translateY(-6px);
+box-shadow: 0 10px 24px var(--color-card-shadow-hover);
+}
+.card h2 {
+color: var(--color-card-title);
+font-size: 1.6rem;
+margin-top: 0;
+}
+.card p {
+line-height: 1.6;
+margin: 1rem 0;
+}
+.card img {
+margin-top: 1rem;
+max-width: 100%;
+border-radius: 1rem;
+border: 2px solid var(--color-card-border);
+transition: border-color 0.8s ease;
+}
+.nav-buttons {
+display: flex;
+justify-content: center;
+gap: 1rem;
+flex-wrap: wrap;
+padding: 2rem 1rem;
+}
+.nav-buttons a {
+text-decoration: none;
+background-color: var(--color-nav-bg);
+color: var(--color-nav-text);
+padding: 0.9rem 1.6rem;
+border-radius: 1rem;
+font-weight: 600;
+transition: background-color 0.3s ease, transform 0.3s ease;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.nav-buttons a:hover {
+background-color: var(--color-nav-bg-hover);
+transform: scale(1.06);
+}
+.alphabet {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+.letter {
+background: var(--color-letter-bg);
+border-radius: 1rem;
+padding: 1rem;
+text-align: center;
+box-shadow: 0 4px 12px var(--color-card-shadow);
+transition: transform 0.3s ease, background 0.8s ease, box-shadow 0.3s ease;
+cursor: default;
+color: var(--color-letter-text);
+}
+.letter:hover {
+transform: translateY(-6px);
+box-shadow: 0 8px 20px var(--color-card-shadow-hover);
+background: var(--color-letter-bg-hover);
+}
+.letter h3 {
+color: var(--color-letter-title);
+margin-bottom: 0.5rem;
+}
+.letter p {
+font-size: 0.95rem;
+margin-bottom: 0.5rem;
+}
+.letter img {
+max-width: 100%;
+border-radius: 0.5rem;
+border: 2px solid var(--color-letter-border);
+transition: border-color 0.8s ease;
+}
+footer {
+background: var(--color-footer-bg);
+text-align: center;
+padding: 1.5rem;
+color: var(--color-footer-text);
+font-weight: 500;
+margin-top: 2rem;
+transition: background 0.8s ease, color 0.8s ease;
+}
+/* Elementos flotantes */
+.floaty {
+position: absolute;
+width: 60px;
+height: 60px;
+opacity: var(--float-opacity);
+animation: float 10s infinite ease-in-out;
+pointer-events: none;
+transition: opacity 0.8s ease;
+}
+@keyframes float {
+0%   { transform: translateY(0) rotate(0deg); }
+50%  { transform: translateY(-20px) rotate(10deg); }
+100% { transform: translateY(0) rotate(0deg); }
+}
+.float1 { top: 10%; left: 5%; animation-delay: 0s; }
+.float2 { top: 20%; right: 10%; animation-delay: 3s; }
+.float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
+.float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
+/* Botón modo oscuro */
+#toggle-darkmode {
+position: fixed;
+bottom: 1.5rem;
+right: 1.5rem;
+background-color: var(--color-nav-bg);
+color: var(--color-nav-text);
+border: none;
+padding: 0.7rem 1.2rem;
+border-radius: 1rem;
+font-weight: 600;
+cursor: pointer;
+box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+z-index: 150;
+}
+#toggle-darkmode:hover {
+background-color: var(--color-nav-bg-hover);
+transform: scale(1.1);
+}
+</style>
 </head>
 <body>
-  <header>
-     <h2>Abecedario en Señas - LSN</h2>
-    <p>Cada letra tiene una seña específica con la mano. Aprende el abecedario completo.</p>
-    <img src="https://i.postimg.cc/rFkwLZ9Y/alphabet-hand-sign-sign-language.gif" alt="abecedario" />
-  </div>
+<header>
+<h2>Abecedario en Señas - LSN</h2>
+<p>Cada letra tiene una seña específica con la mano. Aprende el abecedario completo.</p>
+<img src="TP1/abecedario.gif" alt="abecedario" />
+</header>
+<main class="container">
+<div class="hero">
+<h2>Alfabeto Dactilológico (Letras)</h2>
+<p>El alfabeto dactilológico, también conocido como alfabeto manual, es una forma de representar las letras del alfabeto de un idioma utilizando las manos. Es fundamental en la Lengua de Señas Nicaragüense (LSN).</p>
+<img class="floaty float1" src="https://i.postimg.cc/dVwVNDVL/1000037856.png" alt="floaty image">
+<img class="floaty float2" src="https://i.postimg.cc/HxKrF38z/1000037829.png" alt="floaty image">
+<img class="floaty float3" src="https://i.postimg.cc/NFGVX7j6/1000037780.png" alt="floaty image">
+<img class="floaty float4" src="https://i.postimg.cc/bJDnYdbq/1000037814.png" alt="floaty image">
+</div>
+<div class="alphabet">
+<div class="letter">
+<h3>A</h3>
+<p>Mano en forma de puño, con el pulgar tocando el costado del dedo índice.</p>
+<img src="img/a.png" alt="Letra A" />
+</div>
+<div class="letter">
+<h3>B</h3>
+<p>Dedos juntos y extendidos hacia arriba, pulgar tocando la palma.</p>
+<img src="TP1/b.png" alt="Letra B" />
+</div>
+<div class="letter">
+<h3>C</h3>
+<p>Mano formando la silueta de la letra “C”.</p>
+<img src="TP1/c.png" alt="Letra C" />
+</div>
+<div class="letter">
+<h3>CH</h3>
+<p>Mano en forma de “C” con un pequeño movimiento de giro.</p>
+<img src="TP1/ch.png" alt="Letra CH" />
+</div>
+<div class="letter">
+<h3>D</h3>
+<p>Dedo índice hacia arriba, los demás dedos tocando el pulgar.</p>
+<img src="TP1/d.png" alt="Letra D" />
+</div>
+<div class="letter">
+<h3>E</h3>
+<p>Dedos doblados tocando el pulgar, palma hacia adentro.</p>
+<img src="TP1/e.png" alt="Letra E" />
+</div>
+<div class="letter">
+<h3>F</h3>
+<p>Pulgar tocando el dedo índice y medio; los demás extendidos.</p>
+<img src="TP1/f.png" alt="Letra F" />
+</div>
+<div class="letter">
+<h3>G</h3>
+<p>Dedo índice apuntando de lado, los demás cerrados.</p>
+<img src="TP1/g.png" alt="Letra G" />
+</div>
+<div class="letter">
+<h3>H</h3>
+<p>Dedo índice y medio apuntando de lado, los demás cerrados.</p>
+<img src="TP1/h.png" alt="Letra H" />
+</div>
+<div class="letter">
+<h3>I</h3>
+<p>Meñique extendido, los demás dedos cerrados.</p>
+<img src="TP1/i.png" alt="Letra I" />
+</div>
+<div class="letter">
+<h3>J</h3>
+<p>Con el meñique extendido, dibuja una “J” en el aire.</p>
+<img src="TP1/j.png" alt="Letra J" />
+</div>
+<div class="letter">
+<h3>K</h3>
+<p>Dedo índice y medio levantados en “V”, con el pulgar entre ellos.</p>
+<img src="TP1/k.png" alt="Letra K" />
+</div>
+<div class="letter">
+<h3>L</h3>
+<p>Dedo índice hacia arriba y pulgar hacia afuera, formando una “L”.</p>
+<img src="TP1/l.png" alt="Letra L" />
+</div>
+<div class="letter">
+<h3>LL</h3>
+<p>Forma la “L” y repite el movimiento hacia adelante o a los lados.</p>
+<img src="TP1/ll.png" alt="Letra LL" />
+</div>
+<div class="letter">
+<h3>M</h3>
+<p>Tres dedos cruzan sobre el pulgar (índice, medio y anular).</p>
+<img src="TP1/m.png" alt="Letra M" />
+</div>
+<div class="letter">
+<h3>N</h3>
+<p>Dos dedos (índice y medio) cruzan sobre el pulgar.</p>
+<img src="TP1/n.png" alt="Letra N" />
+</div>
+<div class="letter">
+<h3>O</h3>
+<p>Dedos formando un círculo al juntar las yemas.</p>
+<img src="TP1/o.png" alt="Letra O" />
+</div>
+<div class="letter">
+<h3>P</h3>
+<p>Como la “K” pero con la palma inclinada hacia abajo.</p>
+<img src="TP1/p.png" alt="Letra P" />
+</div>
+<div class="letter">
+<h3>Q</h3>
+<p>Dedo índice y pulgar haciendo un gancho hacia abajo.</p>
+<img src="TP1/q.png" alt="Letra Q" />
+</div>
+<div class="letter">
+<h3>R</h3>
+<p>Dedo índice y medio cruzados en forma de "X".</p>
+<img src="TP1/r.png" alt="Letra R" />
+</div>
+<div class="letter">
+<h3>S</h3>
+<p>Mano en puño, con el pulgar por encima de los dedos.</p>
+<img src="TP1/s.png" alt="Letra S" />
+</div>
+<div class="letter">
+<h3>T</h3>
+<p>Pulgar metido entre el índice y medio.</p>
+<img src="TP1/t.png" alt="Letra T" />
+</div>
+<div class="letter">
+<h3>U</h3>
+<p>Dedo índice y medio juntos y estirados hacia arriba.</p>
+<img src="TP1/u.png" alt="Letra U" />
+</div>
+<div class="letter">
+<h3>V</h3>
+<p>Dedo índice y medio en forma de “V”.</p>
+<img src="TP1/v.png" alt="Letra V" />
+</div>
+<div class="letter">
+<h3>W</h3>
+<p>Tres dedos (índice, medio y anular) extendidos hacia arriba.</p>
+<img src="TP1/w.png" alt="Letra W" />
+</div>
+<div class="letter">
+<h3>X</h3>
+<p>Dedo índice curvado como un gancho.</p>
+<img src="TP1/x.png" alt="Letra X" />
+</div>
+<div class="letter">
+<h3>Y</h3>
+<p>Pulgar y meñique extendidos (gesto de teléfono 🤙).</p>
+<img src="TP1/y.png" alt="Letra Y" />
+</div>
+<div class="letter">
+<h3>Z</h3>
+<p>Dedo índice dibuja una “Z” en el aire.</p>
+<img src="TP1/z.png" alt="Letra Z" />
+</div>
+</div>
+<div class="card">
+<h2>Deletrear palabras</h2>
+<p>Se utiliza el alfabeto para deletrear nombres o palabras sin seña.</p>
+</div>
+<nav class="nav-buttons">
+<a href="index.html">Volver al índice</a>
+<a href="lesson3.html">Siguiente lección</a>
+</nav>
+</main>
+<footer>
+<p>© 2025 Plataforma Educativa </p>
+</footer>
+<button id="toggle-darkmode" aria-label="Alternar modo oscuro">Modo Oscuro</button>
+<script>
+const themeToggleBtn = document.getElementById('toggle-darkmode');
+const body = document.body;
+const localStorageKey = 'user-theme'; // Clave para localStorage
+// Función para aplicar el tema
+function applyTheme(theme) {
+if (theme === 'dark') {
+body.classList.add('dark-mode');
+body.classList.remove('light-mode');
+themeToggleBtn.textContent = 'Modo Claro';
+} else if (theme === 'light') {
+body.classList.add('light-mode');
+body.classList.remove('dark-mode');
+themeToggleBtn.textContent = 'Modo Oscuro';
+} else { // 'system' o nulo, para permitir que prefers-color-scheme actúe
+body.classList.remove('dark-mode', 'light-mode');
+// Actualizar el texto del botón según la preferencia del sistema actual
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+themeToggleBtn.textContent = 'Modo Claro';
+} else {
+themeToggleBtn.textContent = 'Modo Oscuro';
+}
+}
+localStorage.setItem(localStorageKey, theme); // Guarda la preferencia
+}
+// Al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+const savedTheme = localStorage.getItem(localStorageKey);
+if (savedTheme) {
+// Si hay una preferencia guardada, úsala
+applyTheme(savedTheme);
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+// Si no hay preferencia guardada, pero el sistema prefiere oscuro
+applyTheme('system'); // Indica que se está usando la del sistema
+} else {
+// Por defecto, si no hay preferencia guardada y el sistema no es oscuro
+applyTheme('system'); 
+}
+});
 
-  <div class="alphabet">
-    <div class="letter">
-      <h3>A</h3>
-      <p>Mano en forma de puño, con el pulgar tocando el costado del dedo índice.</p>
-      <img src="https://i.postimg.cc/LXKrZw5c/1000037771.png" alt="Letra A" />
-    </div>
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
 
-    <div class="letter">
-      <h3>B</h3>
-      <p>Dedos juntos y extendidos hacia arriba, pulgar tocando la palma.</p>
-      <img src="https://i.postimg.cc/tTNmngL6/1000037774.png" alt="Letra B" />
-    </div>
-
-    <div class="letter">
-      <h3>C</h3>
-      <p>Mano formando la silueta de la letra “C”.</p>
-      <img src="https://i.postimg.cc/7YdX67fc/1000037776.png" alt="Letra C" />
-    </div>
-
-    <div class="letter">
-      <h3>CH</h3>
-      <p>Mano en forma de “C” con un pequeño movimiento de giro.</p>
-      <img src="https://i.postimg.cc/HL2QQ7kT/1000037778.png" alt="Letra CH" />
-    </div>
-
-    <div class="letter">
-      <h3>D</h3>
-      <p>Dedo índice hacia arriba, los demás dedos tocando el pulgar.</p>
-      <img src="https://i.postimg.cc/NFGVX7j6/1000037780.png" alt="Letra D" />
-    </div>
-
-    <div class="letter">
-      <h3>E</h3>
-      <p>Dedos doblados tocando el pulgar, palma hacia adentro.</p>
-      <img src="https://i.postimg.cc/Gh5NBDwD/1000037793.png" alt="Letra E" />
-    </div>
-
-    <div class="letter">
-      <h3>F</h3>
-      <p>Pulgar tocando el dedo índice y medio; los demás extendidos.</p>
-      <img src="https://i.postimg.cc/FHk60KNB/1000037795.png" alt="Letra F" />
-    </div>
-
-    <div class="letter">
-      <h3>G</h3>
-      <p>Dedo índice apuntando de lado, los demás cerrados.</p>
-      <img src="https://i.postimg.cc/rmMY6CWB/30e2a9ab338e8233819e185c4624d8c6.jpg" alt="Letra G" />
-    </div>
-
-    <div class="letter">
-      <h3>H</h3>
-      <p>Dedo índice y medio apuntando de lado, los demás cerrados.</p>
-      <img src="https://i.postimg.cc/8kHdngZP/1000037811.png" alt="Letra H" />
-    </div>
-
-    <div class="letter">
-      <h3>I</h3>
-      <p>Meñique extendido, los demás dedos cerrados.</p>
-      <img src="https://i.postimg.cc/hPMBjvpW/1000037818.png" alt="Letra I" />
-    </div>
-
-    <div class="letter">
-      <h3>J</h3>
-      <p>Con el meñique extendido, dibuja una “J” en el aire.</p>
-      <img src="https://i.postimg.cc/43Pt2z12/1000037827.png" alt="Letra J" />
-    </div>
-
-    <div class="letter">
-      <h3>K</h3>
-      <p>Dedo índice y medio levantados en “V”, con el pulgar entre ellos.</p>
-      <img src="https://i.postimg.cc/xCMVxcZv/1000038062.png" alt="Letra K" />
-    </div>
-
-    <div class="letter">
-      <h3>L</h3>
-      <p>Dedo índice hacia arriba y pulgar hacia afuera, formando una “L”.</p>
-      <img src="https://i.postimg.cc/HxKrF38z/1000037829.png" alt="Letra L" />
-    </div>
-
-    <div class="letter">
-      <h3>LL</h3>
-      <p>Forma la “L” y repite el movimiento hacia adelante o a los lados.</p>
-      <img src="https://i.postimg.cc/TYn0xNqp/1000037831.png" alt="Letra LL" />
-    </div>
-
-    <div class="letter">
-      <h3>M</h3>
-      <p>Tres dedos cruzan sobre el pulgar (índice, medio y anular).</p>
-      <img src="https://i.postimg.cc/KzgLN40R/1000037833.png" alt="Letra M" />
-    </div>
-
-    <div class="letter">
-      <h3>N</h3>
-      <p>Dos dedos (índice y medio) cruzan sobre el pulgar.</p>
-      <img src="https://i.postimg.cc/0QpjjStd/1000037835.png" alt="Letra N" />
-    </div>
-
-    <div class="letter">
-      <h3>Ñ</h3>
-      <p>Forma de “N” con movimiento ondulado en el aire (como la virgulilla ~).</p>
-      <img src="https://i.postimg.cc/0QpjjStd/1000037835.png" alt="Letra Ñ" />
-    </div>
-
-    <div class="letter">
-      <h3>O</h3>
-      <p>Dedos formando un círculo al juntar las yemas.</p>
-      <img src="https://i.postimg.cc/90mmfnwC/1000037837.png" alt="Letra O" />
-    </div>
-
-    <div class="letter">
-      <h3>P</h3>
-      <p>Como la “K” pero con la palma inclinada hacia abajo.</p>
-      <img src="https://i.postimg.cc/Zqs2NsQJ/1000037846.png" alt="Letra P" />
-    </div>
-
-    <div class="letter">
-      <h3>Q</h3>
-      <p>Dedo índice y pulgar haciendo un gancho hacia abajo.</p>
-      <img src="https://i.postimg.cc/VkxbNzfw/1000037848.png" alt="Letra Q" />
-    </div>
-
-    <div class="letter">
-      <h3>R</h3>
-      <p>Dedo índice y medio cruzados en forma de "X".</p>
-      <img src="https://i.postimg.cc/BnKXkRxV/1000037850.png" alt="Letra R" />
-    </div>
-
-    <div class="letter">
-      <h3>S</h3>
-      <p>Mano en puño, con el pulgar por encima de los dedos.</p>
-      <img src="https://i.postimg.cc/6prBdKVt/1000037852.png" alt="Letra S" />
-    </div>
-
-    <div class="letter">
-      <h3>T</h3>
-      <p>Pulgar metido entre el índice y medio.</p>
-      <img src="https://i.postimg.cc/T2By0RbD/1000037854.png" alt="Letra T" />
-    </div>
-
-    <div class="letter">
-      <h3>U</h3>
-      <p>Dedo índice y medio juntos y estirados hacia arriba.</p>
-      <img src="https://i.postimg.cc/dVwVNDVL/1000037856.png" alt="Letra U" />
-    </div>
-
-    <div class="letter">
-      <h3>V</h3>
-      <p>Dedo índice y medio en forma de “V”.</p>
-      <img src="https://i.postimg.cc/Xvh3Wv4K/1000037858.png" alt="Letra V" />
-    </div>
-
-    <div class="letter">
-      <h3>W</h3>
-      <p>Tres dedos (índice, medio y anular) extendidos hacia arriba.</p>
-      <img src="https://i.postimg.cc/MTyLLZTp/1000037860.png" alt="Letra W" />
-    </div>
-
-    <div class="letter">
-      <h3>X</h3>
-      <p>Dedo índice curvado como un gancho.</p>
-      <img src="https://i.postimg.cc/cJjKzZz2/1000037866.png" alt="Letra X" />
-    </div>
-
-    <div class="letter">
-      <h3>Y</h3>
-      <p>Pulgar y meñique extendidos (gesto de teléfono 🤙).</p>
-      <img src="https://i.postimg.cc/bJDnYdbq/1000037814.png" alt="Letra Y" />
-    </div>
-
-    <div class="letter">
-      <h3>Z</h3>
-      <p>Dedo índice dibuja una “Z” en el aire.</p>
-      <img src="https://i.postimg.cc/CxxzLzT9/1000037870.png" alt="Letra Z" />
-    </div>
-  </div>
-    </div>
-      </div>
-
-    <div class="card">
-      <h2>Deletrear palabras</h2>
-      <p>Se utiliza el alfabeto para deletrear nombres o palabras sin seña.</p>
-    </div>
-
-    <nav class="nav-buttons">
-      <a href="index.html">Volver al índice</a>
-      <a href="lesson3.html">Siguiente lección</a>
-    </nav>
-  </main>
-
-  <footer>
-    <p>© 2025 Plataforma Educativa </p>
-  </footer>
-
-  <!-- Botón para activar/desactivar modo oscuro -->
-  <button id="toggle-darkmode" aria-label="Alternar modo oscuro">Modo Oscuro</button>
-
-  <script>
-    const toggleBtn = document.getElementById('toggle-darkmode');
-    const body = document.body;
-
-    // Si quieres guardar la preferencia en localStorage
-    if(localStorage.getItem('darkMode') === 'enabled'){
-      body.classList.add('dark-mode');
-      toggleBtn.textContent = "Modo Claro";
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if(body.classList.contains('dark-mode')){
-        toggleBtn.textContent = "Modo Claro";
-        localStorage.setItem('darkMode', 'enabled');
-      } else {
-        toggleBtn.textContent = "Modo Oscuro";
-        localStorage.setItem('darkMode', 'disabled');
-      }
-    });
-  </script>
+if (localStorage.getItem(localStorageKey) === 'system' || !localStorage.getItem(localStorageKey)) {
+applyTheme('system'); 
+}
+});
+// Evento del botón de alternar
+themeToggleBtn.addEventListener('click', () => {
+const currentTheme = localStorage.getItem(localStorageKey);
+if (currentTheme === 'dark' || (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+applyTheme('light'); 
+} else {
+applyTheme('dark'); 
+}
+});
+</script>
 </body>
 </html>
