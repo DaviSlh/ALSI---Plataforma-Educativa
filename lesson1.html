@@ -3,390 +3,377 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lección 1 - Cuestionario</title>
+  <title>Lección 1 - Saludos Básicos</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Usamos las mismas variables CSS para modo oscuro que en index.html */
-    /* Estas variables serán sobrescritas por las clases dark-mode / light-mode-manual */
-    :root {
-      --bg: #f9f6fb;
-      --text: #4a3054;
-      --card-bg: #ffffff;
-      --primary: #c39bd3;
-      --primary-dark: #af7ac5;
-      --success: #27ae60;
-      --error: #c0392b;
-    }
-
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-      transition: background 0.3s ease, color 0.3s ease;
+      margin: 0;
+      padding: 0;
+      color: #5c3c74;
+      background: linear-gradient(135deg, #f3e5f5, #e1bee7, #ce93d8);
+      background-size: 600% 600%;
+      animation: backgroundShift 20s ease infinite;
+      overflow-x: hidden;
     }
 
-    h1, h2 {
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      background: rgba(215, 188, 232, 0.85);
+      padding: 1.5rem 0;
       text-align: center;
-      color: var(--primary-dark);
-    }
-
-    section {
-      background: var(--card-bg);
-      padding: 1.5rem 2rem;
-      border-radius: 1rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      margin-bottom: 2rem;
-      transition: background 0.3s ease;
+      backdrop-filter: blur(4px);
     }
 
-    .question p {
-      font-weight: 600;
-      margin-bottom: 1rem;
+    header h1 {
+      color: #4a3054;
+      font-size: 2.2rem;
+      margin: 0;
+      font-weight: 700;
     }
 
-    .options label {
-      display: block;
-      margin: 0.5rem 0;
-      cursor: pointer;
-    }
-    .options label input[type="checkbox"],
-    .options label input[type="radio"] {
-      margin-right: 0.5rem;
-    }
-
-    button, .toggle-btn { /* Clase para el botón de modo oscuro */
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 0.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      margin-top: 1rem;
-    }
-
-    button:hover, .toggle-btn:hover {
-      background-color: var(--primary-dark);
-    }
-
-    .result-message { /* Clase para el resultado del quiz */
-      margin-top: 1rem;
-      font-weight: bold;
-      padding: 0.8rem;
-      border-radius: 0.5rem;
+    .hero {
+      position: relative;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      border-radius: 1.5rem;
+      margin: 2rem 1rem;
+      padding: 2.5rem;
       text-align: center;
-      color: white; /* Color de texto base para mensajes de resultado */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
-    .result-message.passed {
-        background-color: var(--success);
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20px; left: -20px;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+      opacity: 0.2;
+      border-radius: 1.5rem;
+      z-index: 0;
     }
 
-    .result-message.failed {
-        background-color: var(--error);
+    .hero h2, .hero p {
+      position: relative;
+      z-index: 1;
     }
 
-    a {
-      display: inline-block;
-      margin-top: 2rem;
+    .hero h2 {
+      font-size: 2rem;
+      color: #6c3e9b;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      color: #7d5a8b;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      color: #a45db6;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .card p {
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+
+    .card img {
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 1rem;
+      border: 2px solid #ebd6f4;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 2rem 1rem;
+    }
+
+    .nav-buttons a {
       text-decoration: none;
-      background-color: var(--primary);
+      background-color: #c39bd3;
       color: white;
-      padding: 0.7rem 1.4rem;
-      border-radius: 0.6rem;
+      padding: 0.9rem 1.6rem;
+      border-radius: 1rem;
       font-weight: 600;
-      transition: background-color 0.2s ease;
-      margin-right: 1rem; /* Espacio entre los botones de navegación */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    a:hover {
-      background-color: var(--primary-dark);
+    .nav-buttons a:hover {
+      background-color: #a569bd;
+      transform: scale(1.06);
     }
 
-    .toggle-container {
-      text-align: right;
-      margin-bottom: 1.5rem;
+    footer {
+      background: rgba(215, 188, 232, 0.9);
+      text-align: center;
+      padding: 1.5rem;
+      color: #4a3054;
+      font-weight: 500;
+      margin-top: 2rem;
     }
 
-    /* Estilos para Modo Oscuro - Consistentes con index.html */
-    body.dark-mode {
-      background: #121212;
-      color: #e0d8f0;
+    .floaty {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.6;
+      animation: float 10s infinite ease-in-out;
+      pointer-events: none;
     }
-    body.dark-mode h1, body.dark-mode h2 {
-      color: #a87ce2; /* Un púrpura más claro para títulos */
+
+    @keyframes float {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
     }
-    body.dark-mode section {
-      background: #2b2440; /* Fondo de tarjeta más oscuro */
-      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+
+    .float2 { top: 20%; right: 10%; animation-delay: 3s; }
+    .float3 { bottom: 15%; left: 15%; animation-delay: 5s; }
+    .float4 { bottom: 10%; right: 20%; animation-delay: 7s; }
+
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 0.6rem;
+      border: none;
+      background-color: #c39bd3;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
     }
-    body.dark-mode .question p {
-      color: #f3e8ff;
+
+    /* ==== MODO OSCURO (EXISTENTE) ==== */
+    body.dark-mode { /* Usamos 'dark-mode' para consistencia con index.html */
+      background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
+      background-size: 600% 600%;
+      animation: backgroundShift 20s ease infinite;
+      color: white;
     }
-    body.dark-mode .options label {
-      color: #ddd;
+
+    body.dark-mode header,
+    body.dark-mode footer {
+      background: rgba(30, 30, 48, 0.85);
+      color: white;
     }
-    body.dark-mode button, body.dark-mode .toggle-btn {
-      background-color: #6c5498; /* Púrpura más oscuro para botones */
-      color: #fff;
+
+    body.dark-mode .hero {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
     }
-    body.dark-mode button:hover, body.dark-mode .toggle-btn:hover {
-      background-color: #a87ce2; /* Púrpura más claro al pasar el ratón */
+
+    body.dark-mode .hero::before {
+      background: none;
     }
-    body.dark-mode a {
-      background-color: #6c5498;
-      color: #fff;
+
+    body.dark-mode .card {
+      background-color: #2c2c3a;
+      border: 1px solid #444;
+      color: white;
     }
-    body.dark-mode a:hover {
-      background-color: #a87ce2;
+
+    body.dark-mode .card h2,
+    body.dark-mode .card p,
+    body.dark-mode .hero h2,
+    body.dark-mode .hero p {
+      color: white;
     }
-    body.dark-mode .result-message.passed {
-      background-color: #2ecc71; /* Verde */
+
+    body.dark-mode .nav-buttons a {
+      background-color: #6c5ce7;
+      color: white;
     }
-    body.dark-mode .result-message.failed {
-      background-color: #e74c3c; /* Rojo */
+
+    body.dark-mode .nav-buttons a:hover {
+      background-color: #8e74e7;
     }
-    /* Para manejar prefers-color-scheme */
+
+    body.dark-mode button {
+      background-color: #6c5ce7;
+    }
+
+    /* ==== PREFERS-COLOR-SCHEME LOGIC (AJUSTADO PARA CONSISTENCIA) ==== */
+    /* Estas reglas se aplicarán si el sistema prefiere modo oscuro Y si localStorage no tiene una preferencia explícita por el modo claro */
     @media (prefers-color-scheme: dark) {
-      body:not(.light-mode-manual) {
-        background: #121212;
-        color: #e0d8f0;
+      body:not(.light-mode-manual) { /* Aplica si el sistema es oscuro y el usuario NO ha seleccionado el modo claro manualmente */
+        background: linear-gradient(135deg, #1e1e2f, #2a2a3a, #1a1a2b);
+        background-size: 600% 600%;
+        animation: backgroundShift 20s ease infinite;
+        color: white;
       }
-      body:not(.light-mode-manual) h1, body:not(.light-mode-manual) h2 {
-        color: #a87ce2;
+
+      body:not(.light-mode-manual) header,
+      body:not(.light-mode-manual) footer {
+        background: rgba(30, 30, 48, 0.85);
+        color: white;
       }
-      body:not(.light-mode-manual) section {
-        background: #2b2440;
-        box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+
+      body:not(.light-mode-manual) .hero {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
       }
-      body:not(.light-mode-manual) .question p {
-        color: #f3e8ff;
+
+      body:not(.light-mode-manual) .hero::before {
+        background: none;
       }
-      body:not(.light-mode-manual) .options label {
-        color: #ddd;
+
+      body:not(.light-mode-manual) .card {
+        background-color: #2c2c3a;
+        border: 1px solid #444;
+        color: white;
       }
-      body:not(.light-mode-manual) button, body:not(.light-mode-manual) .toggle-btn {
-        background-color: #6c5498;
-        color: #fff;
+
+      body:not(.light-mode-manual) .card h2,
+      body:not(.light-mode-manual) .card p,
+      body:not(.light-mode-manual) .hero h2,
+      body:not(.light-mode-manual) .hero p {
+        color: white;
       }
-      body:not(.light-mode-manual) button:hover, body:not(.light-mode-manual) .toggle-btn:hover {
-        background-color: #a87ce2;
+
+      body:not(.light-mode-manual) .nav-buttons a {
+        background-color: #6c5ce7;
+        color: white;
       }
-      body:not(.light-mode-manual) a {
-        background-color: #6c5498;
-        color: #fff;
+
+      body:not(.light-mode-manual) .nav-buttons a:hover {
+        background-color: #8e74e7;
       }
-      body:not(.light-mode-manual) a:hover {
-        background-color: #a87ce2;
-      }
-      body:not(.light-mode-manual) .result-message.passed {
-        background-color: #2ecc71;
-      }
-      body:not(.light-mode-manual) .result-message.failed {
-        background-color: #e74c3c;
+
+      body:not(.light-mode-manual) button {
+        background-color: #6c5ce7;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="toggle-container">
-    <button id="toggle-dark-mode" class="toggle-btn">🌓 Modo Oscuro</button>
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float2" alt="mariposa" />
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float3" alt="mariposa" />
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="floaty float4" alt="mariposa" />
+
+  <header>
+    <button id="toggle-dark-mode" onclick="alternarModo()">🌙 Modo Oscuro</button> <h1>Lección 1: Saludos Básicos</h1>
+  </header>
+
+  <section class="hero">
+    <h2>Aprende saludos en Lengua de Señas</h2>
+    <p>Explora cada tarjeta y observa los gestos animados para mejorar tu comunicación.</p>
+  </section>
+
+  <div class="container">
+
+    <div class="card"><h2>Hola</h2><p>Extiende la mano desde la frente hacia afuera como si saludaras.</p><img src="TP1/hola.gif" alt="Seña Hola" /></div>
+    <div class="card"><h2>Buenos días</h2><p>Comienza con la seña de "bueno" y luego simula la salida del sol.</p><img src="TP1/buenos-dias.gif" alt="Seña Buenos días" /></div>
+    <div class="card"><h2>Buenas tardes</h2><p>La mano dominante pasa sobre la otra simulando el sol bajando.</p><img src="TP1/buenas-tardes.gif" alt="Buenas tardes" /></div>
+   
+    <div class="card"><h2>¿Cómo estás?</h2><p>Gesto de pregunta con cejas levantadas y manos girando hacia el frente.</p><img src="TP1/como-estas.gif" alt="¿Cómo estás?" /></div>
+    
+    <div class="card"><h2>Mucho gusto</h2><p>Palmas juntas frente al pecho con sonrisa.</p><img src="TP1/encantado-de-conocerte.gif" alt="Mucho gusto" /></div>
+    <div class="card"><h2>Bienvenido(a)</h2><p>Movimiento circular con manos abiertas hacia el pecho.</p><img src="TP1/bienvenido.gif" alt="Bienvenido(a)" /></div>
+    <div class="card"><h2>Adiós</h2><p>Movimiento de la mano abierta despidiéndose.</p><img src="TP1/adios.gif" alt="Seña Adiós" /></div>
+
+    <div class="card"><h2>¿De donde eres?</h2><p>Mano en forma de garra sobre el corazón, luego hacia la persona.</p><img src="TP1/de-donde-eres.gif" alt="¿De donde eres?" /></div>
+    <div class="card"><h2>Muchas Gracias</h2><p>Despedida que indica continuidad.</p><img src="TP1/muchas-gracias.gif" alt="Muchas Gracias" /></div>
+
+    <div class="nav-buttons">
+      <a href="index.html">← Volver al índice</a>
+      <a href="Prueba.html">Test 1</a>
+    </div>
   </div>
 
-  <h1>Lección 1</h1> <h2>Cuestionario de Repaso</h2>
+  <footer>
+    ALSI • Una forma de aprender sin barreras
+  </footer>
 
-  <section class="question">
-    <p><strong>1. ¿Cuáles de los siguientes son saludos apropiados en español?</strong></p>
-    <div class="options">
-      <label><input type="checkbox" name="q1" value="Hola" /> Hola</label>
-      <label><input type="checkbox" name="q1" value="Adiós" /> Adiós</label>
-      <label><input type="checkbox" name="q1" value="Gracias" /> Gracias</label>
-      <label><input type="checkbox" name="q1" value="Buenas tardes" /> Buenas tardes</label>
-      <label><input type="checkbox" name="q1" value="Mesa" /> Mesa</label>
-    </div>
-  </section>
-
-  <section class="question">
-    <p><strong>2. ¿Cómo se hace la seña de "Buenos días"?</strong></p>
-    <div class="options">
-      <label><input type="radio" name="q2" value="A" /> Mano desde el pecho hacia afuera como si empujaras algo</label>
-      <label><input type="radio" name="q2" value="B" /> Mano desde la boca hacia afuera y luego gesto de sol saliendo</label>
-      <label><input type="radio" name="q2" value="C" /> Palmas juntas frente al pecho</label>
-    </div>
-  </section>
-
-  <section class="question">
-    <p><strong>3. ¿Cuál de estos gestos representa "Cuídate"?</strong></p>
-    <div class="options">
-      <label><input type="radio" name="q3" value="A" /> Dos dedos desde los ojos hacia adelante</label>
-      <label><input type="radio" name="q3" value="B" /> Mano en forma de garra sobre el corazón y luego hacia la persona</label>
-      <label><input type="radio" name="q3" value="C" /> Mano abierta moviéndose como saludo</label>
-    </div>
-  </section>
-
-  <section class="question">
-    <p><strong>4. ¿Qué seña implica un movimiento circular con las manos hacia el pecho?</strong></p>
-    <div class="options">
-      <label><input type="radio" name="q4" value="A" /> Mucho gusto</label>
-      <label><input type="radio" name="q4" value="B" /> Bienvenido(a)</label>
-      <label><input type="radio" name="q4" value="C" /> Hasta mañana</label>
-    </div>
-  </section>
-
-  <button onclick="verificar()">Enviar</button>
-  <div class="result-message" id="resultado"></div>
-
-  <a href="index.html">Volver al índice</a>
-  <a href="lesson2.html">Siguiente →</a> <script>
-    // --- LÓGICA DE MODO OSCURO (CONSISTENTE CON LAS OTRAS PÁGINAS) ---
+  <script>
+    // Se renombra a 'toggle-dark-mode' para consistencia con el index.html
     const toggleDarkModeBtn = document.getElementById("toggle-dark-mode");
     const body = document.body;
 
-    function applyMode(isDarkMode) {
+    // Función para aplicar el modo (claro/oscuro) y actualizar el texto del botón
+    function applyMode(isDarkMode) { // Función renombrada para consistencia
       if (isDarkMode) {
         body.classList.add("dark-mode");
-        body.classList.remove("light-mode-manual");
+        body.classList.remove("light-mode-manual"); // Asegurarse de quitar la clase de anulación manual
         toggleDarkModeBtn.textContent = "☀️ Modo Claro";
       } else {
         body.classList.remove("dark-mode");
-        body.classList.add("light-mode-manual");
+        body.classList.add("light-mode-manual"); // Marcar que el modo claro fue seleccionado manualmente
         toggleDarkModeBtn.textContent = "🌙 Modo Oscuro";
       }
     }
 
-    function toggleDarkMode() {
-      const currentMode = localStorage.getItem("darkMode");
+    // Función para alternar el modo manualmente
+    function alternarModo() {
+      // Usamos 'darkMode' en localStorage para consistencia con index.html
+      const currentMode = localStorage.getItem("darkMode"); // 'enabled', 'disabled' o null
       let newMode;
 
+      // Lógica para determinar el nuevo modo
       if (currentMode === 'enabled' || (currentMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Si estaba en oscuro (manual o por sistema), cambiar a claro
         newMode = 'disabled';
       } else {
+        // Si estaba en claro (manual o por sistema), cambiar a oscuro
         newMode = 'enabled';
       }
-      localStorage.setItem("darkMode", newMode);
-      applyMode(newMode === 'enabled');
+      localStorage.setItem("darkMode", newMode); // Guardar la preferencia
+      applyMode(newMode === 'enabled'); // Aplicar el nuevo modo
     }
 
+    // Lógica al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
-      const savedMode = localStorage.getItem("darkMode");
+      const savedMode = localStorage.getItem("darkMode"); // Usamos 'darkMode' en localStorage
+
       if (savedMode) {
+        // Si hay una preferencia guardada, úsala
         applyMode(savedMode === 'enabled');
       } else {
+        // Si no hay preferencia guardada, usa la del sistema
         applyMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
       }
     });
 
+    // Escuchar cambios en la preferencia del sistema (solo si no hay una preferencia manual guardada)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      if (!localStorage.getItem("darkMode")) {
+      if (!localStorage.getItem("darkMode")) { // Si el usuario no ha elegido manualmente
         applyMode(event.matches);
       }
     });
-
-    // --- LÓGICA DEL CUESTIONARIO Y CONEXIÓN CON EL PROGRESO GLOBAL ---
-
-    // Importa la función submitQuiz del index.html.
-    // Para que esto funcione, este script debe ser cargado DESPUÉS del script principal en index.html,
-    // o el script principal de index.html debe ser un archivo externo (ej. script.js)
-    // que se vincule a todas las páginas.
-    // Por ahora, asumimos que submitQuiz está disponible globalmente,
-    // o que este script se copiará dentro de index.html si es un quiz "en línea".
-    // SI Prueba.html es un archivo SEPARADO, NECESITAS CARGAR EL SCRIPT COMPLETO DEL INDEX.HTML AQUÍ TAMBIÉN.
-    // La forma más robusta es poner todo el JS de control de lecciones en un archivo externo como 'main.js'
-    // y vincular 'main.js' tanto en index.html como en Prueba.html.
-
-    // === INICIO DEL CÓDIGO NECESARIO DEL SCRIPT PRINCIPAL DEL INDEX.HTML ===
-    // (Esto es un ejemplo, lo ideal es que lo tengas en un archivo JS externo y lo cargues en todas las páginas)
-    const MIN_PASS_SCORE = 70; // Debe ser consistente con el valor en index.html
-
-    function saveProgress(lessonId, status) {
-        localStorage.setItem(`lessonProgress_${lessonId}`, status);
-        // En un entorno de múltiples páginas, no podemos actualizar la barra de progreso
-        // ni las tarjetas del index directamente desde aquí.
-        // Esto se hará cuando el usuario vuelva al index.html.
-    }
-
-    // Adaptamos la función `submitQuiz` para que este archivo pueda llamarla.
-    // Esta es una versión simplificada, la versión completa está en index.html
-    // y es la que actualiza el UI de las tarjetas.
-    function submitQuiz(lessonId, scoreObtained) {
-        const lessonElement = document.getElementById(lessonId); // Este elemento NO existirá en Prueba.html
-                                                                 // así que el mensaje de alerta es importante.
-        let minScoreFromIndex = MIN_PASS_SCORE; // Usamos el valor por defecto
-
-        // Intentar leer el minScore de localStorage si se guardó
-        // (Sería ideal si el index.html guardara la configuración de las lecciones en localStorage)
-        // Por ahora, nos basamos en el MIN_PASS_SCORE global.
-
-        if (scoreObtained >= minScoreFromIndex) {
-            alert(`¡Cuestionario aprobado con ${scoreObtained}%! La siguiente lección se desbloqueará.`);
-            saveProgress(lessonId, 'completed');
-        } else {
-            alert(`Cuestionario reprobado con ${scoreObtained}%. Necesitas ${minScoreFromIndex}%.`);
-            saveProgress(lessonId, 'unlocked'); // La lección sigue desbloqueada para reintentar
-        }
-
-        // Después de enviar el quiz, podrías redirigir al index o a la siguiente lección
-        // window.location.href = 'index.html'; // O redirigir a la siguiente lección directamente si la aprueba
-    }
-    // === FIN DEL CÓDIGO NECESARIO DEL SCRIPT PRINCIPAL ===
-
-    function verificar() {
-      // ID de la lección a la que pertenece este cuestionario (corresponde a id="lesson1" en index.html)
-      const LESSON_ID = 'lesson1';
-      const MIN_SCORE_FOR_THIS_QUIZ = 70; // Asegúrate que este sea el mismo que en data-min-score de index.html
-
-      // Pregunta 1 (checkbox)
-      const correctas1 = ["Hola", "Buenas tardes"];
-      const seleccionadas1 = Array.from(document.querySelectorAll('input[name="q1"]:checked')).map(cb => cb.value);
-      const p1_correcta = correctas1.every(r => seleccionadas1.includes(r)) && seleccionadas1.every(r => correctas1.includes(r));
-
-      // Pregunta 2 (radio)
-      const respuesta2 = document.querySelector('input[name="q2"]:checked');
-      const p2_correcta = respuesta2 && respuesta2.value === "B";
-
-      // Pregunta 3 (radio)
-      const respuesta3 = document.querySelector('input[name="q3"]:checked');
-      const p3_correcta = respuesta3 && respuesta3.value === "B"; // La respuesta correcta es 'B' según tu lección
-
-      // Pregunta 4 (radio)
-      const respuesta4 = document.querySelector('input[name="q4"]:checked');
-      const p4_correcta = respuesta4 && respuesta4.value === "B";
-
-      let aciertos = 0;
-      if (p1_correcta) aciertos++;
-      if (p2_correcta) aciertos++;
-      if (p3_correcta) aciertos++;
-      if (p4_correcta) aciertos++;
-
-      const total = 4;
-      const score = (aciertos / total) * 100;
-      const resultadoDiv = document.getElementById("resultado");
-
-      resultadoDiv.textContent = ''; // Limpiar mensajes anteriores
-      resultadoDiv.classList.remove('passed', 'failed'); // Limpiar clases anteriores
-
-      if (score >= MIN_SCORE_FOR_THIS_QUIZ) {
-        resultadoDiv.textContent = `✅ ¡Felicidades! Has aprobado el cuestionario con un ${score.toFixed(0)}%.`;
-        resultadoDiv.classList.add('passed');
-        submitQuiz(LESSON_ID, score); // Llama a la función global para registrar el progreso
-      } else {
-        let mensajesError = [];
-        if (!p1_correcta) mensajesError.push("Pregunta 1: respuestas incorrectas.");
-        if (!p2_correcta) mensajesError.push("Pregunta 2: respuesta incorrecta.");
-        if (!p3_correcta) mensajesError.push("Pregunta 3: respuesta incorrecta.");
-        if (!p4_correcta) mensajesError.push("Pregunta 4: respuesta incorrecta.");
-
-        resultadoDiv.innerHTML = `❌ Necesitas un ${MIN_SCORE_FOR_THIS_QUIZ}% para aprobar. Tu puntuación: ${score.toFixed(0)}%.<br>Errores: ${mensajesError.join("<br>")}`;
-        resultadoDiv.classList.add('failed');
-        submitQuiz(LESSON_ID, score); // Llama a la función global para registrar el progreso (como no completado)
-      }
-    }
   </script>
-
 </body>
 </html>
