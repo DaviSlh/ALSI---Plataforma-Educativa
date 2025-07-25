@@ -156,6 +156,16 @@ font-size: 2.2rem;
 margin: 0;
 font-weight: 700;
 }
+header h2 { /* Ajustado para tu encabezado */
+    color: var(--color-header-text);
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 700;
+}
+header p { /* Ajustado para tu encabezado */
+    color: var(--color-header-text);
+    margin: 0.5rem 0 0;
+}
 .hero {
 position: relative;
 background: var(--color-hero-bg);
@@ -328,233 +338,252 @@ z-index: 150;
 background-color: var(--color-nav-bg-hover);
 transform: scale(1.1);
 }
+
+/* NUEVA REGLA CSS PARA LA IMAGEN DEL ABECEDARIO */
+.alphabet-intro-image {
+    display: block; /* Para que ocupe su propio espacio */
+    max-width: 1200px; /* Ancho máximo para que no sea demasiado grande */
+    width: calc(100% - 2rem); /* Ocupa el 100% del ancho del contenedor con padding */
+    height: auto;
+    margin: 2rem auto 0; /* Margen superior para separarla del header, centrarla y quitar margen inferior */
+    border-radius: 1.5rem; /* Para que se vea más integrada con el diseño de hero y cards */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Para darle un poco de profundidad */
+    border: 2px solid var(--color-card-border); /* Para el borde */
+    transition: all 0.8s ease; /* Para transiciones de modo oscuro */
+}
 </style>
 </head>
 <body>
 <header>
-<h2>Abecedario en Señas - LSN</h2>
-<p>Cada letra tiene una seña específica con la mano. Aprende el abecedario completo.</p>
-<img src="TP1/abecederio.gif" alt="abecedario" />
+    <h2>Abecedario en Señas - LSN</h2>
+    <p>Cada letra tiene una seña específica con la mano. Aprende el abecedario completo.</p>
 </header>
+
+<img src="TP1/abecederio.gif" alt="abecedario completo en Lengua de Señas" class="alphabet-intro-image" />
+
 <main class="container">
-<div class="hero">
-<h2>Alfabeto Dactilológico (Letras)</h2>
-<p>El alfabeto dactilológico, también conocido como alfabeto manual, es una forma de representar las letras del alfabeto de un idioma utilizando las manos. Es fundamental en la Lengua de Señas Nicaragüense (LSN).</p>
-<img class="floaty float1" src="https://i.postimg.cc/dVwVNDVL/1000037856.png" alt="floaty image">
-<img class="floaty float2" src="https://i.postimg.cc/HxKrF38z/1000037829.png" alt="floaty image">
-<img class="floaty float3" src="https://i.postimg.cc/NFGVX7j6/1000037780.png" alt="floaty image">
-<img class="floaty float4" src="https://i.postimg.cc/bJDnYdbq/1000037814.png" alt="floaty image">
-</div>
-<div class="alphabet">
-<div class="letter">
-<h3>A</h3>
-<p>Mano en forma de puño, con el pulgar tocando el costado del dedo índice.</p>
-<img src="TP1/a.png" alt="Letra A" />
-</div>
-<div class="letter">
-<h3>B</h3>
-<p>Dedos juntos y extendidos hacia arriba, pulgar tocando la palma.</p>
-<img src="TP1/b.png" alt="Letra B" />
-</div>
-<div class="letter">
-<h3>C</h3>
-<p>Mano formando la silueta de la letra “C”.</p>
-<img src="TP1/c.png" alt="Letra C" />
-</div>
-<div class="letter">
-<h3>CH</h3>
-<p>Mano en forma de “C” con un pequeño movimiento de giro.</p>
-<img src="TP1/ch.png" alt="Letra CH" />
-</div>
-<div class="letter">
-<h3>D</h3>
-<p>Dedo índice hacia arriba, los demás dedos tocando el pulgar.</p>
-<img src="TP1/d.png" alt="Letra D" />
-</div>
-<div class="letter">
-<h3>E</h3>
-<p>Dedos doblados tocando el pulgar, palma hacia adentro.</p>
-<img src="TP1/e.png" alt="Letra E" />
-</div>
-<div class="letter">
-<h3>F</h3>
-<p>Pulgar tocando el dedo índice y medio; los demás extendidos.</p>
-<img src="TP1/f.png" alt="Letra F" />
-</div>
-<div class="letter">
-<h3>G</h3>
-<p>Dedo índice apuntando de lado, los demás cerrados.</p>
-<img src="TP1/g.png" alt="Letra G" />
-</div>
-<div class="letter">
-<h3>H</h3>
-<p>Dedo índice y medio apuntando de lado, los demás cerrados.</p>
-<img src="TP1/h.png" alt="Letra H" />
-</div>
-<div class="letter">
-<h3>I</h3>
-<p>Meñique extendido, los demás dedos cerrados.</p>
-<img src="TP1/i.png" alt="Letra I" />
-</div>
-<div class="letter">
-<h3>J</h3>
-<p>Con el meñique extendido, dibuja una “J” en el aire.</p>
-<img src="TP1/j.png" alt="Letra J" />
-</div>
-<div class="letter">
-<h3>K</h3>
-<p>Dedo índice y medio levantados en “V”, con el pulgar entre ellos.</p>
-<img src="TP1/k.png" alt="Letra K" />
-</div>
-<div class="letter">
-<h3>L</h3>
-<p>Dedo índice hacia arriba y pulgar hacia afuera, formando una “L”.</p>
-<img src="TP1/l.png" alt="Letra L" />
-</div>
-<div class="letter">
-<h3>LL</h3>
-<p>Forma la “L” y repite el movimiento hacia adelante o a los lados.</p>
-<img src="TP1/ll.png" alt="Letra LL" />
-</div>
-<div class="letter">
-<h3>M</h3>
-<p>Tres dedos cruzan sobre el pulgar (índice, medio y anular).</p>
-<img src="TP1/m.png" alt="Letra M" />
-</div>
-<div class="letter">
-<h3>N</h3>
-<p>Dos dedos (índice y medio) cruzan sobre el pulgar.</p>
-<img src="TP1/n.png" alt="Letra N" />
-</div>
-<div class="letter">
-<h3>O</h3>
-<p>Dedos formando un círculo al juntar las yemas.</p>
-<img src="TP1/o.png" alt="Letra O" />
-</div>
-<div class="letter">
-<h3>P</h3>
-<p>Como la “K” pero con la palma inclinada hacia abajo.</p>
-<img src="TP1/p.png" alt="Letra P" />
-</div>
-<div class="letter">
-<h3>Q</h3>
-<p>Dedo índice y pulgar haciendo un gancho hacia abajo.</p>
-<img src="TP1/q.png" alt="Letra Q" />
-</div>
-<div class="letter">
-<h3>R</h3>
-<p>Dedo índice y medio cruzados en forma de "X".</p>
-<img src="TP1/r.png" alt="Letra R" />
-</div>
-<div class="letter">
-<h3>S</h3>
-<p>Mano en puño, con el pulgar por encima de los dedos.</p>
-<img src="TP1/s.png" alt="Letra S" />
-</div>
-<div class="letter">
-<h3>T</h3>
-<p>Pulgar metido entre el índice y medio.</p>
-<img src="TP1/t.png" alt="Letra T" />
-</div>
-<div class="letter">
-<h3>U</h3>
-<p>Dedo índice y medio juntos y estirados hacia arriba.</p>
-<img src="TP1/u.png" alt="Letra U" />
-</div>
-<div class="letter">
-<h3>V</h3>
-<p>Dedo índice y medio en forma de “V”.</p>
-<img src="TP1/v.png" alt="Letra V" />
-</div>
-<div class="letter">
-<h3>W</h3>
-<p>Tres dedos (índice, medio y anular) extendidos hacia arriba.</p>
-<img src="TP1/w.png" alt="Letra W" />
-</div>
-<div class="letter">
-<h3>X</h3>
-<p>Dedo índice curvado como un gancho.</p>
-<img src="TP1/x.png" alt="Letra X" />
-</div>
-<div class="letter">
-<h3>Y</h3>
-<p>Pulgar y meñique extendidos (gesto de teléfono 🤙).</p>
-<img src="TP1/y.png" alt="Letra Y" />
-</div>
-<div class="letter">
-<h3>Z</h3>
-<p>Dedo índice dibuja una “Z” en el aire.</p>
-<img src="TP1/z.png" alt="Letra Z" />
-</div>
-</div>
-<div class="card">
-<h2>Deletrear palabras</h2>
-<p>Se utiliza el alfabeto para deletrear nombres o palabras sin seña.</p>
-</div>
-<nav class="nav-buttons">
-<a href="index.html">Volver al índice</a>
-<a href="lesson3.html">Siguiente lección</a>
-</nav>
+    <div class="hero">
+        <h2>Alfabeto Dactilológico (Letras)</h2>
+        <p>El alfabeto dactilológico, también conocido como alfabeto manual, es una forma de representar las letras del alfabeto de un idioma utilizando las manos. Es fundamental en la Lengua de Señas Nicaragüense (LSN).</p>
+        <img class="floaty float1" src="https://i.postimg.cc/dVwVNDVL/1000037856.png" alt="floaty image">
+        <img class="floaty float2" src="https://i.postimg.cc/HxKrF38z/1000037829.png" alt="floaty image">
+        <img class="floaty float3" src="https://i.postimg.cc/NFGVX7j6/1000037780.png" alt="floaty image">
+        <img class="floaty float4" src="https://i.postimg.cc/bJDnYdbq/1000037814.png" alt="floaty image">
+    </div>
+    <div class="alphabet">
+        <div class="letter">
+            <h3>A</h3>
+            <p>Mano en forma de puño, con el pulgar tocando el costado del dedo índice.</p>
+            <img src="TP1/a.png" alt="Letra A" />
+        </div>
+        <div class="letter">
+            <h3>B</h3>
+            <p>Dedos juntos y extendidos hacia arriba, pulgar tocando la palma.</p>
+            <img src="TP1/b.png" alt="Letra B" />
+        </div>
+        <div class="letter">
+            <h3>C</h3>
+            <p>Mano formando la silueta de la letra “C”.</p>
+            <img src="TP1/c.png" alt="Letra C" />
+        </div>
+        <div class="letter">
+            <h3>CH</h3>
+            <p>Mano en forma de “C” con un pequeño movimiento de giro.</p>
+            <img src="TP1/ch.png" alt="Letra CH" />
+        </div>
+        <div class="letter">
+            <h3>D</h3>
+            <p>Dedo índice hacia arriba, los demás dedos tocando el pulgar.</p>
+            <img src="TP1/d.png" alt="Letra D" />
+        </div>
+        <div class="letter">
+            <h3>E</h3>
+            <p>Dedos doblados tocando el pulgar, palma hacia adentro.</p>
+            <img src="TP1/e.png" alt="Letra E" />
+        </div>
+        <div class="letter">
+            <h3>F</h3>
+            <p>Pulgar tocando el dedo índice y medio; los demás extendidos.</p>
+            <img src="TP1/f.png" alt="Letra F" />
+        </div>
+        <div class="letter">
+            <h3>G</h3>
+            <p>Dedo índice apuntando de lado, los demás cerrados.</p>
+            <img src="TP1/g.png" alt="Letra G" />
+        </div>
+        <div class="letter">
+            <h3>H</h3>
+            <p>Dedo índice y medio apuntando de lado, los demás cerrados.</p>
+            <img src="TP1/h.png" alt="Letra H" />
+        </div>
+        <div class="letter">
+            <h3>I</h3>
+            <p>Meñique extendido, los demás dedos cerrados.</p>
+            <img src="TP1/i.png" alt="Letra I" />
+        </div>
+        <div class="letter">
+            <h3>J</h3>
+            <p>Con el meñique extendido, dibuja una “J” en el aire.</p>
+            <img src="TP1/j.png" alt="Letra J" />
+        </div>
+        <div class="letter">
+            <h3>K</h3>
+            <p>Dedo índice y medio levantados en “V”, con el pulgar entre ellos.</p>
+            <img src="TP1/k.png" alt="Letra K" />
+        </div>
+        <div class="letter">
+            <h3>L</h3>
+            <p>Dedo índice hacia arriba y pulgar hacia afuera, formando una “L”.</p>
+            <img src="TP1/l.png" alt="Letra L" />
+        </div>
+        <div class="letter">
+            <h3>LL</h3>
+            <p>Forma la “L” y repite el movimiento hacia adelante o a los lados.</p>
+            <img src="TP1/ll.png" alt="Letra LL" />
+        </div>
+        <div class="letter">
+            <h3>M</h3>
+            <p>Tres dedos cruzan sobre el pulgar (índice, medio y anular).</p>
+            <img src="TP1/m.png" alt="Letra M" />
+        </div>
+        <div class="letter">
+            <h3>N</h3>
+            <p>Dos dedos (índice y medio) cruzan sobre el pulgar.</p>
+            <img src="TP1/n.png" alt="Letra N" />
+        </div>
+        <div class="letter">
+            <h3>O</h3>
+            <p>Dedos formando un círculo al juntar las yemas.</p>
+            <img src="TP1/o.png" alt="Letra O" />
+        </div>
+        <div class="letter">
+            <h3>P</h3>
+            <p>Como la “K” pero con la palma inclinada hacia abajo.</p>
+            <img src="TP1/p.png" alt="Letra P" />
+        </div>
+        <div class="letter">
+            <h3>Q</h3>
+            <p>Dedo índice y pulgar haciendo un gancho hacia abajo.</p>
+            <img src="TP1/q.png" alt="Letra Q" />
+        </div>
+        <div class="letter">
+            <h3>R</h3>
+            <p>Dedo índice y medio cruzados en forma de "X".</p>
+            <img src="TP1/r.png" alt="Letra R" />
+        </div>
+        <div class="letter">
+            <h3>S</h3>
+            <p>Mano en puño, con el pulgar por encima de los dedos.</p>
+            <img src="TP1/s.png" alt="Letra S" />
+        </div>
+        <div class="letter">
+            <h3>T</h3>
+            <p>Pulgar metido entre el índice y medio.</p>
+            <img src="TP1/t.png" alt="Letra T" />
+        </div>
+        <div class="letter">
+            <h3>U</h3>
+            <p>Dedo índice y medio juntos y estirados hacia arriba.</p>
+            <img src="TP1/u.png" alt="Letra U" />
+        </div>
+        <div class="letter">
+            <h3>V</h3>
+            <p>Dedo índice y medio en forma de “V”.</p>
+            <img src="TP1/v.png" alt="Letra V" />
+        </div>
+        <div class="letter">
+            <h3>W</h3>
+            <p>Tres dedos (índice, medio y anular) extendidos hacia arriba.</p>
+            <img src="TP1/w.png" alt="Letra W" />
+        </div>
+        <div class="letter">
+            <h3>X</h3>
+            <p>Dedo índice curvado como un gancho.</p>
+            <img src="TP1/x.png" alt="Letra X" />
+        </div>
+        <div class="letter">
+            <h3>Y</h3>
+            <p>Pulgar y meñique extendidos (gesto de teléfono 🤙).</p>
+            <img src="TP1/y.png" alt="Letra Y" />
+        </div>
+        <div class="letter">
+            <h3>Z</h3>
+            <p>Dedo índice dibuja una “Z” en el aire.</p>
+            <img src="TP1/z.png" alt="Letra Z" />
+        </div>
+    </div>
+    <div class="card">
+        <h2>Deletrear palabras</h2>
+        <p>Se utiliza el alfabeto para deletrear nombres o palabras sin seña.</p>
+    </div>
+    <nav class="nav-buttons">
+        <a href="index.html">Volver al índice</a>
+        <a href="lesson3.html">Siguiente lección</a>
+    </nav>
 </main>
 <footer>
-<p>© 2025 Plataforma Educativa </p>
+    <p>© 2025 Plataforma Educativa </p>
 </footer>
 <button id="toggle-darkmode" aria-label="Alternar modo oscuro">Modo Oscuro</button>
 <script>
-const themeToggleBtn = document.getElementById('toggle-darkmode');
-const body = document.body;
-const localStorageKey = 'user-theme'; // Clave para localStorage
-// Función para aplicar el tema
-function applyTheme(theme) {
-if (theme === 'dark') {
-body.classList.add('dark-mode');
-body.classList.remove('light-mode');
-themeToggleBtn.textContent = 'Modo Claro';
-} else if (theme === 'light') {
-body.classList.add('light-mode');
-body.classList.remove('dark-mode');
-themeToggleBtn.textContent = 'Modo Oscuro';
-} else { // 'system' o nulo, para permitir que prefers-color-scheme actúe
-body.classList.remove('dark-mode', 'light-mode');
-// Actualizar el texto del botón según la preferencia del sistema actual
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-themeToggleBtn.textContent = 'Modo Claro';
-} else {
-themeToggleBtn.textContent = 'Modo Oscuro';
-}
-}
-localStorage.setItem(localStorageKey, theme); // Guarda la preferencia
-}
-// Al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-const savedTheme = localStorage.getItem(localStorageKey);
-if (savedTheme) {
-// Si hay una preferencia guardada, úsala
-applyTheme(savedTheme);
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-// Si no hay preferencia guardada, pero el sistema prefiere oscuro
-applyTheme('system'); // Indica que se está usando la del sistema
-} else {
-// Por defecto, si no hay preferencia guardada y el sistema no es oscuro
-applyTheme('system'); 
-}
-});
+    const themeToggleBtn = document.getElementById('toggle-darkmode');
+    const body = document.body;
+    const localStorageKey = 'user-theme'; // Clave para localStorage
 
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    // Función para aplicar el tema
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
+            themeToggleBtn.textContent = 'Modo Claro';
+        } else if (theme === 'light') {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
+            themeToggleBtn.textContent = 'Modo Oscuro';
+        } else { // 'system' o nulo, para permitir que prefers-color-scheme actúe
+            body.classList.remove('dark-mode', 'light-mode');
+            // Actualizar el texto del botón según la preferencia del sistema actual
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeToggleBtn.textContent = 'Modo Claro';
+            } else {
+                themeToggleBtn.textContent = 'Modo Oscuro';
+            }
+        }
+        localStorage.setItem(localStorageKey, theme); // Guarda la preferencia
+    }
 
-if (localStorage.getItem(localStorageKey) === 'system' || !localStorage.getItem(localStorageKey)) {
-applyTheme('system'); 
-}
-});
-// Evento del botón de alternar
-themeToggleBtn.addEventListener('click', () => {
-const currentTheme = localStorage.getItem(localStorageKey);
-if (currentTheme === 'dark' || (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-applyTheme('light'); 
-} else {
-applyTheme('dark'); 
-}
-});
+    // Al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem(localStorageKey);
+        if (savedTheme) {
+            // Si hay una preferencia guardada, úsala
+            applyTheme(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Si no hay preferencia guardada, pero el sistema prefiere oscuro
+            applyTheme('system'); // Indica que se está usando la del sistema
+        } else {
+            // Por defecto, si no hay preferencia guardada y el sistema no es oscuro
+            applyTheme('system');
+        }
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        // Solo cambia el tema si la preferencia del usuario es 'system' o no hay preferencia guardada
+        if (localStorage.getItem(localStorageKey) === 'system' || !localStorage.getItem(localStorageKey)) {
+            applyTheme('system');
+        }
+    });
+
+    // Evento del botón de alternar
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = localStorage.getItem(localStorageKey);
+        // Si el tema actual es oscuro (o es sistema oscuro), cambia a claro. De lo contrario, a oscuro.
+        if (currentTheme === 'dark' || (currentTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            applyTheme('light');
+        } else {
+            applyTheme('dark');
+        }
+    });
 </script>
 </body>
 </html>
